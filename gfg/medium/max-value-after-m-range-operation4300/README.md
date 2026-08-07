@@ -42,7 +42,7 @@ The maximum element after all operations is 882.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-07T18:33:19.015Z  
+**Submitted:** 2026-08-07T18:33:37.020Z  
 
 ```java
 class Solution {
