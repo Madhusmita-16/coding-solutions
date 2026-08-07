@@ -1,4 +1,4 @@
-# Java Factory Pattern
+# Java Singleton Pattern
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -34,18 +34,30 @@ You will not be producing any output in this challenge.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-07T19:42:46.396Z  
+**Submitted:** 2026-08-07T19:44:17.149Z  
 
 ```java
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+import java.lang.reflect.*;
 
 
-if (order.equalsIgnoreCase("pizza")) {
-    return new Pizza();
-} else if (order.equalsIgnoreCase("cake")) {
-    return new Cake();
+class Singleton {
+
+    private static Singleton instance = new Singleton();
+
+    public String str;
+
+    private Singleton() {
+    }
+
+    public static Singleton getSingleInstance() {
+        return instance;
+    }
 }
-
-return null;
 
 
 ```
