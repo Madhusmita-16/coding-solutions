@@ -1,13 +1,11 @@
 
 
-
-class Bird extends Animal {
-    void fly() {
-        System.out.println("I am flying");
+class Arithmetic {
+    int add(int a, int b) {
+        return a + b;
     }
+}
 
-    void sing() {
-        System.out.println("I am singing");
-    }
+class Adder extends Arithmetic {
 }
 
