@@ -1,4 +1,4 @@
-# Java Exception Handling
+# Java Inheritance I
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -66,29 +66,19 @@ The code above is provided for you in your editor. You must add a *sing* method 
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-07T20:02:13.961Z  
+**Submitted:** 2026-08-07T20:04:28.917Z  
 
 ```java
 
-class MyCalculator {
 
-    public long power(int n, int p) throws Exception {
 
-        if (n < 0 || p < 0) {
-            throw new Exception("n or p should not be negative.");
-        }
+class Bird extends Animal {
+    void fly() {
+        System.out.println("I am flying");
+    }
 
-        if (n == 0 && p == 0) {
-            throw new Exception("n and p should not be zero.");
-        }
-
-        long result = 1;
-
-        for (int i = 0; i < p; i++) {
-            result *= n;
-        }
-
-        return result;
+    void sing() {
+        System.out.println("I am singing");
     }
 }
 
