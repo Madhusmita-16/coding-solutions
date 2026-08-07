@@ -1,4 +1,4 @@
-# Java String Reverse
+# Java Anagrams
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -37,39 +37,41 @@ The second line contains a string $b$.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-07T19:52:59.056Z  
+**Submitted:** 2026-08-07T19:56:20.042Z  
 
 ```java
-import java.io.*;
-import java.util.*;
 
-public class Solution {
 
-    public static void main(String[] args) {
+    static boolean isAnagram(String a, String b) {
         
-        Scanner sc = new Scanner(System.in);
-        String A = sc.next();
-        
-        boolean isPalindrome = true;
-        
-        for (int i = 0; i < A.length() / 2; i++) {
-            if (A.charAt(i) != A.charAt(A.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
+        a = a.toLowerCase();
+        b = b.toLowerCase();
+
+        if (a.length() != b.length()) {
+            return false;
+        }
+
+        int[] frequency = new int[26];
+
+        // Count characters in a
+        for (int i = 0; i < a.length(); i++) {
+            frequency[a.charAt(i) - 'a']++;
+        }
+
+        // Remove characters found in b
+        for (int i = 0; i < b.length(); i++) {
+            frequency[b.charAt(i) - 'a']--;
+        }
+
+        // Check if all frequencies are zero
+        for (int i = 0; i < 26; i++) {
+            if (frequency[i] != 0) {
+                return false;
             }
         }
-        
-        if (isPalindrome) {
-            System.out.println("Yes");
-        } else {
-            System.out.println("No");
-        }
-        
-        sc.close();
+
+        return true;
     }
-}
-
-
 
 
 ```
