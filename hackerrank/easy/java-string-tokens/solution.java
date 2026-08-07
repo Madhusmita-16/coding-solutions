@@ -1,33 +1,28 @@
+import java.io.*;
+import java.util.*;
 
+public class Solution {
 
-    static boolean isAnagram(String a, String b) {
-        
-        a = a.toLowerCase();
-        b = b.toLowerCase();
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String s = scan.nextLine();
 
-        if (a.length() != b.length()) {
-            return false;
-        }
+        // Remove leading/trailing non-letters and split by non-letters
+        s = s.trim();
 
-        int[] frequency = new int[26];
+        if (s.length() == 0) {
+            System.out.println(0);
+        } else {
+            String[] tokens = s.split("[^A-Za-z]+");
 
-        // Count characters in a
-        for (int i = 0; i < a.length(); i++) {
-            frequency[a.charAt(i) - 'a']++;
-        }
+            System.out.println(tokens.length);
 
-        // Remove characters found in b
-        for (int i = 0; i < b.length(); i++) {
-            frequency[b.charAt(i) - 'a']--;
-        }
-
-        // Check if all frequencies are zero
-        for (int i = 0; i < 26; i++) {
-            if (frequency[i] != 0) {
-                return false;
+            for (String token : tokens) {
+                System.out.println(token);
             }
         }
 
-        return true;
+        scan.close();
     }
+}
 
