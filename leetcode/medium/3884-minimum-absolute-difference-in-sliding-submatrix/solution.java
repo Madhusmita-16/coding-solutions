@@ -13,20 +13,20 @@ class Solution {
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
 
-                // Store all elements of the k x k submatrix
+                // Store elements of the k x k submatrix
                 int[] values = new int[k * k];
-                int index = 0;
+                int idx = 0;
 
                 for (int i = r; i < r + k; i++) {
                     for (int j = c; j < c + k; j++) {
-                        values[index++] = grid[i][j];
+                        values[idx++] = grid[i][j];
                     }
                 }
 
-                // Sort the elements
+                // Sort so the minimum difference is between
+                // two adjacent distinct values.
                 Arrays.sort(values);
 
-                // Find minimum difference between distinct elements
                 int minDiff = Integer.MAX_VALUE;
 
                 for (int i = 1; i < values.length; i++) {
@@ -38,7 +38,7 @@ class Solution {
                     }
                 }
 
-                // If all elements are equal
+                // If all values are equal, answer is 0.
                 if (minDiff == Integer.MAX_VALUE) {
                     minDiff = 0;
                 }
