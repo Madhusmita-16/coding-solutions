@@ -17,6 +17,7 @@ public class Solution {
             pairs.add(key);
             output.append(pairs.size()).append("\n");
         }
+
         System.out.print(output);
     }
 }
