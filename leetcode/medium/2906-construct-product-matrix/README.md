@@ -48,52 +48,48 @@ So the answer is [[2],[0],[0]].
 
 **Language:** Java  
 **Runtime:** 0 ms  
-**Memory:** 42.9 MB  
-**Submitted:** 2026-08-08T12:37:31.113Z  
+**Memory:** 42.8 MB  
+**Submitted:** 2026-08-08T12:37:56.850Z  
 
 ```java
 class Solution {
-
     public int[][] constructProductMatrix(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
-
         int MOD = 12345;
 
-        // Step 1: Store suffix products directly in grid
+        int[][] result = new int[m][n];
+
+        // Store suffix products.
         long suffix = 1;
 
         for (int i = m - 1; i >= 0; i--) {
             for (int j = n - 1; j >= 0; j--) {
 
-                int current = grid[i][j];
+                result[i][j] = (int) suffix;
 
-                // Store product of all elements after current
-                grid[i][j] = (int) suffix;
-
-                // Update suffix for next element
-                suffix = (suffix * current) % MOD;
+                suffix = (suffix * grid[i][j]) % MOD;
             }
         }
 
-        // Step 2: Multiply by prefix product
+        // Multiply by prefix products.
         long prefix = 1;
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
 
-                int currentSuffix = grid[i][j];
+                // Save suffix before modifying result.
+                long suffixValue = result[i][j];
 
-                // grid[i][j] = prefix * suffix
-                grid[i][j] = (int) ((prefix * currentSuffix) % MOD);
+                // Product of everything before and after current cell.
+                result[i][j] = (int) ((prefix * suffixValue) % MOD);
 
-                // We need the original value here.
-                // It is no longer available, so we cannot update
-                // prefix from grid directly.
+                // Update prefix AFTER calculating current answer.
+                prefix = (prefix * grid[i][j]) % MOD;
             }
         }
 
-        return grid;
+        return result;
     }
 }
 ```
