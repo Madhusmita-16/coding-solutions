@@ -70,9 +70,9 @@ No valid cut exists, so the answer is `false`.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.4 MB  
-**Submitted:** 2026-08-08T12:43:18.442Z  
+**Runtime:** 1 ms  
+**Memory:** 42.6 MB  
+**Submitted:** 2026-08-08T12:44:16.752Z  
 
 ```java
 import java.util.*;
@@ -90,15 +90,20 @@ class Solution {
         int m = grid.length;
         int n = grid[0].length;
 
-        if (m == 1) {
-            return false;
-        }
+        if (m <= 1) return false;
 
         long total = 0;
 
+        // Value -> rows containing this value
+        Map<Long, List<Integer>> rows = new HashMap<>();
+
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                total += grid[i][j];
+                long val = grid[i][j];
+                total += val;
+
+                rows.computeIfAbsent(val, x -> new ArrayList<>())
+                    .add(i);
             }
         }
 
@@ -112,23 +117,28 @@ class Solution {
 
             long lowerSum = total - upperSum;
 
-            // No deletion needed
+            // No deletion
             if (upperSum == lowerSum) {
                 return true;
             }
 
-            if (upperSum > lowerSum) {
-                long need = upperSum - lowerSum;
+            long need;
 
-                // Delete one cell from upper part
-                if (canDeleteHorizontalUpper(grid, cut, need)) {
+            if (upperSum > lowerSum) {
+                // Delete from upper part
+                need = upperSum - lowerSum;
+
+                if (canDeleteHorizontalUpper(
+                        grid, cut, need, rows)) {
                     return true;
                 }
-            } else {
-                long need = lowerSum - upperSum;
 
-                // Delete one cell from lower part
-                if (canDeleteHorizontalLower(grid, cut, need)) {
+            } else {
+                // Delete from lower part
+                need = lowerSum - upperSum;
+
+                if (canDeleteHorizontalLower(
+                        grid, cut, need, rows)) {
                     return true;
                 }
             }
@@ -137,56 +147,52 @@ class Solution {
         return false;
     }
 
-    // Upper rectangle: rows [0 ... cut]
+    // Upper = rows [0 ... cut]
     private boolean canDeleteHorizontalUpper(
             int[][] grid,
             int cut,
-            long need) {
+            long need,
+            Map<Long, List<Integer>> rows) {
 
+        int m = grid.length;
         int n = grid[0].length;
-        int height = cut + 1;
 
-        // Single row:
-        // only endpoints can be removed without disconnecting.
-        if (height == 1) {
+        List<Integer> list = rows.get(need);
+
+        if (list == null) return false;
+
+        // If width > 1 and height > 1,
+        // ANY cell can be deleted.
+        if (n > 1 && cut + 1 > 1) {
+            for (int row : list) {
+                if (row <= cut) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Single row
+        if (cut + 1 == 1) {
             return grid[0][0] == need ||
                    grid[0][n - 1] == need;
         }
 
-        // Single column:
-        // only endpoints can be removed.
+        // Single column
         if (n == 1) {
             return grid[0][0] == need ||
                    grid[cut][0] == need;
         }
 
-        // Height >= 2 and width >= 2.
-        // Any boundary cell can be removed.
-
-        // First and last rows
-        for (int j = 0; j < n; j++) {
-            if (grid[0][j] == need ||
-                grid[cut][j] == need) {
-                return true;
-            }
-        }
-
-        // First and last columns
-        for (int i = 1; i < cut; i++) {
-            if (grid[i][0] == need ||
-                grid[i][n - 1] == need) {
-                return true;
-            }
-        }
-
         return false;
     }
 
-    // Lower rectangle: rows [cut + 1 ... m - 1]
+    // Lower = rows [cut + 1 ... m-1]
     private boolean canDeleteHorizontalLower(
             int[][] grid,
             int cut,
-            long need) {
+            long need,
+            Map<Long, List<Integer>> rows) {
 
         int m = grid.length;
         int n = grid[0].length;
@@ -194,10 +200,23 @@ class Solution {
         int firstRow = cut + 1;
         int lastRow = m - 1;
 
-        int height = lastRow - firstRow + 1;
+        List<Integer> list = rows.get(need);
+
+        if (list == null) return false;
+
+        // Both dimensions > 1:
+        // any cell can be removed.
+        if (n > 1 && firstRow < lastRow) {
+            for (int row : list) {
+                if (row >= firstRow) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         // Single row
-        if (height == 1) {
+        if (firstRow == lastRow) {
             return grid[firstRow][0] == need ||
                    grid[firstRow][n - 1] == need;
         }
@@ -206,22 +225,6 @@ class Solution {
         if (n == 1) {
             return grid[firstRow][0] == need ||
                    grid[lastRow][0] == need;
-        }
-
-        // First and last rows
-        for (int j = 0; j < n; j++) {
-            if (grid[firstRow][j] == need ||
-                grid[lastRow][j] == need) {
-                return true;
-            }
-        }
-
-        // First and last columns
-        for (int i = firstRow + 1; i < lastRow; i++) {
-            if (grid[i][0] == need ||
-                grid[i][n - 1] == need) {
-                return true;
-            }
         }
 
         return false;
@@ -234,15 +237,20 @@ class Solution {
         int m = grid.length;
         int n = grid[0].length;
 
-        if (n == 1) {
-            return false;
-        }
+        if (n <= 1) return false;
 
         long total = 0;
 
+        // Value -> columns containing this value
+        Map<Long, List<Integer>> cols = new HashMap<>();
+
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                total += grid[i][j];
+                long val = grid[i][j];
+                total += val;
+
+                cols.computeIfAbsent(val, x -> new ArrayList<>())
+                    .add(j);
             }
         }
 
@@ -256,23 +264,28 @@ class Solution {
 
             long rightSum = total - leftSum;
 
-            // No deletion needed
+            // No deletion
             if (leftSum == rightSum) {
                 return true;
             }
 
-            if (leftSum > rightSum) {
-                long need = leftSum - rightSum;
+            long need;
 
-                // Delete one cell from left part
-                if (canDeleteVerticalLeft(grid, cut, need)) {
+            if (leftSum > rightSum) {
+                // Delete from left
+                need = leftSum - rightSum;
+
+                if (canDeleteVerticalLeft(
+                        grid, cut, need, cols)) {
                     return true;
                 }
-            } else {
-                long need = rightSum - leftSum;
 
-                // Delete one cell from right part
-                if (canDeleteVerticalRight(grid, cut, need)) {
+            } else {
+                // Delete from right
+                need = rightSum - leftSum;
+
+                if (canDeleteVerticalRight(
+                        grid, cut, need, cols)) {
                     return true;
                 }
             }
@@ -281,17 +294,32 @@ class Solution {
         return false;
     }
 
-    // Left rectangle: columns [0 ... cut]
+    // Left = columns [0 ... cut]
     private boolean canDeleteVerticalLeft(
             int[][] grid,
             int cut,
-            long need) {
+            long need,
+            Map<Long, List<Integer>> cols) {
 
         int m = grid.length;
-        int width = cut + 1;
+
+        List<Integer> list = cols.get(need);
+
+        if (list == null) return false;
+
+        // Width > 1 and height > 1:
+        // any cell can be deleted.
+        if (m > 1 && cut + 1 > 1) {
+            for (int col : list) {
+                if (col <= cut) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         // Single column
-        if (width == 1) {
+        if (cut + 1 == 1) {
             return grid[0][0] == need ||
                    grid[m - 1][0] == need;
         }
@@ -302,30 +330,15 @@ class Solution {
                    grid[0][cut] == need;
         }
 
-        // First and last columns
-        for (int i = 0; i < m; i++) {
-            if (grid[i][0] == need ||
-                grid[i][cut] == need) {
-                return true;
-            }
-        }
-
-        // First and last rows
-        for (int j = 1; j < cut; j++) {
-            if (grid[0][j] == need ||
-                grid[m - 1][j] == need) {
-                return true;
-            }
-        }
-
         return false;
     }
 
-    // Right rectangle: columns [cut + 1 ... n - 1]
+    // Right = columns [cut + 1 ... n-1]
     private boolean canDeleteVerticalRight(
             int[][] grid,
             int cut,
-            long need) {
+            long need,
+            Map<Long, List<Integer>> cols) {
 
         int m = grid.length;
         int n = grid[0].length;
@@ -333,10 +346,23 @@ class Solution {
         int firstCol = cut + 1;
         int lastCol = n - 1;
 
-        int width = lastCol - firstCol + 1;
+        List<Integer> list = cols.get(need);
+
+        if (list == null) return false;
+
+        // Width > 1 and height > 1:
+        // any cell can be deleted.
+        if (m > 1 && firstCol < lastCol) {
+            for (int col : list) {
+                if (col >= firstCol) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         // Single column
-        if (width == 1) {
+        if (firstCol == lastCol) {
             return grid[0][firstCol] == need ||
                    grid[m - 1][firstCol] == need;
         }
@@ -345,22 +371,6 @@ class Solution {
         if (m == 1) {
             return grid[0][firstCol] == need ||
                    grid[0][lastCol] == need;
-        }
-
-        // First and last columns
-        for (int i = 0; i < m; i++) {
-            if (grid[i][firstCol] == need ||
-                grid[i][lastCol] == need) {
-                return true;
-            }
-        }
-
-        // First and last rows
-        for (int j = firstCol + 1; j < lastCol; j++) {
-            if (grid[0][j] == need ||
-                grid[m - 1][j] == need) {
-                return true;
-            }
         }
 
         return false;
