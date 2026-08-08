@@ -1,4 +1,4 @@
-# Java Sort
+# Java Generics
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -42,92 +42,28 @@ After each operation, print the respective number of *set bits* in BitSet $B_1$ 
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-07T19:29:15.100Z  
+**Submitted:** 2026-08-08T10:58:22.669Z  
 
 ```java
+import java.io.*;
 import java.util.*;
-
-class Student {
-    private int id;
-    private String fname;
-    private double cgpa;
-
-    public Student(int id, String fname, double cgpa) {
-        super();
-        this.id = id;
-        this.fname = fname;
-        this.cgpa = cgpa;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getFname() {
-        return fname;
-    }
-
-    public double getCgpa() {
-        return cgpa;
-    }
-}
-
-// Comparator for sorting students
-class StudentComparator implements Comparator<Student> {
-
-    @Override
-    public int compare(Student s1, Student s2) {
-
-        // 1. CGPA: decreasing order
-        if (s1.getCgpa() != s2.getCgpa()) {
-            return Double.compare(s2.getCgpa(), s1.getCgpa());
-        }
-
-        // 2. First name: alphabetical order
-        if (!s1.getFname().equals(s2.getFname())) {
-            return s1.getFname().compareTo(s2.getFname());
-        }
-
-        // 3. ID: increasing order
-        return Integer.compare(s1.getId(), s2.getId());
-    }
-}
 
 public class Solution {
 
+    public static <T> void printArray(T[] array) {
+        for (T item : array) {
+            System.out.println(item);
+        }
+    }
+
     public static void main(String[] args) {
+        Integer[] intArray = {1, 2, 3};
+        String[] stringArray = {"Hello", "World"};
 
-        Scanner in = new Scanner(System.in);
-
-        int testCases = Integer.parseInt(in.nextLine());
-
-        List<Student> studentList = new ArrayList<Student>();
-
-        while (testCases > 0) {
-
-            int id = in.nextInt();
-            String fname = in.next();
-            double cgpa = in.nextDouble();
-
-            Student st = new Student(id, fname, cgpa);
-            studentList.add(st);
-
-            testCases--;
-        }
-
-        // Sort using comparator
-        Collections.sort(studentList, new StudentComparator());
-
-        // Print names
-        for (Student st : studentList) {
-            System.out.println(st.getFname());
-        }
-
-        in.close();
+        printArray(intArray);
+        printArray(stringArray);
     }
 }
-
-
 
 ```
 
