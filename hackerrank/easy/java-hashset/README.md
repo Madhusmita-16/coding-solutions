@@ -1,4 +1,4 @@
-# Java Map
+# Java Hashset
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -34,45 +34,17 @@ Print $T$ lines. In the $i_{th}$ line, print number of unique pairs you have aft
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-08T08:44:47.399Z  
+**Submitted:** 2026-08-08T08:47:27.806Z  
 
 ```java
-import java.util.*;
-import java.io.*;
 
-class Solution {
-    public static void main(String[] argh) {
 
-        Scanner in = new Scanner(System.in);
+HashSet<String> set = new HashSet<>();
 
-        int n = in.nextInt();
-        in.nextLine();
-
-        HashMap<String, String> phoneBook = new HashMap<>();
-
-        for (int i = 0; i < n; i++) {
-            String name = in.nextLine();
-            String phone = in.nextLine();
-
-            phoneBook.put(name, phone);
-        }
-
-        while (in.hasNextLine()) {
-            String name = in.nextLine();
-
-            if (phoneBook.containsKey(name)) {
-                System.out.println(name + "=" + phoneBook.get(name));
-            } else {
-                System.out.println("Not found");
-            }
-        }
-
-        in.close();
-    }
+for (int i = 0; i < t; i++) {
+    set.add(pair_left[i] + "#" + pair_right[i]);
+    System.out.println(set.size());
 }
-
-
-
 
 ```
 
