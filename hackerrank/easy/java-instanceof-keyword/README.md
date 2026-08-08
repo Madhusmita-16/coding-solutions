@@ -1,4 +1,4 @@
-# Java Method Overriding 2 (Super Keyword)
+# Java Instanceof keyword
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -47,51 +47,46 @@ To restore the original code in the editor, click on the top left icon in the ed
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-08T11:08:06.658Z  
+**Submitted:** 2026-08-08T11:12:38.899Z  
 
 ```java
-import java.io.*;
 import java.util.*;
 
-class Vehicle {
-    String type;
 
-    void setType(String type) {
-        this.type = type;
-    }
+class Student{}
+class Rockstar{   }
+class Hacker{}
 
-    String getType() {
-        return type;
-    }
-}
 
-class Cycle extends Vehicle {
-    Cycle() {
-        setType("cycle");
-    }
+public class InstanceOFTutorial{
+    
+   static String count(ArrayList mylist){
+      int a = 0,b = 0,c = 0;
+      for(int i = 0; i < mylist.size(); i++){
+         Object element=mylist.get(i);
+         if(element instanceof Student)
+            a++;
+         if(element instanceof Rockstar)
+            b++;
+         if(element instanceof Hacker)
+            c++;
+      }
+      String ret = Integer.toString(a)+" "+ Integer.toString(b)+" "+ Integer.toString(c);
+      return ret;
+   }
 
-    void print() {
-        System.out.println("My ancestor is a cycle who is a vehicle with pedals.");
-    }
-}
-
-class MotorCycle extends Cycle {
-    MotorCycle() {
-        setType("motorcycle");
-    }
-
-    void print() {
-        System.out.println("Hello I am a " + getType() + ", I am a cycle with an engine.");
-        super.print();
-    }
-}
-
-public class Solution {
-
-    public static void main(String[] args) {
-        MotorCycle m = new MotorCycle();
-        m.print();
-    }
+   public static void main(String []args){
+      ArrayList mylist = new ArrayList();
+      Scanner sc = new Scanner(System.in);
+      int t = sc.nextInt();
+      for(int i=0; i<t; i++){
+         String s=sc.next();
+         if(s.equals("Student"))mylist.add(new Student());
+         if(s.equals("Rockstar"))mylist.add(new Rockstar());
+         if(s.equals("Hacker"))mylist.add(new Hacker());
+      }
+      System.out.println(count(mylist));
+   }
 }
 
 ```
