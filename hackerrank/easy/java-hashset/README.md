@@ -34,7 +34,7 @@ Print $T$ lines. In the $i_{th}$ line, print number of unique pairs you have aft
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-08T08:59:44.801Z  
+**Submitted:** 2026-08-08T09:00:46.890Z  
 
 ```java
 import java.io.*;
@@ -47,13 +47,16 @@ public class Solution {
 
         int t = s.nextInt();
 
+        String[] pair_left = new String[t];
+        String[] pair_right = new String[t];
+
         HashSet<String> set = new HashSet<>();
 
         for (int i = 0; i < t; i++) {
-            String left = s.next();
-            String right = s.next();
+            pair_left[i] = s.next();
+            pair_right[i] = s.next();
 
-            set.add(left + right);
+            set.add(pair_left[i] + "#" + pair_right[i]);
 
             System.out.println(set.size());
         }
