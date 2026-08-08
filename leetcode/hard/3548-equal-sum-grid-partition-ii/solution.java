@@ -6,7 +6,9 @@ class Solution {
         return checkHorizontal(grid) || checkVertical(grid);
     }
 
-    // Check horizontal cuts.
+    // --------------------------------------------------
+    // Horizontal partition
+    // --------------------------------------------------
     private boolean checkHorizontal(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
@@ -33,7 +35,7 @@ class Solution {
 
             long lowerSum = total - upperSum;
 
-            // Already equal.
+            // No deletion needed
             if (upperSum == lowerSum) {
                 return true;
             }
@@ -41,15 +43,14 @@ class Solution {
             if (upperSum > lowerSum) {
                 long need = upperSum - lowerSum;
 
-                // Delete from upper part.
+                // Delete one cell from upper part
                 if (canDeleteHorizontalUpper(grid, cut, need)) {
                     return true;
                 }
-
             } else {
                 long need = lowerSum - upperSum;
 
-                // Delete from lower part.
+                // Delete one cell from lower part
                 if (canDeleteHorizontalLower(grid, cut, need)) {
                     return true;
                 }
@@ -59,7 +60,7 @@ class Solution {
         return false;
     }
 
-    // Upper part = rows [0 ... cut]
+    // Upper rectangle: rows [0 ... cut]
     private boolean canDeleteHorizontalUpper(
             int[][] grid,
             int cut,
@@ -68,28 +69,24 @@ class Solution {
         int n = grid[0].length;
         int height = cut + 1;
 
-        // Only one row.
+        // Single row:
+        // only endpoints can be removed without disconnecting.
         if (height == 1) {
             return grid[0][0] == need ||
                    grid[0][n - 1] == need;
         }
 
-        // Only one column.
+        // Single column:
+        // only endpoints can be removed.
         if (n == 1) {
             return grid[0][0] == need ||
                    grid[cut][0] == need;
         }
 
-        /*
-         * Rectangle has height >= 2 and width >= 2.
-         *
-         * Any cell on the boundary can be removed while
-         * keeping the remaining cells connected.
-         *
-         * Upper part boundary consists of:
-         *   - first row
-         *   - last row (cut)
-         */
+        // Height >= 2 and width >= 2.
+        // Any boundary cell can be removed.
+
+        // First and last rows
         for (int j = 0; j < n; j++) {
             if (grid[0][j] == need ||
                 grid[cut][j] == need) {
@@ -97,10 +94,18 @@ class Solution {
             }
         }
 
+        // First and last columns
+        for (int i = 1; i < cut; i++) {
+            if (grid[i][0] == need ||
+                grid[i][n - 1] == need) {
+                return true;
+            }
+        }
+
         return false;
     }
 
-    // Lower part = rows [cut + 1 ... m - 1]
+    // Lower rectangle: rows [cut + 1 ... m - 1]
     private boolean canDeleteHorizontalLower(
             int[][] grid,
             int cut,
@@ -111,21 +116,22 @@ class Solution {
 
         int firstRow = cut + 1;
         int lastRow = m - 1;
+
         int height = lastRow - firstRow + 1;
 
-        // Only one row.
+        // Single row
         if (height == 1) {
             return grid[firstRow][0] == need ||
                    grid[firstRow][n - 1] == need;
         }
 
-        // Only one column.
+        // Single column
         if (n == 1) {
             return grid[firstRow][0] == need ||
                    grid[lastRow][0] == need;
         }
 
-        // Boundary rows of lower rectangle.
+        // First and last rows
         for (int j = 0; j < n; j++) {
             if (grid[firstRow][j] == need ||
                 grid[lastRow][j] == need) {
@@ -133,10 +139,20 @@ class Solution {
             }
         }
 
+        // First and last columns
+        for (int i = firstRow + 1; i < lastRow; i++) {
+            if (grid[i][0] == need ||
+                grid[i][n - 1] == need) {
+                return true;
+            }
+        }
+
         return false;
     }
 
-    // Check vertical cuts.
+    // --------------------------------------------------
+    // Vertical partition
+    // --------------------------------------------------
     private boolean checkVertical(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
@@ -163,7 +179,7 @@ class Solution {
 
             long rightSum = total - leftSum;
 
-            // Already equal.
+            // No deletion needed
             if (leftSum == rightSum) {
                 return true;
             }
@@ -171,13 +187,14 @@ class Solution {
             if (leftSum > rightSum) {
                 long need = leftSum - rightSum;
 
+                // Delete one cell from left part
                 if (canDeleteVerticalLeft(grid, cut, need)) {
                     return true;
                 }
-
             } else {
                 long need = rightSum - leftSum;
 
+                // Delete one cell from right part
                 if (canDeleteVerticalRight(grid, cut, need)) {
                     return true;
                 }
@@ -187,7 +204,7 @@ class Solution {
         return false;
     }
 
-    // Left part = columns [0 ... cut]
+    // Left rectangle: columns [0 ... cut]
     private boolean canDeleteVerticalLeft(
             int[][] grid,
             int cut,
@@ -196,23 +213,19 @@ class Solution {
         int m = grid.length;
         int width = cut + 1;
 
-        // Only one column.
+        // Single column
         if (width == 1) {
             return grid[0][0] == need ||
                    grid[m - 1][0] == need;
         }
 
-        // Only one row.
+        // Single row
         if (m == 1) {
             return grid[0][0] == need ||
                    grid[0][cut] == need;
         }
 
-        /*
-         * Boundary columns of the left rectangle:
-         *   - first column
-         *   - last column (cut)
-         */
+        // First and last columns
         for (int i = 0; i < m; i++) {
             if (grid[i][0] == need ||
                 grid[i][cut] == need) {
@@ -220,10 +233,18 @@ class Solution {
             }
         }
 
+        // First and last rows
+        for (int j = 1; j < cut; j++) {
+            if (grid[0][j] == need ||
+                grid[m - 1][j] == need) {
+                return true;
+            }
+        }
+
         return false;
     }
 
-    // Right part = columns [cut + 1 ... n - 1]
+    // Right rectangle: columns [cut + 1 ... n - 1]
     private boolean canDeleteVerticalRight(
             int[][] grid,
             int cut,
@@ -234,24 +255,33 @@ class Solution {
 
         int firstCol = cut + 1;
         int lastCol = n - 1;
+
         int width = lastCol - firstCol + 1;
 
-        // Only one column.
+        // Single column
         if (width == 1) {
             return grid[0][firstCol] == need ||
                    grid[m - 1][firstCol] == need;
         }
 
-        // Only one row.
+        // Single row
         if (m == 1) {
             return grid[0][firstCol] == need ||
                    grid[0][lastCol] == need;
         }
 
-        // Boundary columns of the right rectangle.
+        // First and last columns
         for (int i = 0; i < m; i++) {
             if (grid[i][firstCol] == need ||
                 grid[i][lastCol] == need) {
+                return true;
+            }
+        }
+
+        // First and last rows
+        for (int j = firstCol + 1; j < lastCol; j++) {
+            if (grid[0][j] == need ||
+                grid[m - 1][j] == need) {
                 return true;
             }
         }
