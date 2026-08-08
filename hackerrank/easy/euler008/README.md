@@ -53,7 +53,7 @@ Print the required answer for each test case.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-08T11:18:39.652Z  
+**Submitted:** 2026-08-08T11:26:41.171Z  
 
 ```java
 import java.io.*;
