@@ -68,9 +68,9 @@ In this example, only `robots[0]` can reach the wall, but its shot to the  **rig
 ## Solution
 
 **Language:** Java  
-**Runtime:** 294 ms (beats 19.05%)  
-**Memory:** 140.5 MB (beats 94.56%)  
-**Submitted:** 2026-08-08T13:10:51.941Z  
+**Runtime:** 285 ms (beats 19.73%)  
+**Memory:** 140.7 MB (beats 94.56%)  
+**Submitted:** 2026-08-08T13:25:06.371Z  
 
 ```java
 import java.util.*;
