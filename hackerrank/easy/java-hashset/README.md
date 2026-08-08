@@ -34,7 +34,7 @@ Print $T$ lines. In the $i_{th}$ line, print number of unique pairs you have aft
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-08T09:20:04.907Z  
+**Submitted:** 2026-08-08T09:20:06.115Z  
 
 ```java
 import java.io.*;
