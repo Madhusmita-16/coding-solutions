@@ -8,13 +8,16 @@ public class Solution {
 
         int t = s.nextInt();
 
+        String[] pair_left = new String[t];
+        String[] pair_right = new String[t];
+
         HashSet<String> set = new HashSet<>();
 
         for (int i = 0; i < t; i++) {
-            String left = s.next();
-            String right = s.next();
+            pair_left[i] = s.next();
+            pair_right[i] = s.next();
 
-            set.add(left + right);
+            set.add(pair_left[i] + "#" + pair_right[i]);
 
             System.out.println(set.size());
         }
