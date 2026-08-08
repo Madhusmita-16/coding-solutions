@@ -1,46 +1,36 @@
-import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+import java.io.*;
 
-public class Solution {
+class Solution {
+    public static void main(String[] argh) {
 
-    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
+        int n = in.nextInt();
+        in.nextLine();
 
-        int n = sc.nextInt();
-
-        ArrayList<Integer> list = new ArrayList<>();
+        HashMap<String, String> phoneBook = new HashMap<>();
 
         for (int i = 0; i < n; i++) {
-            list.add(sc.nextInt());
+            String name = in.nextLine();
+            String phone = in.nextLine();
+
+            phoneBook.put(name, phone);
         }
 
-        int q = sc.nextInt();
+        while (in.hasNextLine()) {
+            String name = in.nextLine();
 
-        for (int i = 0; i < q; i++) {
-
-            String operation = sc.next();
-
-            if (operation.equals("Insert")) {
-                int index = sc.nextInt();
-                int value = sc.nextInt();
-
-                list.add(index, value);
-
-            } else if (operation.equals("Delete")) {
-                int index = sc.nextInt();
-
-                list.remove(index);
+            if (phoneBook.containsKey(name)) {
+                System.out.println(name + "=" + phoneBook.get(name));
+            } else {
+                System.out.println("Not found");
             }
         }
 
-        for (int value : list) {
-            System.out.print(value + " ");
-        }
-
-        sc.close();
+        in.close();
     }
 }
+
+
+
