@@ -47,7 +47,7 @@ To restore the original code in the editor, click on the top left icon in the ed
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-08T11:12:38.899Z  
+**Submitted:** 2026-08-08T11:13:21.240Z  
 
 ```java
 import java.util.*;
