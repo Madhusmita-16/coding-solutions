@@ -1,4 +1,4 @@
-# Java Method Overriding
+# Java Method Overriding 2 (Super Keyword)
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -27,43 +27,50 @@ You are given a partially completed code in the editor. Modify the code so that 
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-08T11:05:29.967Z  
+**Submitted:** 2026-08-08T11:07:54.942Z  
 
 ```java
 import java.io.*;
 import java.util.*;
 
-class Sports {
-    String getName() {
-        return "Generic Sports";
+class Vehicle {
+    String type;
+
+    void setType(String type) {
+        this.type = type;
     }
-    void getNumberOfTeamMembers() {
-        System.out.println("Each team has n players in " + getName());
+
+    String getType() {
+        return type;
     }
 }
 
-class Soccer extends Sports {
-    @Override
-    String getName() {
-        return "Soccer Class";
+class Cycle extends Vehicle {
+    Cycle() {
+        setType("cycle");
     }
 
-    @Override
-    void getNumberOfTeamMembers() {
-        System.out.println("Each team has 11 players in " + getName());
+    void print() {
+        System.out.println("My ancestor is a cycle who is a vehicle with pedals.");
+    }
+}
+
+class MotorCycle extends Cycle {
+    MotorCycle() {
+        setType("motorcycle");
+    }
+
+    void print() {
+        System.out.println("Hello I am a " + getType() + ", I am a cycle with an engine.");
+        super.print();
     }
 }
 
 public class Solution {
 
     public static void main(String[] args) {
-        Sports sports = new Sports();
-        System.out.println(sports.getName());
-        sports.getNumberOfTeamMembers();
-
-        Soccer soccer = new Soccer();
-        System.out.println(soccer.getName());
-        soccer.getNumberOfTeamMembers();
+        MotorCycle m = new MotorCycle();
+        m.print();
     }
 }
 
