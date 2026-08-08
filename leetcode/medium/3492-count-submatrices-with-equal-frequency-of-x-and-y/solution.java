@@ -1,0 +1,59 @@
+class Solution {
+    public int numberOfSubmatrices(char[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+
+        // balance[i][j] = X count - Y count
+        int[][] balance = new int[m + 1][n + 1];
+
+        // xCount[i][j] = number of X's
+        int[][] xCount = new int[m + 1][n + 1];
+
+        int ans = 0;
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+
+                int value = 0;
+                int x = 0;
+
+                if (grid[i - 1][j - 1] == 'X') {
+                    value = 1;
+                    x = 1;
+                } else if (grid[i - 1][j - 1] == 'Y') {
+                    value = -1;
+                }
+
+                // 2D prefix sum for X - Y balance
+                balance[i][j] =
+                        balance[i - 1][j]
+                        + balance[i][j - 1]
+                        - balance[i - 1][j - 1]
+                        + value;
+
+                // 2D prefix sum for number of X's
+                xCount[i][j] =
+                        xCount[i - 1][j]
+                        + xCount[i][j - 1]
+                        - xCount[i - 1][j - 1]
+                        + x;
+
+                /*
+                 * Since every valid submatrix must start at (0,0),
+                 * its bottom-right corner is (i-1,j-1).
+                 *
+                 * balance == 0 means:
+                 * number of X == number of Y
+                 *
+                 * xCount > 0 means:
+                 * there is at least one X.
+                 */
+                if (balance[i][j] == 0 && xCount[i][j] > 0) {
+                    ans++;
+                }
+            }
+        }
+
+        return ans;
+    }
+}
