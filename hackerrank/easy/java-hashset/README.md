@@ -34,7 +34,7 @@ Print $T$ lines. In the $i_{th}$ line, print number of unique pairs you have aft
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-08T09:25:05.463Z  
+**Submitted:** 2026-08-08T09:22:56.658Z  
 
 ```java
 import java.io.*;
@@ -56,6 +56,7 @@ public class Solution {
             pairs.add(key);
             output.append(pairs.size()).append("\n");
         }
+
         System.out.print(output);
     }
 }
