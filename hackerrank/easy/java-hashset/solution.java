@@ -1,9 +1,24 @@
+import java.io.*;
+import java.util.*;
 
+public class Solution {
 
-HashSet<String> set = new HashSet<>();
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
 
-for (int i = 0; i < t; i++) {
-    set.add(pair_left[i] + "#" + pair_right[i]);
-    System.out.println(set.size());
+        int t = s.nextInt();
+
+        HashSet<String> set = new HashSet<>();
+
+        for (int i = 0; i < t; i++) {
+            String left = s.next();
+            String right = s.next();
+
+            set.add(left + right);
+
+            System.out.println(set.size());
+        }
+
+        s.close();
+    }
 }
-
