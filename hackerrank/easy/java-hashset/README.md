@@ -34,7 +34,7 @@ Print $T$ lines. In the $i_{th}$ line, print number of unique pairs you have aft
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-08T08:47:27.806Z  
+**Submitted:** 2026-08-08T08:48:14.811Z  
 
 ```java
 
@@ -45,6 +45,7 @@ for (int i = 0; i < t; i++) {
     set.add(pair_left[i] + "#" + pair_right[i]);
     System.out.println(set.size());
 }
+
 
 ```
 
