@@ -56,7 +56,7 @@ Your class mustn't be public.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-08T11:15:33.990Z  
+**Submitted:** 2026-08-08T11:15:43.985Z  
 
 ```java
 import java.io.*;
