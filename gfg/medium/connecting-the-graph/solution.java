@@ -1,58 +1,41 @@
 class Solution {
-
-    int[] parent;
-    int[] rank;
+    int[] parent, rank_;
 
     int find(int x) {
-        if (parent[x] != x) {
-            parent[x] = find(parent[x]);
+        while (parent[x] != x) {
+            parent[x] = parent[parent[x]];
+            x = parent[x];
         }
-        return parent[x];
+        return x;
     }
 
-    boolean union(int a, int b) {
-        int pa = find(a);
-        int pb = find(b);
-
-        if (pa == pb) {
-            // This edge is redundant
-            return false;
-        }
-
-        if (rank[pa] < rank[pb]) {
-            parent[pa] = pb;
-        } else if (rank[pa] > rank[pb]) {
-            parent[pb] = pa;
-        } else {
-            parent[pb] = pa;
-            rank[pa]++;
-        }
-
-        return true;
+    void union(int a, int b) {
+        int ra = find(a), rb = find(b);
+        if (ra == rb) return;
+        if (rank_[ra] < rank_[rb]) { int t = ra; ra = rb; rb = t; }
+        parent[rb] = ra;
+        if (rank_[ra] == rank_[rb]) rank_[ra]++;
     }
 
     int minEdgesReq(int n, int[][] edges) {
-        // Not enough edges to connect n vertices
-        if (edges.length < n - 1) {
-            return -1;
-        }
-
         parent = new int[n];
-        rank = new int[n];
+        rank_ = new int[n];
+        for (int i = 0; i < n; i++) parent[i] = i;
 
+        for (int[] e : edges) {
+            union(e[0], e[1]);
+        }
+
+        int c = 0;
         for (int i = 0; i < n; i++) {
-            parent[i] = i;
+            if (find(i) == i) c++;
         }
 
-        int components = n;
+        int m = edges.length;
+        int treeEdgesNeeded = n - c;   // edges required for a spanning forest
+        int redundant = m - treeEdgesNeeded; // extra/removable edges available
+        int needed = c - 1;            // edges needed to link c components into 1
 
-        for (int[] edge : edges) {
-            if (union(edge[0], edge[1])) {
-                components--;
-            }
-        }
-
-        // Need one operation for each connection between components
-        return components - 1;
+        return (redundant >= needed) ? needed : -1;
     }
 }
