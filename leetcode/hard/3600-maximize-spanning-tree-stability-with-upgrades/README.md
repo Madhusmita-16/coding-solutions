@@ -73,9 +73,9 @@ Return the  **maximum**  possible stability of any valid spanning tree. If it is
 ## Solution
 
 **Language:** Java  
-**Runtime:** 67 ms (beats 59.00%)  
-**Memory:** 254.7 MB (beats 61.95%)  
-**Submitted:** 2026-08-08T12:18:05.605Z  
+**Runtime:** 0 ms  
+**Memory:** 42.7 MB  
+**Submitted:** 2026-08-08T12:56:22.285Z  
 
 ```java
 class Solution {
