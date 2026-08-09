@@ -1,125 +1,101 @@
-# Project Euler #27: Quadratic primes
+# Project Euler #28: Number spiral diagonals
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
 ## Problem
 
-This problem is a programming version of Problem 27 from projecteuler.net
+This problem is a programming version of Problem 28 from projecteuler.net
 
-Euler published the remarkable quadratic formula:
+Starting with the number 1 and moving to the right in a clockwise direction a 5 by 5 spiral is formed as follows:
 
-It turns out that the formula will produce 40 primes for the consecutive values to. However, when, is divisible by, and certainly when, is clearly divisible by.
-
-Using computers, the incredible formula was discovered, which produces primes for the consecutive values to. The product of the coefficients, and, is.
-
-Considering quadratics of the form:
-
-where is the modulus/absolute value of
-e.g. and
-
-Find the coefficients, and, for the quadratic expression that produces the maximum number of primes for consecutive values of, starting with.
-
- **Note**  For this challenge you can assume solution to be unique.
+It can be verified that the sum of the numbers on the diagonals is.
+What is the sum of the numbers on the diagonals in a, (N is odd) spiral formed in the same way?
+As the sum will be huge you have to print the result mod
 
  **Input Format** 
 
-The first line contains an integer.
+The first line contains an integer, i.e., number of test cases.
+Next lines will contain an integer.
+
+ **Constraints** 
 
  **Output Format** 
 
-Print the value of and separated by space.
-
- **Constraints** 
+Print the values corresponding to each test case.
 
  **Sample Input** 
 
 ```
-42
+2
+3
+5
 
 ```
 
  **Sample Output** 
 
 ```
--1 41
+25
+101
 
 ```
-
- **Explanation** 
-
-for and, you get 42 primes.
 
 ## Solution
 
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-09T10:18:33.472Z  
+**Submitted:** 2026-08-09T10:24:04.032Z  
 
 ```java
 import java.io.*;
 import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
 
 public class Solution {
-
-    public static boolean isPrime(int n) {
-        if (n < 2) {
-            return false;
-        }
-
-        for (int i = 2; i * i <= n; i++) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-
-        return true;
-    }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        int n = sc.nextInt();
+        int t = sc.nextInt();
 
-        int bestA = 0;
-        int bestB = 0;
-        int maxCount = 0;
+        BigInteger MOD = BigInteger.valueOf(1000000007L);
+        BigInteger TWO = BigInteger.valueOf(2);
+        BigInteger FOUR = BigInteger.valueOf(4);
+        BigInteger EIGHT = BigInteger.valueOf(8);
+        BigInteger SIXTEEN = BigInteger.valueOf(16);
+        BigInteger ONE = BigInteger.ONE;
 
-        // b must be positive and prime
-        for (int b = 2; b <= n; b++) {
+        while (t-- > 0) {
 
-            if (!isPrime(b)) {
-                continue;
-            }
+            BigInteger n = sc.nextBigInteger();
 
-            // a is between -n and n
-            for (int a = -n; a <= n; a++) {
+            BigInteger x = n.divide(TWO);
 
-                int count = 0;
+            BigInteger xPlusOne = x.add(ONE);
+            BigInteger twoXPlusOne = x.multiply(TWO).add(ONE);
 
-                while (true) {
+            BigInteger sumSquares = x
+                    .multiply(xPlusOne)
+                    .multiply(twoXPlusOne)
+                    .divide(BigInteger.valueOf(6));
 
-                    long value = (long) count * count
-                               + (long) a * count
-                               + b;
+            BigInteger sumNumbers = x
+                    .multiply(xPlusOne)
+                    .divide(TWO);
 
-                    if (value < 2 || !isPrime((int) value)) {
-                        break;
-                    }
+            BigInteger answer = ONE
+                    .add(sumSquares.multiply(SIXTEEN))
+                    .add(sumNumbers.multiply(FOUR))
+                    .add(x.multiply(FOUR));
 
-                    count++;
-                }
+            answer = answer.mod(MOD);
 
-                if (count > maxCount) {
-                    maxCount = count;
-                    bestA = a;
-                    bestB = b;
-                }
-            }
+            System.out.println(answer);
         }
-
-        System.out.println(bestA + " " + bestB);
 
         sc.close();
     }
