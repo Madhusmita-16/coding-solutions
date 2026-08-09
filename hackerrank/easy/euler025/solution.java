@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
+import java.text.*;
 import java.math.*;
+import java.util.regex.*;
 
 public class Solution {
 
@@ -8,56 +10,49 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
 
         int t = sc.nextInt();
-        int[] q = new int[t];
-        int max = 0;
 
-        for (int i = 0; i < t; i++) {
-            q[i] = sc.nextInt();
-            max = Math.max(max, q[i]);
+        String letters = "abcdefghijklm";
+
+        // Pre-calculate factorials
+        long[] fact = new long[14];
+        fact[0] = 1;
+
+        for (int i = 1; i <= 13; i++) {
+            fact[i] = fact[i - 1] * i;
         }
 
-        // For n >= 3:
-        // digits(F(n)) = floor((n * log10(phi)) - log10(sqrt(5))) + 1
-        double phi = (1 + Math.sqrt(5)) / 2;
-        double logPhi = Math.log10(phi);
-        double logSqrt5 = Math.log10(Math.sqrt(5));
+        while (t-- > 0) {
 
-        for (int digits : q) {
+            long n = sc.nextLong();
 
-            if (digits == 1) {
-                System.out.println(1);
-                continue;
+            // Convert to 0-based index
+            n--;
+
+            ArrayList<Character> list = new ArrayList<>();
+
+            for (char c : letters.toCharArray()) {
+                list.add(c);
             }
 
-            // Find first Fibonacci index with required digits
-            long index = (long) Math.ceil(
-                (digits - 1 + logSqrt5) / logPhi
-            );
+            StringBuilder answer = new StringBuilder();
 
-            // Correct possible floating-point rounding
-            while (fibDigits(index) < digits) {
-                index++;
+            // Select the first 12 characters.
+            // The last character is automatically determined.
+            for (int remaining = 12; remaining >= 0; remaining--) {
+
+                long blockSize = fact[remaining];
+
+                int index = (int)(n / blockSize);
+
+                answer.append(list.get(index));
+                list.remove(index);
+
+                n = n % blockSize;
             }
 
-            while (index > 1 && fibDigits(index - 1) >= digits) {
-                index--;
-            }
-
-            System.out.println(index);
+            System.out.println(answer);
         }
 
         sc.close();
-    }
-
-    static int fibDigits(long n) {
-        if (n <= 2) {
-            return 1;
-        }
-
-        double phi = (1 + Math.sqrt(5)) / 2;
-
-        return (int) Math.floor(
-            n * Math.log10(phi) - Math.log10(Math.sqrt(5))
-        ) + 1;
     }
 }
