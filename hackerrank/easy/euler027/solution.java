@@ -3,68 +3,64 @@ import java.util.*;
 
 public class Solution {
 
+    public static boolean isPrime(int n) {
+        if (n < 2) {
+            return false;
+        }
+
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        int t = sc.nextInt();
-        int[] queries = new int[t];
+        int n = sc.nextInt();
 
-        int maxN = 0;
+        int bestA = 0;
+        int bestB = 0;
+        int maxCount = 0;
 
-        for (int i = 0; i < t; i++) {
-            queries[i] = sc.nextInt();
-            maxN = Math.max(maxN, queries[i]);
-        }
+        // b must be positive and prime
+        for (int b = 2; b <= n; b++) {
 
-        // best[n] = denominator < n having longest recurring cycle
-        int[] best = new int[maxN + 1];
-
-        int[] remainderPosition = new int[maxN + 1];
-
-        int bestD = 0;
-        int bestCycle = 0;
-
-        for (int d = 2; d < maxN; d++) {
-
-            Arrays.fill(remainderPosition, -1);
-
-            int remainder = 1;
-            int position = 0;
-
-            while (remainder != 0 && remainderPosition[remainder] == -1) {
-
-                remainderPosition[remainder] = position;
-
-                remainder = (remainder * 10) % d;
-                position++;
+            if (!isPrime(b)) {
+                continue;
             }
 
-            int cycle = 0;
+            // a is between -n and n
+            for (int a = -n; a <= n; a++) {
 
-            if (remainder != 0) {
-                cycle = position - remainderPosition[remainder];
-            }
+                int count = 0;
 
-            if (cycle > bestCycle) {
-                bestCycle = cycle;
-                bestD = d;
-            }
+                while (true) {
 
-            // For every N from d+1 onward, d is currently the best.
-            best[d + 1] = bestD;
-        }
+                    long value = (long) count * count
+                               + (long) a * count
+                               + b;
 
-        // Fill unanswered values
-        for (int i = 2; i <= maxN; i++) {
-            if (best[i] == 0) {
-                best[i] = best[i - 1];
+                    if (value < 2 || !isPrime((int) value)) {
+                        break;
+                    }
+
+                    count++;
+                }
+
+                if (count > maxCount) {
+                    maxCount = count;
+                    bestA = a;
+                    bestB = b;
+                }
             }
         }
 
-        for (int n : queries) {
-            System.out.println(best[n]);
-        }
+        System.out.println(bestA + " " + bestB);
 
         sc.close();
     }
