@@ -12,25 +12,59 @@ public class Solution {
 
         int t = in.nextInt();
 
-        while (t-- > 0) {
+        int[] queries = new int[t];
+        int maxN = 0;
 
-            int n = in.nextInt();
+        for (int i = 0; i < t; i++) {
+            queries[i] = in.nextInt();
+            maxN = Math.max(maxN, queries[i]);
+        }
 
-            BigInteger factorial = BigInteger.ONE;
+        // sumDivisors[x] = sum of proper divisors of x
+        long[] sumDivisors = new long[maxN];
 
-            for (int i = 2; i <= n; i++) {
-                factorial = factorial.multiply(BigInteger.valueOf(i));
+        /*
+         * Add divisor i to all multiples of i.
+         * Start from 2*i because i itself is not a proper
+         * divisor of itself.
+         */
+        for (int i = 1; i < maxN; i++) {
+
+            for (int j = i * 2; j < maxN; j += i) {
+                sumDivisors[j] += i;
             }
+        }
 
-            String value = factorial.toString();
+        /*
+         * prefix[i] = sum of amicable numbers < i
+         */
+        long[] prefix = new long[maxN];
 
-            int sum = 0;
+        for (int i = 1; i < maxN; i++) {
 
-            for (int i = 0; i < value.length(); i++) {
-                sum += value.charAt(i) - '0';
+            prefix[i] = prefix[i - 1];
+
+            long partner = sumDivisors[i];
+
+            /*
+             * i and partner are amicable if:
+             *
+             * sumDivisors[i] = partner
+             * sumDivisors[partner] = i
+             *
+             * and they must be different.
+             */
+            if (partner != i &&
+                partner > 0 &&
+                partner < maxN &&
+                sumDivisors[(int)partner] == i) {
+
+                prefix[i] += i;
             }
+        }
 
-            System.out.println(sum);
+        for (int n : queries) {
+            System.out.println(prefix[n - 1]);
         }
 
         in.close();
