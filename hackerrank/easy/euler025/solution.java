@@ -1,8 +1,6 @@
 import java.io.*;
 import java.util.*;
-import java.text.*;
 import java.math.*;
-import java.util.regex.*;
 
 public class Solution {
 
@@ -11,46 +9,45 @@ public class Solution {
 
         int t = sc.nextInt();
 
-        String letters = "abcdefghijklm";
+        int[] queries = new int[t];
+        int maxDigits = 0;
 
-        // Pre-calculate factorials
-        long[] fact = new long[14];
-        fact[0] = 1;
-
-        for (int i = 1; i <= 13; i++) {
-            fact[i] = fact[i - 1] * i;
+        // Read all queries first
+        for (int i = 0; i < t; i++) {
+            queries[i] = sc.nextInt();
+            maxDigits = Math.max(maxDigits, queries[i]);
         }
 
-        while (t-- > 0) {
+        // Fibonacci numbers
+        BigInteger a = BigInteger.ONE;
+        BigInteger b = BigInteger.ONE;
 
-            long n = sc.nextLong();
+        // Answer for each digit length
+        int[] answer = new int[maxDigits + 1];
 
-            // Convert to 0-based index
-            n--;
+        int index = 2;
+        int currentDigits = 1;
 
-            ArrayList<Character> list = new ArrayList<>();
+        while (currentDigits < maxDigits) {
 
-            for (char c : letters.toCharArray()) {
-                list.add(c);
+            BigInteger next = a.add(b);
+            a = b;
+            b = next;
+            index++;
+
+            int digits = b.toString().length();
+
+            if (digits > currentDigits) {
+                for (int d = currentDigits + 1; d <= digits && d <= maxDigits; d++) {
+                    answer[d] = index;
+                }
+                currentDigits = digits;
             }
+        }
 
-            StringBuilder answer = new StringBuilder();
-
-            // Select the first 12 characters.
-            // The last character is automatically determined.
-            for (int remaining = 12; remaining >= 0; remaining--) {
-
-                long blockSize = fact[remaining];
-
-                int index = (int)(n / blockSize);
-
-                answer.append(list.get(index));
-                list.remove(index);
-
-                n = n % blockSize;
-            }
-
-            System.out.println(answer);
+        // Print answers
+        for (int n : queries) {
+            System.out.println(answer[n]);
         }
 
         sc.close();
