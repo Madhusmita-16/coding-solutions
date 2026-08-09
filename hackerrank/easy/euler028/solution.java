@@ -1,66 +1,51 @@
 import java.io.*;
 import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
 
 public class Solution {
-
-    public static boolean isPrime(int n) {
-        if (n < 2) {
-            return false;
-        }
-
-        for (int i = 2; i * i <= n; i++) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-
-        return true;
-    }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        int n = sc.nextInt();
+        int t = sc.nextInt();
 
-        int bestA = 0;
-        int bestB = 0;
-        int maxCount = 0;
+        BigInteger MOD = BigInteger.valueOf(1000000007L);
+        BigInteger TWO = BigInteger.valueOf(2);
+        BigInteger FOUR = BigInteger.valueOf(4);
+        BigInteger EIGHT = BigInteger.valueOf(8);
+        BigInteger SIXTEEN = BigInteger.valueOf(16);
+        BigInteger ONE = BigInteger.ONE;
 
-        // b must be positive and prime
-        for (int b = 2; b <= n; b++) {
+        while (t-- > 0) {
 
-            if (!isPrime(b)) {
-                continue;
-            }
+            BigInteger n = sc.nextBigInteger();
 
-            // a is between -n and n
-            for (int a = -n; a <= n; a++) {
+            BigInteger x = n.divide(TWO);
 
-                int count = 0;
+            BigInteger xPlusOne = x.add(ONE);
+            BigInteger twoXPlusOne = x.multiply(TWO).add(ONE);
 
-                while (true) {
+            BigInteger sumSquares = x
+                    .multiply(xPlusOne)
+                    .multiply(twoXPlusOne)
+                    .divide(BigInteger.valueOf(6));
 
-                    long value = (long) count * count
-                               + (long) a * count
-                               + b;
+            BigInteger sumNumbers = x
+                    .multiply(xPlusOne)
+                    .divide(TWO);
 
-                    if (value < 2 || !isPrime((int) value)) {
-                        break;
-                    }
+            BigInteger answer = ONE
+                    .add(sumSquares.multiply(SIXTEEN))
+                    .add(sumNumbers.multiply(FOUR))
+                    .add(x.multiply(FOUR));
 
-                    count++;
-                }
+            answer = answer.mod(MOD);
 
-                if (count > maxCount) {
-                    maxCount = count;
-                    bestA = a;
-                    bestB = b;
-                }
-            }
+            System.out.println(answer);
         }
-
-        System.out.println(bestA + " " + bestB);
 
         sc.close();
     }
