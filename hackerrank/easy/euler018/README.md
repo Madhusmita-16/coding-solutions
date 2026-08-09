@@ -1,4 +1,4 @@
-# Project Euler #17: Number to Words
+# Project Euler #18: Maximum path sum I
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -56,7 +56,7 @@ As shown in statement.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-09T09:50:25.412Z  
+**Submitted:** 2026-08-09T09:52:27.239Z  
 
 ```java
 import java.io.*;
@@ -67,57 +67,6 @@ import java.util.regex.*;
 
 public class Solution {
 
-    static String[] ones = {
-        "", "One", "Two", "Three", "Four", "Five",
-        "Six", "Seven", "Eight", "Nine", "Ten",
-        "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen",
-        "Sixteen", "Seventeen", "Eighteen", "Nineteen"
-    };
-
-    static String[] tens = {
-        "", "", "Twenty", "Thirty", "Forty",
-        "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"
-    };
-
-    static String convert(long n) {
-
-        if (n == 0) {
-            return "Zero";
-        }
-
-        if (n < 20) {
-            return ones[(int)n];
-        }
-
-        if (n < 100) {
-            return tens[(int)(n / 10)] +
-                   (n % 10 == 0 ? "" : " " + ones[(int)(n % 10)]);
-        }
-
-        if (n < 1000) {
-            return ones[(int)(n / 100)] + " Hundred" +
-                   (n % 100 == 0 ? "" : " " + convert(n % 100));
-        }
-
-        if (n < 1000000) {
-            return convert(n / 1000) + " Thousand" +
-                   (n % 1000 == 0 ? "" : " " + convert(n % 1000));
-        }
-
-        if (n < 1000000000) {
-            return convert(n / 1000000) + " Million" +
-                   (n % 1000000 == 0 ? "" : " " + convert(n % 1000000));
-        }
-
-        if (n < 1000000000000L) {
-            return convert(n / 1000000000) + " Billion" +
-                   (n % 1000000000 == 0 ? "" : " " + convert(n % 1000000000));
-        }
-
-        return convert(n / 1000000000000L) + " Trillion" +
-               (n % 1000000000000L == 0 ? "" : " " + convert(n % 1000000000000L));
-    }
-
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
@@ -126,9 +75,30 @@ public class Solution {
 
         while (t-- > 0) {
 
-            long n = in.nextLong();
+            int n = in.nextInt();
 
-            System.out.println(convert(n));
+            long[][] triangle = new long[n][n];
+
+            // Read triangle
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j <= i; j++) {
+                    triangle[i][j] = in.nextLong();
+                }
+            }
+
+            // Bottom-up DP
+            for (int i = n - 2; i >= 0; i--) {
+
+                for (int j = 0; j <= i; j++) {
+
+                    triangle[i][j] += Math.max(
+                        triangle[i + 1][j],
+                        triangle[i + 1][j + 1]
+                    );
+                }
+            }
+
+            System.out.println(triangle[0][0]);
         }
 
         in.close();
