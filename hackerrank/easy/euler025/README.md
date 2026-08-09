@@ -48,7 +48,7 @@ Print the values corresponding to each test case.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-09T10:10:35.414Z  
+**Submitted:** 2026-08-09T10:11:22.245Z  
 
 ```java
 import java.io.*;
@@ -61,49 +61,57 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
 
         int t = sc.nextInt();
+        int[] q = new int[t];
+        int max = 0;
 
-        int[] queries = new int[t];
-        int maxDigits = 0;
-
-        // Read all queries first
         for (int i = 0; i < t; i++) {
-            queries[i] = sc.nextInt();
-            maxDigits = Math.max(maxDigits, queries[i]);
+            q[i] = sc.nextInt();
+            max = Math.max(max, q[i]);
         }
 
-        // Fibonacci numbers
-        BigInteger a = BigInteger.ONE;
-        BigInteger b = BigInteger.ONE;
+        // For n >= 3:
+        // digits(F(n)) = floor((n * log10(phi)) - log10(sqrt(5))) + 1
+        double phi = (1 + Math.sqrt(5)) / 2;
+        double logPhi = Math.log10(phi);
+        double logSqrt5 = Math.log10(Math.sqrt(5));
 
-        // Answer for each digit length
-        int[] answer = new int[maxDigits + 1];
+        for (int digits : q) {
 
-        int index = 2;
-        int currentDigits = 1;
-
-        while (currentDigits < maxDigits) {
-
-            BigInteger next = a.add(b);
-            a = b;
-            b = next;
-            index++;
-
-            int digits = b.toString().length();
-
-            if (digits > currentDigits) {
-                for (int d = currentDigits + 1; d <= digits && d <= maxDigits; d++) {
-                    answer[d] = index;
-                }
-                currentDigits = digits;
+            if (digits == 1) {
+                System.out.println(1);
+                continue;
             }
-        }
 
-        // Print answers
-        for (int n : queries) {
-            System.out.println(answer[n]);
+            // Find first Fibonacci index with required digits
+            long index = (long) Math.ceil(
+                (digits - 1 + logSqrt5) / logPhi
+            );
+
+            // Correct possible floating-point rounding
+            while (fibDigits(index) < digits) {
+                index++;
+            }
+
+            while (index > 1 && fibDigits(index - 1) >= digits) {
+                index--;
+            }
+
+            System.out.println(index);
         }
 
         sc.close();
+    }
+
+    static int fibDigits(long n) {
+        if (n <= 2) {
+            return 1;
+        }
+
+        double phi = (1 + Math.sqrt(5)) / 2;
+
+        return (int) Math.floor(
+            n * Math.log10(phi) - Math.log10(Math.sqrt(5))
+        ) + 1;
     }
 }
 
