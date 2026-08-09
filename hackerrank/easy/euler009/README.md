@@ -54,7 +54,7 @@ Print the value corresponding to each test case in separate lines.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-09T09:32:50.167Z  
+**Submitted:** 2026-08-09T09:32:59.700Z  
 
 ```java
 import java.io.*;
