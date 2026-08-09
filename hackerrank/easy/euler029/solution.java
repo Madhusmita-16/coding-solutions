@@ -1,8 +1,5 @@
 import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
 
 public class Solution {
 
@@ -10,42 +7,71 @@ public class Solution {
 
         Scanner sc = new Scanner(System.in);
 
-        int t = sc.nextInt();
+        int n = sc.nextInt();
 
-        BigInteger MOD = BigInteger.valueOf(1000000007L);
-        BigInteger TWO = BigInteger.valueOf(2);
-        BigInteger FOUR = BigInteger.valueOf(4);
-        BigInteger EIGHT = BigInteger.valueOf(8);
-        BigInteger SIXTEEN = BigInteger.valueOf(16);
-        BigInteger ONE = BigInteger.ONE;
+        int maxExponent = 16;
 
-        while (t-- > 0) {
+        int[] minExponent = new int[(n + 1) * maxExponent + 1];
 
-            BigInteger n = sc.nextBigInteger();
+        for (int i = 1; i <= maxExponent; i++) {
+            for (int j = 1; j <= n; j++) {
+                int index = i * j;
 
-            BigInteger x = n.divide(TWO);
-
-            BigInteger xPlusOne = x.add(ONE);
-            BigInteger twoXPlusOne = x.multiply(TWO).add(ONE);
-
-            BigInteger sumSquares = x
-                    .multiply(xPlusOne)
-                    .multiply(twoXPlusOne)
-                    .divide(BigInteger.valueOf(6));
-
-            BigInteger sumNumbers = x
-                    .multiply(xPlusOne)
-                    .divide(TWO);
-
-            BigInteger answer = ONE
-                    .add(sumSquares.multiply(SIXTEEN))
-                    .add(sumNumbers.multiply(FOUR))
-                    .add(x.multiply(FOUR));
-
-            answer = answer.mod(MOD);
-
-            System.out.println(answer);
+                if (minExponent[index] == 0) {
+                    minExponent[index] = i;
+                }
+            }
         }
+
+        int[] base = new int[n + 1];
+
+        long repeated = 0;
+
+        for (int x = 2; x <= n; x++) {
+
+            int parent = base[x];
+
+            if (parent == 0) {
+
+                long power = (long) x * x;
+
+                while (power <= n) {
+
+                    base[(int) power] = x;
+
+                    if (power > n / x) {
+                        break;
+                    }
+
+                    power *= x;
+                }
+
+                continue;
+            }
+
+            int exponent = 0;
+            int reduce = x;
+
+            while (reduce > 1) {
+                reduce /= parent;
+                exponent++;
+            }
+
+            for (int y = 2; y <= n; y++) {
+
+                int index = y * exponent;
+
+                if (minExponent[index] < exponent) {
+                    repeated++;
+                }
+            }
+        }
+
+        long total = (long) (n - 1) * (n - 1);
+
+        long answer = total - repeated;
+
+        System.out.println(answer);
 
         sc.close();
     }
