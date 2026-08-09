@@ -43,11 +43,14 @@ abcdefghijkml
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-09T10:05:13.730Z  
+**Submitted:** 2026-08-09T10:08:25.723Z  
 
 ```java
 import java.io.*;
 import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
 
 public class Solution {
 
@@ -56,60 +59,46 @@ public class Solution {
 
         int t = sc.nextInt();
 
-        // Maximum limit from the problem
-        int limit = 28123;
+        String letters = "abcdefghijklm";
 
-        // Find sum of proper divisors for every number
-        int[] divisorSum = new int[limit + 1];
+        // Pre-calculate factorials
+        long[] fact = new long[14];
+        fact[0] = 1;
 
-        for (int i = 1; i <= limit / 2; i++) {
-            for (int j = i * 2; j <= limit; j += i) {
-                divisorSum[j] += i;
-            }
+        for (int i = 1; i <= 13; i++) {
+            fact[i] = fact[i - 1] * i;
         }
 
-        // Store all abundant numbers
-        ArrayList<Integer> abundant = new ArrayList<>();
-
-        for (int i = 1; i <= limit; i++) {
-            if (divisorSum[i] > i) {
-                abundant.add(i);
-            }
-        }
-
-        // Check each test case
         while (t-- > 0) {
 
-            int n = sc.nextInt();
+            long n = sc.nextLong();
 
-            if (n > 28123) {
-                System.out.println("YES");
-                continue;
+            // Convert to 0-based index
+            n--;
+
+            ArrayList<Character> list = new ArrayList<>();
+
+            for (char c : letters.toCharArray()) {
+                list.add(c);
             }
 
-            boolean possible = false;
+            StringBuilder answer = new StringBuilder();
 
-            for (int i = 0; i < abundant.size(); i++) {
+            // Select the first 12 characters.
+            // The last character is automatically determined.
+            for (int remaining = 12; remaining >= 0; remaining--) {
 
-                int a = abundant.get(i);
+                long blockSize = fact[remaining];
 
-                if (a >= n) {
-                    break;
-                }
+                int index = (int)(n / blockSize);
 
-                int b = n - a;
+                answer.append(list.get(index));
+                list.remove(index);
 
-                if (b > 0 && divisorSum[b] > b) {
-                    possible = true;
-                    break;
-                }
+                n = n % blockSize;
             }
 
-            if (possible) {
-                System.out.println("YES");
-            } else {
-                System.out.println("NO");
-            }
+            System.out.println(answer);
         }
 
         sc.close();
