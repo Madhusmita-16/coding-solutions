@@ -1,4 +1,4 @@
-# Project Euler #11: Largest product in a grid
+# Project Euler #12: Highly divisible triangular number
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -57,7 +57,7 @@ Explained in statement.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-09T09:37:24.624Z  
+**Submitted:** 2026-08-09T09:41:36.085Z  
 
 ```java
 import java.io.*;
@@ -68,72 +68,117 @@ import java.util.regex.*;
 
 public class Solution {
 
+    static class Query {
+        int index;
+        long value;
+
+        Query(int index, long value) {
+            this.index = index;
+            this.value = value;
+        }
+    }
+
+    static long divisorCount(long n) {
+
+        if (n == 1) {
+            return 1;
+        }
+
+        long count = 1;
+
+        int power = 0;
+
+        while (n % 2 == 0) {
+            n /= 2;
+            power++;
+        }
+
+        if (power > 0) {
+            count *= (power + 1);
+        }
+
+        for (long p = 3; p * p <= n; p += 2) {
+
+            if (n % p == 0) {
+
+                power = 0;
+
+                while (n % p == 0) {
+                    n /= p;
+                    power++;
+                }
+
+                count *= (power + 1);
+            }
+        }
+
+        if (n > 1) {
+            count *= 2;
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
 
-        int[][] grid = new int[20][20];
+        int t = in.nextInt();
 
-        // Read the 20 x 20 grid
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
-                grid[i][j] = in.nextInt();
-            }
+        Query[] queries = new Query[t];
+
+        for (int i = 0; i < t; i++) {
+            queries[i] = new Query(i, in.nextLong());
         }
 
-        long maxProduct = 0;
+        // Compatible with older Java versions
+        Arrays.sort(queries, new Comparator<Query>() {
+            public int compare(Query a, Query b) {
 
-        // Check every cell as the starting point
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
-
-                // Right
-                if (j + 3 < 20) {
-                    long product = 1;
-
-                    for (int k = 0; k < 4; k++) {
-                        product *= grid[i][j + k];
-                    }
-
-                    maxProduct = Math.max(maxProduct, product);
+                if (a.value < b.value) {
+                    return -1;
                 }
 
-                // Down
-                if (i + 3 < 20) {
-                    long product = 1;
-
-                    for (int k = 0; k < 4; k++) {
-                        product *= grid[i + k][j];
-                    }
-
-                    maxProduct = Math.max(maxProduct, product);
+                if (a.value > b.value) {
+                    return 1;
                 }
 
-                // Diagonal down-right
-                if (i + 3 < 20 && j + 3 < 20) {
-                    long product = 1;
-
-                    for (int k = 0; k < 4; k++) {
-                        product *= grid[i + k][j + k];
-                    }
-
-                    maxProduct = Math.max(maxProduct, product);
-                }
-
-                // Diagonal down-left
-                if (i + 3 < 20 && j - 3 >= 0) {
-                    long product = 1;
-
-                    for (int k = 0; k < 4; k++) {
-                        product *= grid[i + k][j - k];
-                    }
-
-                    maxProduct = Math.max(maxProduct, product);
-                }
+                return 0;
             }
+        });
+
+        long[] answer = new long[t];
+
+        long triangle = 0;
+        long n = 0;
+        long divisors = 0;
+
+        for (int q = 0; q < t; q++) {
+
+            long required = queries[q].value;
+
+            /*
+             * Keep generating triangular numbers until
+             * the number of divisors is greater than required.
+             */
+            while (divisors <= required) {
+
+                n++;
+                triangle += n;
+
+                divisors = divisorCount(triangle);
+            }
+
+            answer[queries[q].index] = triangle;
         }
 
-        System.out.println(maxProduct);
+        StringBuilder output = new StringBuilder();
+
+        for (int i = 0; i < t; i++) {
+            output.append(answer[i]).append('\n');
+        }
+
+        System.out.print(output);
 
         in.close();
     }
