@@ -1,4 +1,4 @@
-# Project Euler #36: Double-base palindromes
+# Project Euler #37: Truncatable primes
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -41,7 +41,7 @@ Print the answer corresponding to the test case.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T09:30:30.252Z  
+**Submitted:** 2026-08-10T09:31:38.114Z  
 
 ```java
 import java.io.*;
@@ -49,66 +49,78 @@ import java.util.*;
 
 public class Solution {
 
-    static boolean isPalindrome(String s) {
-        int left = 0;
-        int right = s.length() - 1;
+    static boolean isPrime(int n) {
+        if (n < 2) return false;
+        if (n == 2) return true;
+        if (n % 2 == 0) return false;
 
-        while (left < right) {
-            if (s.charAt(left) != s.charAt(right)) {
+        for (int i = 3; (long) i * i <= n; i += 2) {
+            if (n % i == 0) {
                 return false;
             }
-
-            left++;
-            right--;
         }
 
         return true;
     }
 
-    static String toBase(long num, int base) {
-
-        if (num == 0) {
-            return "0";
-        }
-
-        StringBuilder sb = new StringBuilder();
-
-        while (num > 0) {
-            int digit = (int)(num % base);
-
-            // Digits are represented using 0-9, A-Z
-            if (digit < 10) {
-                sb.append((char)('0' + digit));
-            } else {
-                sb.append((char)('A' + digit - 10));
+    // Remove digits from right to left
+    static boolean truncatableFromRight(int n) {
+        while (n > 0) {
+            if (!isPrime(n)) {
+                return false;
             }
 
-            num /= base;
+            n /= 10;
         }
 
-        return sb.reverse().toString();
+        return true;
+    }
+
+    // Remove digits from left to right
+    static boolean truncatableFromLeft(int n) {
+
+        int divisor = 1;
+
+        while (divisor <= n / 10) {
+            divisor *= 10;
+        }
+
+        while (divisor > 0) {
+
+            if (!isPrime(n)) {
+                return false;
+            }
+
+            n %= divisor;
+            divisor /= 10;
+        }
+
+        return true;
+    }
+
+    static boolean isTruncatablePrime(int n) {
+
+        // 2, 3, 5, 7 are not considered truncatable.
+        if (n < 10) {
+            return false;
+        }
+
+        return isPrime(n)
+                && truncatableFromRight(n)
+                && truncatableFromLeft(n);
     }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        long n = sc.nextLong();
-        int base = sc.nextInt();
+        int n = sc.nextInt();
 
         long sum = 0;
 
-        for (long i = 1; i < n; i++) {
+        for (int i = 10; i < n; i++) {
 
-            // Check palindrome in decimal.
-            if (!isPalindrome(String.valueOf(i))) {
-                continue;
-            }
-
-            // Convert to the required base and check palindrome.
-            String representation = toBase(i, base);
-
-            if (isPalindrome(representation)) {
+            if (isTruncatablePrime(i)) {
                 sum += i;
             }
         }
