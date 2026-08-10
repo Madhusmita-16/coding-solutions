@@ -41,7 +41,7 @@ Print the answer corresponding to the test case.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T10:29:10.223Z  
+**Submitted:** 2026-08-10T10:29:25.174Z  
 
 ```java
 import java.io.*;
