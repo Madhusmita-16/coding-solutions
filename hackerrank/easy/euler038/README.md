@@ -1,4 +1,4 @@
-# Project Euler #37: Truncatable primes
+# Project Euler #38: Pandigital multiples
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -46,7 +46,7 @@ Print the answer corresponding to the test case.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T09:31:45.375Z  
+**Submitted:** 2026-08-10T09:35:08.555Z  
 
 ```java
 import java.io.*;
@@ -54,65 +54,49 @@ import java.util.*;
 
 public class Solution {
 
-    static boolean isPrime(int n) {
-        if (n < 2) return false;
-        if (n == 2) return true;
-        if (n % 2 == 0) return false;
+    static boolean isPandigital(String s, int k) {
 
-        for (int i = 3; (long) i * i <= n; i += 2) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    // Remove digits from right to left
-    static boolean truncatableFromRight(int n) {
-        while (n > 0) {
-            if (!isPrime(n)) {
-                return false;
-            }
-
-            n /= 10;
-        }
-
-        return true;
-    }
-
-    // Remove digits from left to right
-    static boolean truncatableFromLeft(int n) {
-
-        int divisor = 1;
-
-        while (divisor <= n / 10) {
-            divisor *= 10;
-        }
-
-        while (divisor > 0) {
-
-            if (!isPrime(n)) {
-                return false;
-            }
-
-            n %= divisor;
-            divisor /= 10;
-        }
-
-        return true;
-    }
-
-    static boolean isTruncatablePrime(int n) {
-
-        // 2, 3, 5, 7 are not considered truncatable.
-        if (n < 10) {
+        if (s.length() != k) {
             return false;
         }
 
-        return isPrime(n)
-                && truncatableFromRight(n)
-                && truncatableFromLeft(n);
+        boolean[] used = new boolean[10];
+
+        for (char c : s.toCharArray()) {
+
+            int digit = c - '0';
+
+            // K-pandigital uses digits 1..K.
+            if (digit == 0 || digit > k) {
+                return false;
+            }
+
+            if (used[digit]) {
+                return false;
+            }
+
+            used[digit] = true;
+        }
+
+        return true;
+    }
+
+    static boolean isValid(int x, int k) {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int multiplier = 1; ; multiplier++) {
+
+            sb.append(x * multiplier);
+
+            if (sb.length() > k) {
+                return false;
+            }
+
+            if (sb.length() == k) {
+                return isPandigital(sb.toString(), k);
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -120,17 +104,24 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
+        int k = sc.nextInt();
 
-        long sum = 0;
+        /*
+         * For an 8/9 digit pandigital concatenation,
+         * the multiplier cannot have more than 4 digits.
+         *
+         * Testing beyond 9999 is unnecessary because
+         * x * 1 already occupies 5+ digits and the next
+         * product makes the concatenation too long.
+         */
+        int limit = Math.min(n - 1, 9999);
 
-        for (int i = 10; i < n; i++) {
+        for (int x = 2; x <= limit; x++) {
 
-            if (isTruncatablePrime(i)) {
-                sum += i;
+            if (isValid(x, k)) {
+                System.out.println(x);
             }
         }
-
-        System.out.println(sum);
     }
 }
 
