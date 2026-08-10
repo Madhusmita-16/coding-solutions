@@ -3,43 +3,68 @@ import java.util.*;
 
 public class Solution {
 
-    static long[] factorial = new long[10];
+    static boolean[] isPrime;
 
-    static void precompute() {
-        factorial[0] = 1;
+    static void sieve(int n) {
+        isPrime = new boolean[n + 1];
 
-        for (int i = 1; i <= 9; i++) {
-            factorial[i] = factorial[i - 1] * i;
+        Arrays.fill(isPrime, true);
+
+        if (n >= 0) isPrime[0] = false;
+        if (n >= 1) isPrime[1] = false;
+
+        for (int i = 2; (long) i * i <= n; i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j <= n; j += i) {
+                    isPrime[j] = false;
+                }
+            }
         }
     }
 
-    static long digitFactorialSum(long num) {
-        long sum = 0;
+    static boolean isCircularPrime(int num) {
 
-        while (num > 0) {
-            int digit = (int)(num % 10);
-            sum += factorial[digit];
-            num /= 10;
+        String s = String.valueOf(num);
+
+        /*
+         * Rotations can be larger than N,
+         * so we use the full integer value of each rotation.
+         */
+
+        for (int i = 0; i < s.length(); i++) {
+
+            String rotation =
+                    s.substring(i) + s.substring(0, i);
+
+            int value = Integer.parseInt(rotation);
+
+            if (value >= isPrime.length ||
+                !isPrime[value]) {
+                return false;
+            }
         }
 
-        return sum;
+        return true;
     }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        long n = sc.nextLong();
+        int n = sc.nextInt();
 
-        precompute();
+        /*
+         * Rotations of numbers below N can have
+         * the same number of digits, so N is enough
+         * as the prime-table limit.
+         */
+        sieve(n);
 
         long answer = 0;
 
-        for (long i = 10; i < n; i++) {
+        for (int i = 2; i < n; i++) {
 
-            long sum = digitFactorialSum(i);
-
-            if (sum % i == 0) {
+            if (isPrime[i] && isCircularPrime(i)) {
                 answer += i;
             }
         }
