@@ -3,61 +3,79 @@ import java.util.*;
 
 public class Solution {
 
-    static final int MAX = 1000000;
+    static final int LIMIT = 1000000;
     static boolean[] prime;
 
+    // Sieve of Eratosthenes
     static void sieve() {
 
-        prime = new boolean[MAX];
+        prime = new boolean[LIMIT];
 
         Arrays.fill(prime, true);
 
         prime[0] = false;
         prime[1] = false;
 
-        for (int i = 2; i * i < MAX; i++) {
+        for (int i = 2; (long) i * i < LIMIT; i++) {
 
             if (prime[i]) {
 
-                for (int j = i * i; j < MAX; j += i) {
+                for (int j = i * i; j < LIMIT; j += i) {
                     prime[j] = false;
                 }
             }
         }
     }
 
-    // Two numbers are permutations if their sorted digits are equal.
-    static String signature(int n) {
+    /*
+     * Create a unique key based on digit frequencies.
+     *
+     * For example:
+     * 1487 -> digits 1,4,7,8
+     * 4817 -> digits 1,4,7,8
+     *
+     * Both get the same key.
+     */
+    static long getKey(int n) {
 
-        char[] digits = String.valueOf(n).toCharArray();
+        int[] count = new int[10];
 
-        Arrays.sort(digits);
+        while (n > 0) {
+            count[n % 10]++;
+            n /= 10;
+        }
 
-        return new String(digits);
+        long key = 0;
+
+        for (int i = 0; i < 10; i++) {
+            key = key * 11 + count[i];
+        }
+
+        return key;
     }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        int limit = sc.nextInt();
+        int n = sc.nextInt();
         int k = sc.nextInt();
 
         sieve();
 
         /*
-         * Group all primes >= 1000 by their digits.
+         * Group primes having the same digits.
          */
-        HashMap<String, ArrayList<Integer>> groups =
-                new HashMap<String, ArrayList<Integer>>();
+        HashMap<Long, ArrayList<Integer>> groups =
+                new HashMap<Long, ArrayList<Integer>>();
 
-        for (int p = 1000; p < MAX; p++) {
+        for (int p = 2; p < LIMIT; p++) {
 
             if (!prime[p]) {
                 continue;
             }
 
-            String key = signature(p);
+            long key = getKey(p);
 
             ArrayList<Integer> list = groups.get(key);
 
@@ -85,20 +103,20 @@ public class Solution {
             HashSet<Integer> set = new HashSet<Integer>(list);
 
             /*
-             * Try every possible starting prime.
+             * Choose the first element.
              */
             for (int i = 0; i < list.size(); i++) {
 
                 int start = list.get(i);
 
-                // Only the first element must be below limit.
-                if (start >= limit) {
+                // First element must be less than N.
+                if (start >= n) {
                     break;
                 }
 
                 /*
                  * Choose the second element.
-                 * It determines the common difference.
+                 * This determines the common difference.
                  */
                 for (int j = i + 1; j < list.size(); j++) {
 
@@ -107,12 +125,7 @@ public class Solution {
                     boolean valid = true;
 
                     /*
-                     * Check:
-                     *
-                     * start
-                     * start + difference
-                     * start + 2*difference
-                     * ...
+                     * Check all remaining terms.
                      */
                     for (int x = 2; x < k; x++) {
 
@@ -120,7 +133,7 @@ public class Solution {
                                 (long) start +
                                 (long) x * difference;
 
-                        if (value >= MAX ||
+                        if (value >= LIMIT ||
                             !set.contains((int) value)) {
 
                             valid = false;
@@ -140,7 +153,7 @@ public class Solution {
                     for (int x = 0; x < k; x++) {
 
                         result.append(
-                            start + x * difference
+                                start + x * difference
                         );
                     }
 
@@ -150,11 +163,9 @@ public class Solution {
         }
 
         /*
-         * Numerical ordering of the smallest starting value.
-         *
-         * All numbers in a sequence have the same number
-         * of digits, so sorting the concatenated strings gives
-         * the required ordering.
+         * Every sequence has terms of the same digit length
+         * within a permutation group, so lexicographical
+         * ordering is sufficient for numeric ordering here.
          */
         Collections.sort(answers);
 
