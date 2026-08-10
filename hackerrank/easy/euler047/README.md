@@ -1,4 +1,4 @@
-# Project Euler #46: Goldbach's other conjecture
+# Project Euler #47: Distinct primes factors
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -54,71 +54,58 @@ Print the answer corresponding to the test case. Print each integer in a new lin
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T10:19:03.179Z  
+**Submitted:** 2026-08-10T10:26:58.984Z  
 
 ```java
 import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
 
 public class Solution {
-
-    static boolean isPrime(long n) {
-
-        if (n < 2) {
-            return false;
-        }
-
-        if (n == 2) {
-            return true;
-        }
-
-        if (n % 2 == 0) {
-            return false;
-        }
-
-        for (long i = 3; i * i <= n; i += 2) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-
-        return true;
-    }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        int t = sc.nextInt();
+        int n = sc.nextInt();
+        int k = sc.nextInt();
 
-        while (t-- > 0) {
+        int limit = n + k - 1;
 
-            long n = sc.nextLong();
+        // count[i] = number of distinct prime factors of i
+        int[] count = new int[limit + 1];
 
-            int count = 0;
+        // Sieve
+        for (int p = 2; p <= limit; p++) {
 
-            /*
-             * N = prime + 2 * square
-             *
-             * Therefore:
-             *
-             * prime = N - 2 * i * i
-             *
-             * Try every possible square.
-             */
-            for (long i = 1; 2 * i * i < n; i++) {
+            if (count[p] == 0) {
 
-                long prime = n - 2 * i * i;
-
-                if (isPrime(prime)) {
-                    count++;
+                for (int j = p; j <= limit; j += p) {
+                    count[j]++;
                 }
             }
+        }
 
-            System.out.println(count);
+        int consecutive = 0;
+
+        // Check up to n + k - 1
+        for (int i = 2; i <= limit; i++) {
+
+            if (count[i] == k) {
+                consecutive++;
+            } else {
+                consecutive = 0;
+            }
+
+            // We have k consecutive valid numbers
+            if (consecutive >= k) {
+
+                int start = i - k + 1;
+
+                // Starting number must be <= n
+                if (start <= n) {
+                    System.out.println(start);
+                }
+            }
         }
 
         sc.close();
