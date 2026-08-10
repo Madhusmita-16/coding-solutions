@@ -42,21 +42,31 @@ Print the required answer for each test case.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T09:41:48.455Z  
+**Submitted:** 2026-08-10T10:00:35.272Z  
 
 ```java
 import java.io.*;
 import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
 
 public class Solution {
 
+    static ArrayList<Integer> primes = new ArrayList<Integer>();
+
     static boolean isPrime(int n) {
+
         if (n < 2) {
             return false;
         }
 
+        if (n == 2) {
+            return true;
+        }
+
         if (n % 2 == 0) {
-            return n == 2;
+            return false;
         }
 
         for (int i = 3; (long) i * i <= n; i += 2) {
@@ -68,74 +78,22 @@ public class Solution {
         return true;
     }
 
-    static boolean isPandigital(int n) {
-        String s = String.valueOf(n);
-        int len = s.length();
-
-        int mask = 0;
-
-        for (int i = 0; i < len; i++) {
-            int d = s.charAt(i) - '0';
-
-            if (d == 0 || d > len) {
-                return false;
-            }
-
-            int bit = 1 << d;
-
-            if ((mask & bit) != 0) {
-                return false;
-            }
-
-            mask |= bit;
-        }
-
-        int required = (1 << (len + 1)) - 2;
-
-        return mask == required;
-    }
-
-    static int[] generatePandigitalNumbers() {
-
-        ArrayList<Integer> list = new ArrayList<>();
-
-        /*
-         * Only 1 to 7 digit pandigital numbers are useful.
-         * 8 and 9 digit pandigital numbers are divisible by 3.
-         */
-        for (int len = 1; len <= 7; len++) {
-
-            generate(
-                0,
-                len,
-                0,
-                list
-            );
-        }
-
-        Collections.sort(list);
-
-        return list.stream()
-                .mapToInt(Integer::intValue)
-                .toArray();
-    }
-
     static void generate(
-            int value,
-            int length,
+            int number,
             int mask,
-            ArrayList<Integer> list) {
+            int length,
+            int maxDigit) {
 
-        if (Integer.toString(value).length() == length) {
+        if (length == maxDigit) {
 
-            if (isPrime(value)) {
-                list.add(value);
+            if (isPrime(number)) {
+                primes.add(number);
             }
 
             return;
         }
 
-        for (int digit = 1; digit <= length; digit++) {
+        for (int digit = 1; digit <= maxDigit; digit++) {
 
             int bit = 1 << digit;
 
@@ -143,15 +101,47 @@ public class Solution {
                 continue;
             }
 
-            int next = value * 10 + digit;
-
             generate(
-                next,
-                length,
-                mask | bit,
-                list
-            );
+                    number * 10 + digit,
+                    mask | bit,
+                    length + 1,
+                    maxDigit);
         }
+    }
+
+    static void prepare() {
+
+        // 4 digit pandigital primes
+        generate(0, 0, 0, 4);
+
+        // 7 digit pandigital primes
+        generate(0, 0, 0, 7);
+
+        Collections.sort(primes);
+    }
+
+    static int findAnswer(int n) {
+
+        int left = 0;
+        int right = primes.size() - 1;
+
+        int answer = -1;
+
+        while (left <= right) {
+
+            int mid = left + (right - left) / 2;
+
+            int value = primes.get(mid);
+
+            if (value < n) {
+                answer = value;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return answer;
     }
 
     public static void main(String[] args) {
@@ -166,22 +156,10 @@ public class Solution {
             queries[i] = sc.nextInt();
         }
 
-        int[] primes = generatePandigitalNumbers();
+        prepare();
 
-        for (int n : queries) {
-
-            int answer = -1;
-
-            for (int p : primes) {
-
-                if (p >= n) {
-                    break;
-                }
-
-                answer = p;
-            }
-
-            System.out.println(answer);
+        for (int i = 0; i < t; i++) {
+            System.out.println(findAnswer(queries[i]));
         }
 
         sc.close();
