@@ -42,7 +42,7 @@ Print the answer corresponding to the test case. each in new line in numerically
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T10:38:37.630Z  
+**Submitted:** 2026-08-10T10:38:39.831Z  
 
 ```java
 import java.io.*;
