@@ -46,7 +46,7 @@ Display 2 space separated integers that denote the sum of the Numerators and the
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T09:15:24.876Z  
+**Submitted:** 2026-08-10T09:15:34.613Z  
 
 ```java
 import java.io.*;
