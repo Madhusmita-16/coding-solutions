@@ -14,12 +14,8 @@ public class Solution {
             return false;
         }
 
-        if (n == 2) {
-            return true;
-        }
-
         if (n % 2 == 0) {
-            return false;
+            return n == 2;
         }
 
         for (int i = 3; (long) i * i <= n; i += 2) {
@@ -34,10 +30,10 @@ public class Solution {
     static void generate(
             int number,
             int mask,
-            int length,
-            int maxDigit) {
+            int used,
+            int total) {
 
-        if (length == maxDigit) {
+        if (used == total) {
 
             if (isPrime(number)) {
                 primes.add(number);
@@ -46,7 +42,7 @@ public class Solution {
             return;
         }
 
-        for (int digit = 1; digit <= maxDigit; digit++) {
+        for (int digit = 1; digit <= total; digit++) {
 
             int bit = 1 << digit;
 
@@ -57,23 +53,25 @@ public class Solution {
             generate(
                     number * 10 + digit,
                     mask | bit,
-                    length + 1,
-                    maxDigit);
+                    used + 1,
+                    total
+            );
         }
     }
 
-    static void prepare() {
+    static void buildPrimes() {
 
-        // 4 digit pandigital primes
+        // Only 4-digit pandigital numbers can be prime
+        // among lengths 1 through 6.
         generate(0, 0, 0, 4);
 
-        // 7 digit pandigital primes
+        // 7-digit pandigital primes can also exist.
         generate(0, 0, 0, 7);
 
         Collections.sort(primes);
     }
 
-    static int findAnswer(int n) {
+    static int findAnswer(long n) {
 
         int left = 0;
         int right = primes.size() - 1;
@@ -86,10 +84,17 @@ public class Solution {
 
             int value = primes.get(mid);
 
-            if (value < n) {
+            /*
+             * IMPORTANT:
+             * HackerRank version uses <= N.
+             */
+            if ((long) value <= n) {
+
                 answer = value;
                 left = mid + 1;
+
             } else {
+
                 right = mid - 1;
             }
         }
@@ -103,13 +108,13 @@ public class Solution {
 
         int t = sc.nextInt();
 
-        int[] queries = new int[t];
+        long[] queries = new long[t];
 
         for (int i = 0; i < t; i++) {
-            queries[i] = sc.nextInt();
+            queries[i] = sc.nextLong();
         }
 
-        prepare();
+        buildPrimes();
 
         for (int i = 0; i < t; i++) {
             System.out.println(findAnswer(queries[i]));
