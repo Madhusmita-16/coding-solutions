@@ -1,53 +1,42 @@
 import java.io.*;
 import java.util.*;
+import java.math.BigInteger;
 
 public class Solution {
+
+    static final BigInteger MOD = BigInteger.TEN.pow(10);
+
+    static BigInteger power(long base, long exponent) {
+
+        BigInteger b = BigInteger.valueOf(base);
+        BigInteger result = BigInteger.ONE;
+
+        while (exponent > 0) {
+
+            if (exponent % 2 == 1) {
+                result = result.multiply(b).mod(MOD);
+            }
+
+            b = b.multiply(b).mod(MOD);
+            exponent /= 2;
+        }
+
+        return result;
+    }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
-        int k = sc.nextInt();
 
-        int limit = n + k - 1;
+        BigInteger sum = BigInteger.ZERO;
 
-        // count[i] = number of distinct prime factors of i
-        int[] count = new int[limit + 1];
-
-        // Sieve
-        for (int p = 2; p <= limit; p++) {
-
-            if (count[p] == 0) {
-
-                for (int j = p; j <= limit; j += p) {
-                    count[j]++;
-                }
-            }
+        for (int i = 1; i <= n; i++) {
+            sum = sum.add(power(i, i)).mod(MOD);
         }
 
-        int consecutive = 0;
-
-        // Check up to n + k - 1
-        for (int i = 2; i <= limit; i++) {
-
-            if (count[i] == k) {
-                consecutive++;
-            } else {
-                consecutive = 0;
-            }
-
-            // We have k consecutive valid numbers
-            if (consecutive >= k) {
-
-                int start = i - k + 1;
-
-                // Starting number must be <= n
-                if (start <= n) {
-                    System.out.println(start);
-                }
-            }
-        }
+        System.out.println(sum);
 
         sc.close();
     }
