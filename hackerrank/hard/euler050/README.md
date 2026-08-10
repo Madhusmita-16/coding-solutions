@@ -48,7 +48,7 @@ Print the values corresponding to each test case in a new line.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T10:40:53.453Z  
+**Submitted:** 2026-08-10T10:40:55.870Z  
 
 ```java
 import java.io.*;
