@@ -1,43 +1,39 @@
-# Project Euler #38: Pandigital multiples
+# Project Euler #39: Integer right triangles
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
 ## Problem
 
-This problem is a programming version of Problem 38 from projecteuler.net
+This problem is a programming version of Problem 39 from projecteuler.net
 
-Take the number and multiply it by each of,, and :
+If is the perimeter of a right angle triangle with integral length sides, {a, b, c}, there are exactly three solutions for
 
-By concatenating each product we get the to pandigital,. We will call the concatenated product of and
-
-The same can be achieved by starting with and multiplying by,,,, and, giving the pandigital,, which is the concatenated product of and. Let's call 9 as the Multiplier
-
-The similar process can be shown for to pandigital also. when multiplied by gives which is pandigital.
-
-You are given and where = or, find the multipliers for that given below and print them in ascending order.
+For which value of, is the number of solutions maximised? If there are multiple values print smallest.
 
  **Input Format** 
 
-Input contains two integer and.
+First line contains that denotes the number of test cases. This is followed by lines, each containing an integer,.
 
  **Constraints** 
 
  **Output Format** 
 
-Print the answer corresponding to the test case.
+Print the required answer for each test case.
 
  **Sample Input** 
 
 ```
-100 8
+2
+12
+80
 
 ```
 
  **Sample Output** 
 
 ```
-18
-78
+12
+60
 
 ```
 
@@ -46,7 +42,7 @@ Print the answer corresponding to the test case.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T09:35:13.068Z  
+**Submitted:** 2026-08-10T09:37:00.996Z  
 
 ```java
 import java.io.*;
@@ -54,74 +50,82 @@ import java.util.*;
 
 public class Solution {
 
-    static boolean isPandigital(String s, int k) {
-
-        if (s.length() != k) {
-            return false;
+    static int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = a % b;
+            a = b;
+            b = temp;
         }
-
-        boolean[] used = new boolean[10];
-
-        for (char c : s.toCharArray()) {
-
-            int digit = c - '0';
-
-            // K-pandigital uses digits 1..K.
-            if (digit == 0 || digit > k) {
-                return false;
-            }
-
-            if (used[digit]) {
-                return false;
-            }
-
-            used[digit] = true;
-        }
-
-        return true;
-    }
-
-    static boolean isValid(int x, int k) {
-
-        StringBuilder sb = new StringBuilder();
-
-        for (int multiplier = 1; ; multiplier++) {
-
-            sb.append(x * multiplier);
-
-            if (sb.length() > k) {
-                return false;
-            }
-
-            if (sb.length() == k) {
-                return isPandigital(sb.toString(), k);
-            }
-        }
+        return a;
     }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        int n = sc.nextInt();
-        int k = sc.nextInt();
+        int t = sc.nextInt();
+
+        int[] queries = new int[t];
+        int maxN = 0;
+
+        for (int i = 0; i < t; i++) {
+            queries[i] = sc.nextInt();
+            maxN = Math.max(maxN, queries[i]);
+        }
+
+        int[] count = new int[maxN + 1];
 
         /*
-         * For an 8/9 digit pandigital concatenation,
-         * the multiplier cannot have more than 4 digits.
+         * Generate primitive Pythagorean triples.
          *
-         * Testing beyond 9999 is unnecessary because
-         * x * 1 already occupies 5+ digits and the next
-         * product makes the concatenation too long.
+         * a = m*m - n*n
+         * b = 2*m*n
+         * c = m*m + n*n
          */
-        int limit = Math.min(n - 1, 9999);
+        for (int m = 2; m * m + m * m <= maxN; m++) {
 
-        for (int x = 2; x <= limit; x++) {
+            for (int n = 1; n < m; n++) {
 
-            if (isValid(x, k)) {
-                System.out.println(x);
+                if ((m - n) % 2 == 0) {
+                    continue;
+                }
+
+                if (gcd(m, n) != 1) {
+                    continue;
+                }
+
+                int a = m * m - n * n;
+                int b = 2 * m * n;
+                int c = m * m + n * n;
+
+                int perimeter = a + b + c;
+
+                for (int p = perimeter; p <= maxN; p += perimeter) {
+                    count[p]++;
+                }
             }
         }
+
+        int[] best = new int[maxN + 1];
+
+        int bestPerimeter = 0;
+        int bestCount = 0;
+
+        for (int p = 1; p <= maxN; p++) {
+
+            if (count[p] > bestCount) {
+                bestCount = count[p];
+                bestPerimeter = p;
+            }
+
+            best[p] = bestPerimeter;
+        }
+
+        for (int q : queries) {
+            System.out.println(best[q]);
+        }
+
+        sc.close();
     }
 }
 
