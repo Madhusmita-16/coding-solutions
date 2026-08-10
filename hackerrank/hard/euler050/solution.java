@@ -1,54 +1,177 @@
 import java.io.*;
 import java.util.*;
+import java.math.BigInteger;
 
 public class Solution {
 
-    static boolean[] isPrime;
+    static final int LIMIT = 6000000;
+
     static int[] primes;
     static long[] prefix;
 
-    static void sieve(int n) {
+    static void buildPrimes() {
 
-        isPrime = new boolean[n + 1];
-
-        Arrays.fill(isPrime, true);
-
-        isPrime[0] = false;
-        isPrime[1] = false;
-
-        for (int i = 2; (long) i * i <= n; i++) {
-
-            if (isPrime[i]) {
-
-                for (int j = i * i; j <= n; j += i) {
-                    isPrime[j] = false;
-                }
-            }
-        }
+        boolean[] composite = new boolean[LIMIT];
 
         int count = 0;
 
-        for (int i = 2; i <= n; i++) {
-            if (isPrime[i]) {
+        for (int i = 2; i < LIMIT; i++) {
+
+            if (!composite[i]) {
+
                 count++;
+
+                if ((long) i * i < LIMIT) {
+
+                    for (int j = i * i; j < LIMIT; j += i) {
+                        composite[j] = true;
+                    }
+                }
             }
         }
 
         primes = new int[count];
 
-        int p = 0;
+        int index = 0;
 
-        for (int i = 2; i <= n; i++) {
-            if (isPrime[i]) {
-                primes[p++] = i;
+        for (int i = 2; i < LIMIT; i++) {
+
+            if (!composite[i]) {
+                primes[index++] = i;
             }
         }
 
-        prefix = new long[count + 1];
+        prefix = new long[primes.length + 1];
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < primes.length; i++) {
             prefix[i + 1] = prefix[i] + primes[i];
         }
+    }
+
+    /*
+     * Prime test for values <= 10^12.
+     */
+    static boolean isPrime(long n) {
+
+        if (n < 2) {
+            return false;
+        }
+
+        return BigInteger.valueOf(n).isProbablePrime(20);
+    }
+
+    /*
+     * Largest index i such that:
+     *
+     * prefix[i] <= value
+     */
+    static int upperBound(long value) {
+
+        int left = 0;
+        int right = prefix.length - 1;
+
+        while (left <= right) {
+
+            int mid = left + (right - left) / 2;
+
+            if (prefix[mid] <= value) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return right;
+    }
+
+    static String solve(long n) {
+
+        long bestPrime = 0;
+        int bestLength = 0;
+
+        /*
+         * For N <= 10^12, it is sufficient to consider
+         * starting primes up to 131.
+         */
+        for (int start = 0;
+             start < primes.length && primes[start] <= 131;
+             start++) {
+
+            if (primes[start] > n) {
+                break;
+            }
+
+            long subtract = prefix[start];
+
+            /*
+             * IMPORTANT:
+             * N is INCLUSIVE.
+             *
+             * prefix[end] - prefix[start] <= n
+             */
+            long target = n + subtract;
+
+            int end = upperBound(target);
+
+            int length = end - start;
+
+            if (length <= bestLength) {
+                continue;
+            }
+
+            /*
+             * If starting after 2, all primes are odd.
+             * An even number of odd primes has an even sum,
+             * so only odd lengths can produce a prime.
+             */
+            if (start > 0 && (length & 1) == 0) {
+                length--;
+            }
+
+            while (length > bestLength) {
+
+                long sum =
+                        prefix[start + length] -
+                        prefix[start];
+
+                /*
+                 * IMPORTANT:
+                 * sum <= n, not sum < n.
+                 */
+                if (sum <= n && isPrime(sum)) {
+
+                    if (length > bestLength ||
+                        (length == bestLength &&
+                         (bestPrime == 0 || sum < bestPrime))) {
+
+                        bestLength = length;
+                        bestPrime = sum;
+                    }
+
+                    break;
+                }
+
+                if (start == 0) {
+                    length--;
+                } else {
+                    length -= 2;
+                }
+            }
+        }
+
+        /*
+         * Handle very small N safely.
+         */
+        if (bestLength == 0) {
+
+            if (n >= 2) {
+                return "2 1";
+            }
+
+            return "0 0";
+        }
+
+        return bestPrime + " " + bestLength;
     }
 
     public static void main(String[] args) {
@@ -57,160 +180,29 @@ public class Solution {
 
         int t = sc.nextInt();
 
-        int[] queries = new int[t];
-
-        int maxN = 0;
+        long[] input = new long[t];
 
         for (int i = 0; i < t; i++) {
-            queries[i] = sc.nextInt();
-
-            if (queries[i] > maxN) {
-                maxN = queries[i];
-            }
-        }
-
-        sieve(maxN);
-
-        /*
-         * bestPrime[x]  = prime giving longest chain below x
-         * bestLength[x] = corresponding chain length
-         */
-        int[] bestPrime = new int[maxN + 1];
-        int[] bestLength = new int[maxN + 1];
-
-        int bestP = 0;
-        int bestL = 0;
-
-        /*
-         * Calculate the best answer for each possible limit.
-         *
-         * We only need to examine chains starting from
-         * the beginning of the prime list. For a given length,
-         * the smallest possible sum is obtained from the
-         * earliest primes, which makes this very efficient.
-         */
-        for (int start = 0; start < primes.length; start++) {
-
-            long sum = 0;
-
-            for (int end = start; end < primes.length; end++) {
-
-                sum += primes[end];
-
-                if (sum > maxN) {
-                    break;
-                }
-
-                int length = end - start + 1;
-
-                if (isPrime[(int) sum]) {
-
-                    if (length > bestL ||
-                        (length == bestL &&
-                         (bestP == 0 || sum < bestP))) {
-
-                        bestL = length;
-                        bestP = (int) sum;
-
-                        /*
-                         * This answer is valid for every limit
-                         * greater than the sum.
-                         */
-                    }
-                }
-            }
+            input[i] = sc.nextLong();
         }
 
         /*
-         * Convert exact results into:
-         * best answer for every limit <= maxN.
+         * Build primes only once.
          */
-        int currentPrime = 0;
-        int currentLength = 0;
+        buildPrimes();
 
-        for (int n = 0; n <= maxN; n++) {
-
-            if (n > 0) {
-
-                /*
-                 * A newly discovered prime sum may become
-                 * available at this limit.
-                 *
-                 * Recalculate only when needed below.
-                 */
-            }
-
-            bestPrime[n] = currentPrime;
-            bestLength[n] = currentLength;
-        }
-
-        /*
-         * Build answers directly for each query.
-         *
-         * This second calculation uses the fact that only
-         * chain lengths larger than the current best matter.
-         */
-        currentPrime = 0;
-        currentLength = 0;
-
-        for (int start = 0; start < primes.length; start++) {
-
-            long sum = 0;
-
-            for (int end = start; end < primes.length; end++) {
-
-                sum += primes[end];
-
-                if (sum > maxN) {
-                    break;
-                }
-
-                int length = end - start + 1;
-
-                if (length < currentLength) {
-                    continue;
-                }
-
-                if (isPrime[(int) sum]) {
-
-                    if (length > currentLength ||
-                        (length == currentLength &&
-                         (currentPrime == 0 ||
-                          sum < currentPrime))) {
-
-                        currentLength = length;
-                        currentPrime = (int) sum;
-                    }
-
-                    /*
-                     * Store this improvement starting at sum.
-                     */
-                    for (int x = (int) sum; x <= maxN; x++) {
-
-                        if (bestLength[x] < currentLength ||
-                            (bestLength[x] == currentLength &&
-                             (bestPrime[x] == 0 ||
-                              currentPrime < bestPrime[x]))) {
-
-                            bestLength[x] = currentLength;
-                            bestPrime[x] = currentPrime;
-
-                        } else if (bestLength[x] > currentLength) {
-                            break;
-                        }
-                    }
-                }
-            }
-        }
+        StringBuilder output = new StringBuilder();
 
         for (int i = 0; i < t; i++) {
 
-            int n = queries[i];
+            output.append(solve(input[i]));
 
-            System.out.println(
-                bestPrime[n] + " " + bestLength[n]
-            );
+            if (i + 1 < t) {
+                output.append('\n');
+            }
         }
+
+        System.out.print(output);
 
         sc.close();
     }
