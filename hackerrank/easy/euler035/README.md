@@ -1,22 +1,27 @@
-# Project Euler #34: Digit factorials
+# Project Euler #35: Circular primes
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
 ## Problem
 
-This problem is a programming version of Problem 34 from projecteuler.net
+This problem is a programming version of Problem 35 from projecteuler.net
 
-is a curious number, as which is divisible by.
+The number,, is called a circular prime because all rotations of the digits:,, and, are themselves prime.
 
-Find the sum of all numbers below which divide the sum of the factorial of their digits.
+There are thirteen such primes below :. Sum of which is
 
-Note: as are not sums they are not included.
+Find the sum of circular primes that are below ?
+
+ **Note** 
+Rotations can exceed.
 
  **Input Format** 
 
 Input contains an integer
 
  **Constraints** 
+
+-
 
  **Output Format** 
 
@@ -25,14 +30,14 @@ Print the answer corresponding to the test case.
  **Sample Input** 
 
 ```
-20
+100
 
 ```
 
  **Sample Output** 
 
 ```
-19
+446
 
 ```
 
@@ -41,7 +46,7 @@ Print the answer corresponding to the test case.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T09:17:41.172Z  
+**Submitted:** 2026-08-10T09:19:08.732Z  
 
 ```java
 import java.io.*;
@@ -49,43 +54,68 @@ import java.util.*;
 
 public class Solution {
 
-    static long[] factorial = new long[10];
+    static boolean[] isPrime;
 
-    static void precompute() {
-        factorial[0] = 1;
+    static void sieve(int n) {
+        isPrime = new boolean[n + 1];
 
-        for (int i = 1; i <= 9; i++) {
-            factorial[i] = factorial[i - 1] * i;
+        Arrays.fill(isPrime, true);
+
+        if (n >= 0) isPrime[0] = false;
+        if (n >= 1) isPrime[1] = false;
+
+        for (int i = 2; (long) i * i <= n; i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j <= n; j += i) {
+                    isPrime[j] = false;
+                }
+            }
         }
     }
 
-    static long digitFactorialSum(long num) {
-        long sum = 0;
+    static boolean isCircularPrime(int num) {
 
-        while (num > 0) {
-            int digit = (int)(num % 10);
-            sum += factorial[digit];
-            num /= 10;
+        String s = String.valueOf(num);
+
+        /*
+         * Rotations can be larger than N,
+         * so we use the full integer value of each rotation.
+         */
+
+        for (int i = 0; i < s.length(); i++) {
+
+            String rotation =
+                    s.substring(i) + s.substring(0, i);
+
+            int value = Integer.parseInt(rotation);
+
+            if (value >= isPrime.length ||
+                !isPrime[value]) {
+                return false;
+            }
         }
 
-        return sum;
+        return true;
     }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        long n = sc.nextLong();
+        int n = sc.nextInt();
 
-        precompute();
+        /*
+         * Rotations of numbers below N can have
+         * the same number of digits, so N is enough
+         * as the prime-table limit.
+         */
+        sieve(n);
 
         long answer = 0;
 
-        for (long i = 10; i < n; i++) {
+        for (int i = 2; i < n; i++) {
 
-            long sum = digitFactorialSum(i);
-
-            if (sum % i == 0) {
+            if (isPrime[i] && isCircularPrime(i)) {
                 answer += i;
             }
         }
