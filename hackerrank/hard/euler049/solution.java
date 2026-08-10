@@ -3,30 +3,29 @@ import java.util.*;
 
 public class Solution {
 
-    static final int MAX = 1000000;
+    static final int LIMIT = 1000000;
     static boolean[] prime;
 
     static void sieve() {
 
-        prime = new boolean[MAX];
+        prime = new boolean[LIMIT];
 
         Arrays.fill(prime, true);
 
         prime[0] = false;
         prime[1] = false;
 
-        for (int i = 2; i * i < MAX; i++) {
+        for (int i = 2; (long) i * i < LIMIT; i++) {
 
             if (prime[i]) {
 
-                for (int j = i * i; j < MAX; j += i) {
+                for (int j = i * i; j < LIMIT; j += i) {
                     prime[j] = false;
                 }
             }
         }
     }
 
-    // Two numbers are permutations if their sorted digits are equal.
     static String signature(int n) {
 
         char[] digits = String.valueOf(n).toCharArray();
@@ -46,12 +45,12 @@ public class Solution {
         sieve();
 
         /*
-         * Group all primes >= 1000 by their digits.
+         * Group prime numbers having exactly the same digits.
          */
         HashMap<String, ArrayList<Integer>> groups =
                 new HashMap<String, ArrayList<Integer>>();
 
-        for (int p = 1000; p < MAX; p++) {
+        for (int p = 1000; p < LIMIT; p++) {
 
             if (!prime[p]) {
                 continue;
@@ -72,7 +71,7 @@ public class Solution {
         ArrayList<String> answers = new ArrayList<String>();
 
         /*
-         * Process each permutation group.
+         * Find arithmetic progressions inside each permutation group.
          */
         for (ArrayList<Integer> list : groups.values()) {
 
@@ -84,43 +83,27 @@ public class Solution {
 
             HashSet<Integer> set = new HashSet<Integer>(list);
 
-            /*
-             * Try every possible starting prime.
-             */
             for (int i = 0; i < list.size(); i++) {
 
                 int start = list.get(i);
 
-                // Only the first element must be below limit.
                 if (start >= limit) {
                     break;
                 }
 
-                /*
-                 * Choose the second element.
-                 * It determines the common difference.
-                 */
                 for (int j = i + 1; j < list.size(); j++) {
 
                     int difference = list.get(j) - start;
 
                     boolean valid = true;
 
-                    /*
-                     * Check:
-                     *
-                     * start
-                     * start + difference
-                     * start + 2*difference
-                     * ...
-                     */
                     for (int x = 2; x < k; x++) {
 
                         long value =
                                 (long) start +
                                 (long) x * difference;
 
-                        if (value >= MAX ||
+                        if (value >= LIMIT ||
                             !set.contains((int) value)) {
 
                             valid = false;
@@ -132,15 +115,11 @@ public class Solution {
                         continue;
                     }
 
-                    /*
-                     * Build concatenated answer.
-                     */
                     StringBuilder result = new StringBuilder();
 
                     for (int x = 0; x < k; x++) {
-
                         result.append(
-                            start + x * difference
+                                start + x * difference
                         );
                     }
 
@@ -150,13 +129,23 @@ public class Solution {
         }
 
         /*
-         * Numerical ordering of the smallest starting value.
+         * IMPORTANT:
+         * Sort numerically, not lexicographically.
          *
-         * All numbers in a sequence have the same number
-         * of digits, so sorting the concatenated strings gives
-         * the required ordering.
+         * If two answers have different lengths,
+         * the shorter number is numerically smaller.
          */
-        Collections.sort(answers);
+        Collections.sort(answers, new Comparator<String>() {
+
+            public int compare(String a, String b) {
+
+                if (a.length() != b.length()) {
+                    return a.length() - b.length();
+                }
+
+                return a.compareTo(b);
+            }
+        });
 
         for (String answer : answers) {
             System.out.println(answer);
