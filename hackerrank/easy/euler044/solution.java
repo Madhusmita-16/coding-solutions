@@ -6,78 +6,55 @@ import java.util.regex.*;
 
 public class Solution {
 
-    static long sum;
-    static int n;
+    static long pentagonal(long n) {
+        return n * (3 * n - 1) / 2;
+    }
 
-    static int[] divisors = {2, 3, 5, 7, 11, 13, 17};
+    static boolean isPentagonal(long x) {
 
-    static void generate(int[] digits, boolean[] used, int pos) {
-
-        if (pos == n + 1) {
-
-            long number = 0;
-
-            for (int i = 0; i <= n; i++) {
-                number = number * 10 + digits[i];
-            }
-
-            sum += number;
-            return;
+        if (x <= 0) {
+            return false;
         }
 
-        for (int digit = 0; digit <= n; digit++) {
+        long value = 24 * x + 1;
 
-            if (used[digit]) {
-                continue;
-            }
+        long root = (long) Math.sqrt(value);
 
-            digits[pos] = digit;
-
-            /*
-             * When pos = 3:
-             * digits[1..3] must be divisible by 2
-             *
-             * When pos = 4:
-             * digits[2..4] must be divisible by 3
-             *
-             * and so on.
-             */
-            if (pos >= 3) {
-
-                int value =
-                        digits[pos - 2] * 100
-                        + digits[pos - 1] * 10
-                        + digits[pos];
-
-                int divisor = divisors[pos - 3];
-
-                if (value % divisor != 0) {
-                    continue;
-                }
-            }
-
-            used[digit] = true;
-
-            generate(digits, used, pos + 1);
-
-            used[digit] = false;
+        while ((root + 1) * (root + 1) <= value) {
+            root++;
         }
+
+        while (root * root > value) {
+            root--;
+        }
+
+        return root * root == value && (1 + root) % 6 == 0;
     }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        n = sc.nextInt();
+        long N = sc.nextLong();
+        int K = sc.nextInt();
 
-        sum = 0;
+        StringBuilder output = new StringBuilder();
 
-        int[] digits = new int[n + 1];
-        boolean[] used = new boolean[n + 1];
+        for (long n = K + 1; n < N; n++) {
 
-        generate(digits, used, 0);
+            long current = pentagonal(n);
+            long previous = pentagonal(n - K);
 
-        System.out.println(sum);
+            long difference = current - previous;
+            long sum = current + previous;
+
+            if (isPentagonal(difference) || isPentagonal(sum)) {
+
+                output.append(current).append('\n');
+            }
+        }
+
+        System.out.print(output);
 
         sc.close();
     }
