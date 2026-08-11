@@ -48,25 +48,21 @@ Explanation: We can rotate mat 90 degrees clockwise two times to make mat equal 
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 43.5 MB (beats 77.22%)  
-**Submitted:** 2026-08-08T12:35:46.977Z  
+**Memory:** 43.8 MB (beats 22.40%)  
+**Submitted:** 2026-08-11T15:21:51.571Z  
 
 ```java
 class Solution {
-
     public boolean findRotation(int[][] mat, int[][] target) {
-        // Check original matrix
-        if (isSame(mat, target)) {
-            return true;
-        }
 
-        // Try 90°, 180°, and 270° rotations
-        for (int rotation = 0; rotation < 3; rotation++) {
-            rotate(mat);
+        // Check 0°, 90°, 180°, and 270°
+        for (int rotation = 0; rotation < 4; rotation++) {
 
             if (isSame(mat, target)) {
                 return true;
             }
+
+            rotate(mat);
         }
 
         return false;
@@ -76,7 +72,7 @@ class Solution {
     private void rotate(int[][] mat) {
         int n = mat.length;
 
-        // Transpose the matrix
+        // Transpose
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 int temp = mat[i][j];
