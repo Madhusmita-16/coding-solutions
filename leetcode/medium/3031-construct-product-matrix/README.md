@@ -47,9 +47,9 @@ So the answer is [[2],[0],[0]].
 ## Solution
 
 **Language:** Java  
-**Runtime:** 11 ms (beats 88.13%)  
-**Memory:** 101.9 MB (beats 73.44%)  
-**Submitted:** 2026-08-08T12:38:05.361Z  
+**Runtime:** 11 ms (beats 87.92%)  
+**Memory:** 101.9 MB (beats 73.77%)  
+**Submitted:** 2026-08-11T15:27:53.607Z  
 
 ```java
 class Solution {
