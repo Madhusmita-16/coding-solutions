@@ -52,16 +52,16 @@ fancy.getIndex(2); // return 20
 ## Solution
 
 **Language:** Java  
-**Runtime:** 49 ms (beats 84.15%)  
-**Memory:** 122.1 MB (beats 74.30%)  
-**Submitted:** 2026-08-08T12:21:40.768Z  
+**Runtime:** 51 ms (beats 62.24%)  
+**Memory:** 122.8 MB (beats 19.64%)  
+**Submitted:** 2026-08-11T15:13:11.065Z  
 
 ```java
 class Fancy {
 
     private static final long MOD = 1_000_000_007L;
 
-    // Global transformation:
+    // Current transformation:
     // actualValue = storedValue * mul + add
     private long mul = 1;
     private long add = 0;
@@ -73,18 +73,12 @@ class Fancy {
     }
 
     public void append(int val) {
-        /*
-         * We want:
-         *
-         * stored * mul + add = val
-         *
-         * Therefore:
-         *
-         * stored = (val - add) / mul
-         *
-         * Division modulo MOD is multiplication
-         * by modular inverse.
-         */
+        // We need:
+        // storedValue * mul + add = val
+        //
+        // storedValue = (val - add) / mul
+        // Division modulo MOD is multiplication by inverse(mul).
+
         long value = (val - add + MOD) % MOD;
 
         value = value * modPow(mul, MOD - 2) % MOD;
@@ -108,16 +102,20 @@ class Fancy {
 
         long value = sequence.get(idx);
 
+        // Apply the current global transformation
         long result = value * mul % MOD;
         result = (result + add) % MOD;
 
         return (int) result;
     }
 
+    // Fast exponentiation
+    // Computes base^exponent % MOD
     private long modPow(long base, long exponent) {
         long result = 1;
 
         while (exponent > 0) {
+
             if ((exponent & 1) == 1) {
                 result = result * base % MOD;
             }
