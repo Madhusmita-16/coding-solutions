@@ -77,10 +77,12 @@ The sum of all node weights is `4 + 6 + 6 + 4 = 20`.
 
 **Language:** Java  
 **Runtime:** 0 ms  
-**Memory:** 42.3 MB  
-**Submitted:** 2026-08-11T15:41:54.992Z  
+**Memory:** 42.6 MB  
+**Submitted:** 2026-08-11T15:42:31.497Z  
 
 ```java
+import java.util.*;
+
 class Solution {
     public long weightedSum(int[] parent, int[] nums) {
         int n = parent.length;
@@ -88,22 +90,41 @@ class Solution {
         int[] depth = new int[n];
         depth[0] = 1;
 
+        int[] path = new int[n];
         int height = 1;
 
-        // Calculate depth of every node
+        // Calculate depths even when parent index > child index
         for (int i = 1; i < n; i++) {
-            depth[i] = depth[parent[i]] + 1;
+
+            int cur = i;
+            int size = 0;
+
+            // Go upward until we reach a node whose depth is known
+            while (depth[cur] == 0) {
+                path[size++] = cur;
+                cur = parent[cur];
+            }
+
+            // Fill depths from the known parent downward
+            while (size > 0) {
+                int node = path[--size];
+                depth[node] = depth[parent[node]] + 1;
+            }
+        }
+
+        // Find tree height
+        for (int i = 0; i < n; i++) {
             height = Math.max(height, depth[i]);
         }
 
-        long sum = 0;
-
         // Calculate weighted sum
+        long answer = 0;
+
         for (int i = 0; i < n; i++) {
-            sum += (long) nums[i] * (height - depth[i] + 1);
+            answer += (long) nums[i] * (height - depth[i] + 1);
         }
 
-        return sum;
+        return answer;
     }
 }
 ```
