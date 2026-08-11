@@ -62,9 +62,9 @@ A submatrix `(x1, y1, x2, y2)` is a matrix that is formed by choosing all cells 
 ## Solution
 
 **Language:** Java  
-**Runtime:** 11 ms (beats 96.14%)  
-**Memory:** 47.8 MB (beats 14.29%)  
-**Submitted:** 2026-08-08T12:33:57.068Z  
+**Runtime:** 11 ms (beats 96.15%)  
+**Memory:** 48.2 MB (beats 7.34%)  
+**Submitted:** 2026-08-11T15:19:43.575Z  
 
 ```java
 import java.util.*;
@@ -82,22 +82,23 @@ class Solution {
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
 
-                // Store elements of the k x k submatrix
                 int[] values = new int[k * k];
-                int idx = 0;
+                int index = 0;
 
+                // Collect elements of the k x k submatrix
                 for (int i = r; i < r + k; i++) {
                     for (int j = c; j < c + k; j++) {
-                        values[idx++] = grid[i][j];
+                        values[index++] = grid[i][j];
                     }
                 }
 
-                // Sort so the minimum difference is between
-                // two adjacent distinct values.
+                // Sort the elements
                 Arrays.sort(values);
 
                 int minDiff = Integer.MAX_VALUE;
 
+                // Minimum difference occurs between adjacent
+                // distinct values after sorting
                 for (int i = 1; i < values.length; i++) {
                     if (values[i] != values[i - 1]) {
                         minDiff = Math.min(
@@ -107,7 +108,7 @@ class Solution {
                     }
                 }
 
-                // If all values are equal, answer is 0.
+                // All elements are equal
                 if (minDiff == Integer.MAX_VALUE) {
                     minDiff = 0;
                 }
