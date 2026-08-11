@@ -52,13 +52,12 @@ The diagram above shows the grid before and after the transformation.
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 47.4 MB (beats 60.60%)  
-**Submitted:** 2026-08-08T12:34:47.565Z  
+**Memory:** 47.3 MB (beats 61.56%)  
+**Submitted:** 2026-08-11T15:20:42.387Z  
 
 ```java
 class Solution {
     public int[][] reverseSubmatrix(int[][] grid, int x, int y, int k) {
-
         int top = x;
         int bottom = x + k - 1;
 
