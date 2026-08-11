@@ -12,24 +12,20 @@ class Solution {
 
             int[] curr = new int[n];
 
-            // Calculate consecutive 1s ending at this row.
+            // Calculate consecutive 1s ending at this row
             for (int c = 0; c < n; c++) {
                 if (matrix[r][c] == 1) {
                     curr[c] = prev[c] + 1;
-                } else {
-                    curr[c] = 0;
                 }
             }
 
-            // Sort heights in ascending order.
+            // Sort heights in ascending order
             int[] sorted = curr.clone();
             Arrays.sort(sorted);
 
             /*
-             * Since sorted[] is ascending:
-             *
-             * sorted[i] is the height shared by
-             * all columns from i to n-1.
+             * sorted[i] is the height that can be
+             * used by all columns from i to n - 1.
              *
              * Width = n - i
              */
