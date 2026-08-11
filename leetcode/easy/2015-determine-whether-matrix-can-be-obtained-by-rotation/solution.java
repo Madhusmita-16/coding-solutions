@@ -1,18 +1,14 @@
 class Solution {
-
     public boolean findRotation(int[][] mat, int[][] target) {
-        // Check original matrix
-        if (isSame(mat, target)) {
-            return true;
-        }
 
-        // Try 90°, 180°, and 270° rotations
-        for (int rotation = 0; rotation < 3; rotation++) {
-            rotate(mat);
+        // Check 0°, 90°, 180°, and 270°
+        for (int rotation = 0; rotation < 4; rotation++) {
 
             if (isSame(mat, target)) {
                 return true;
             }
+
+            rotate(mat);
         }
 
         return false;
@@ -22,7 +18,7 @@ class Solution {
     private void rotate(int[][] mat) {
         int n = mat.length;
 
-        // Transpose the matrix
+        // Transpose
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 int temp = mat[i][j];
