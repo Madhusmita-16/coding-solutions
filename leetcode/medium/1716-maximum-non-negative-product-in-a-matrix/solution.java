@@ -1,5 +1,4 @@
 class Solution {
-
     public int maxProductPath(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
@@ -28,32 +27,32 @@ class Solution {
 
                 long value = grid[i][j];
 
-                long maxPrev = Math.max(max[i - 1][j], max[i][j - 1]);
-                long minPrev = Math.min(min[i - 1][j], min[i][j - 1]);
+                long maxPrev = Math.max(
+                    max[i - 1][j],
+                    max[i][j - 1]
+                );
 
-                long maxProduct = Math.max(
+                long minPrev = Math.min(
+                    min[i - 1][j],
+                    min[i][j - 1]
+                );
+
+                max[i][j] = Math.max(
                     maxPrev * value,
                     minPrev * value
                 );
 
-                long minProduct = Math.min(
+                min[i][j] = Math.min(
                     maxPrev * value,
                     minPrev * value
                 );
-
-                max[i][j] = maxProduct;
-                min[i][j] = minProduct;
             }
         }
 
-        // If maximum product is negative, no non-negative
-        // product exists.
         if (max[m - 1][n - 1] < 0) {
             return -1;
         }
 
-        int MOD = 1_000_000_007;
-
-        return (int) (max[m - 1][n - 1] % MOD);
+        return (int) (max[m - 1][n - 1] % 1_000_000_007);
     }
 }
