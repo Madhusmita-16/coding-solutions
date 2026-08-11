@@ -51,9 +51,9 @@ Explanation: Notice that you must rearrange entire columns, and there is no way 
 ## Solution
 
 **Language:** Java  
-**Runtime:** 20 ms (beats 11.90%)  
-**Memory:** 110.3 MB (beats 98.94%)  
-**Submitted:** 2026-08-08T12:28:34.003Z  
+**Runtime:** 21 ms (beats 11.19%)  
+**Memory:** 110.1 MB (beats 99.05%)  
+**Submitted:** 2026-08-11T15:16:31.163Z  
 
 ```java
 import java.util.*;
@@ -70,24 +70,20 @@ class Solution {
 
             int[] curr = new int[n];
 
-            // Calculate consecutive 1s ending at this row.
+            // Calculate consecutive 1s ending at this row
             for (int c = 0; c < n; c++) {
                 if (matrix[r][c] == 1) {
                     curr[c] = prev[c] + 1;
-                } else {
-                    curr[c] = 0;
                 }
             }
 
-            // Sort heights in ascending order.
+            // Sort heights in ascending order
             int[] sorted = curr.clone();
             Arrays.sort(sorted);
 
             /*
-             * Since sorted[] is ascending:
-             *
-             * sorted[i] is the height shared by
-             * all columns from i to n-1.
+             * sorted[i] is the height that can be
+             * used by all columns from i to n - 1.
              *
              * Width = n - i
              */
