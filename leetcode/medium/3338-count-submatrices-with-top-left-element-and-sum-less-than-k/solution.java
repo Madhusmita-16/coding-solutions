@@ -10,10 +10,10 @@ class Solution {
             int sum = 0;
 
             for (int j = 0; j < n; j++) {
-                // Sum of this column from row 0 to row i
+                // Sum of column j from row 0 to row i
                 cols[j] += grid[i][j];
 
-                // Sum of rectangle (0,0) -> (i,j)
+                // Sum of submatrix (0,0) -> (i,j)
                 sum += cols[j];
 
                 if (sum <= k) {
