@@ -40,9 +40,9 @@ Explanation: There are only 6 submatrices, shown in the image above, that contai
 ## Solution
 
 **Language:** Java  
-**Runtime:** 3 ms (beats 96.33%)  
-**Memory:** 161.3 MB (beats 69.03%)  
-**Submitted:** 2026-08-08T12:29:57.819Z  
+**Runtime:** 2 ms (beats 100.00%)  
+**Memory:** 161.3 MB (beats 69.81%)  
+**Submitted:** 2026-08-11T15:17:26.348Z  
 
 ```java
 class Solution {
@@ -57,10 +57,10 @@ class Solution {
             int sum = 0;
 
             for (int j = 0; j < n; j++) {
-                // Sum of this column from row 0 to row i
+                // Sum of column j from row 0 to row i
                 cols[j] += grid[i][j];
 
-                // Sum of rectangle (0,0) -> (i,j)
+                // Sum of submatrix (0,0) -> (i,j)
                 sum += cols[j];
 
                 if (sum <= k) {
