@@ -53,9 +53,9 @@ Output: [0,1]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 43 MB  
-**Submitted:** 2026-08-14T11:52:37.645Z  
+**Runtime:** 3 ms (beats 58.98%)  
+**Memory:** 47.2 MB (beats 41.05%)  
+**Submitted:** 2026-08-14T11:54:12.675Z  
 
 ```java
 import java.util.HashMap;
@@ -69,7 +69,6 @@ class Solution {
 
             int complement = target - nums[i];
 
-            // Check if complement already exists
             if (map.containsKey(complement)) {
                 return new int[] {
                     map.get(complement),
@@ -77,7 +76,6 @@ class Solution {
                 };
             }
 
-            // Store value and its index
             map.put(nums[i], i);
         }
 
