@@ -1,4 +1,4 @@
-# The k-th Lexicographical String of All Happy Strings of Length n
+# Q3. The k-th Lexicographical String of All Happy Strings of Length n
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -55,50 +55,46 @@ Explanation: There are 12 different happy string of length 3 ["aba", "abc", "aca
 
 **Language:** Java  
 **Runtime:** 1 ms (beats 100.00%)  
-**Memory:** 42.8 MB (beats 96.20%)  
-**Submitted:** 2026-08-08T12:20:37.567Z  
+**Memory:** 43.2 MB (beats 63.16%)  
+**Submitted:** 2026-08-14T15:54:41.543Z  
 
 ```java
 class Solution {
     public String getHappyString(int n, int k) {
 
-        // Number of happy strings of length n:
-        // 3 * 2^(n-1)
         int total = 3 * (1 << (n - 1));
 
+        // Fewer than k happy strings exist
         if (k > total) {
             return "";
         }
 
-        StringBuilder result = new StringBuilder();
+        StringBuilder ans = new StringBuilder();
 
-        // Each starting character ('a', 'b', 'c')
-        // has 2^(n-1) strings.
+        // Number of strings for each starting character
         int groupSize = 1 << (n - 1);
 
-        // Find the first character.
+        // Choose first character
         if (k <= groupSize) {
-            result.append('a');
+            ans.append('a');
         } else if (k <= 2 * groupSize) {
-            result.append('b');
+            ans.append('b');
             k -= groupSize;
         } else {
-            result.append('c');
+            ans.append('c');
             k -= 2 * groupSize;
         }
 
-        // Construct remaining characters.
+        // Choose remaining characters
         for (int i = 1; i < n; i++) {
 
             groupSize /= 2;
 
-            char prev = result.charAt(i - 1);
+            char prev = ans.charAt(i - 1);
 
             char first;
             char second;
 
-            // Determine the two possible characters
-            // in lexicographical order.
             if (prev == 'a') {
                 first = 'b';
                 second = 'c';
@@ -111,14 +107,14 @@ class Solution {
             }
 
             if (k <= groupSize) {
-                result.append(first);
+                ans.append(first);
             } else {
-                result.append(second);
+                ans.append(second);
                 k -= groupSize;
             }
         }
 
-        return result.toString();
+        return ans.toString();
     }
 }
 ```
