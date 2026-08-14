@@ -46,9 +46,9 @@ Output: ["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.7 MB  
-**Submitted:** 2026-08-14T15:53:27.061Z  
+**Runtime:** 1 ms (beats 99.85%)  
+**Memory:** 43.5 MB (beats 90.83%)  
+**Submitted:** 2026-08-14T15:53:35.645Z  
 
 ```java
 class Solution {
