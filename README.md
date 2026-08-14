@@ -3,7 +3,6 @@
 # 🧠 Coding Solutions
 
 ![Total Solved](https://img.shields.io/badge/Total_Solved-250-blue?style=for-the-badge)
-![Last Synced](https://img.shields.io/badge/Last_Synced-8--11--2026-green?style=for-the-badge)
 
 
 
