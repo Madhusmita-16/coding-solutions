@@ -8,9 +8,9 @@ class Solution {
         while (left < right) {
 
             int width = right - left;
-            int h = Math.min(height[left], height[right]);
+            int minHeight = Math.min(height[left], height[right]);
 
-            int area = width * h;
+            int area = width * minHeight;
             maxArea = Math.max(maxArea, area);
 
             // Move the shorter line
