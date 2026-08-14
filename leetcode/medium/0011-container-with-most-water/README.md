@@ -1,4 +1,4 @@
-# Q2. Container With Most Water
+# Container With Most Water
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -42,9 +42,9 @@ Output: 1
 ## Solution
 
 **Language:** Java  
-**Runtime:** 5 ms (beats 82.92%)  
-**Memory:** 77.4 MB (beats 29.61%)  
-**Submitted:** 2026-08-14T17:49:38.974Z  
+**Runtime:** 0 ms  
+**Memory:** 42.5 MB  
+**Submitted:** 2026-08-14T18:57:32.139Z  
 
 ```java
 class Solution {
@@ -57,9 +57,9 @@ class Solution {
         while (left < right) {
 
             int width = right - left;
-            int h = Math.min(height[left], height[right]);
+            int minHeight = Math.min(height[left], height[right]);
 
-            int area = width * h;
+            int area = width * minHeight;
             maxArea = Math.max(maxArea, area);
 
             // Move the shorter line
