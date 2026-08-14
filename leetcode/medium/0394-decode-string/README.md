@@ -50,9 +50,9 @@ Output: "abcabccdcdcdef"
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.8 MB  
-**Submitted:** 2026-08-14T15:51:30.738Z  
+**Runtime:** 1 ms (beats 85.14%)  
+**Memory:** 42.9 MB (beats 40.35%)  
+**Submitted:** 2026-08-14T15:51:38.167Z  
 
 ```java
 import java.util.Stack;
