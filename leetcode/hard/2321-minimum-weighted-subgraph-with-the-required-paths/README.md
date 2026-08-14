@@ -54,9 +54,9 @@ It can be seen that there does not exist any path from node 1 to node 2, hence t
 ## Solution
 
 **Language:** Java  
-**Runtime:** 127 ms (beats 91.29%)  
-**Memory:** 209.1 MB (beats 81.88%)  
-**Submitted:** 2026-08-14T17:21:54.143Z  
+**Runtime:** 143 ms (beats 70.73%)  
+**Memory:** 209 MB (beats 83.97%)  
+**Submitted:** 2026-08-14T17:22:33.008Z  
 
 ```java
 import java.util.*;
