@@ -52,9 +52,9 @@ Explanation: The only possible triplet sums up to 0.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 2 ms  
-**Memory:** 42.7 MB  
-**Submitted:** 2026-08-14T19:01:21.422Z  
+**Runtime:** 29 ms (beats 93.40%)  
+**Memory:** 59 MB (beats 74.83%)  
+**Submitted:** 2026-08-14T19:01:27.674Z  
 
 ```java
 import java.util.*;
