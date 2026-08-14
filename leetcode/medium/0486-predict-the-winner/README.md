@@ -46,7 +46,7 @@ Finally, player 1 has more score (234) than player 2 (12), so you need to return
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
 **Memory:** 42.7 MB (beats 72.25%)  
-**Submitted:** 2026-08-14T10:45:21.636Z  
+**Submitted:** 2026-08-14T11:04:58.820Z  
 
 ```java
 class Solution {
