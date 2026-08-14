@@ -1,4 +1,4 @@
-# Two Sum
+# Q1. Two Sum
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -53,9 +53,9 @@ Output: [0,1]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 2 ms (beats 99.34%)  
-**Memory:** 47.1 MB (beats 59.57%)  
-**Submitted:** 2026-08-14T10:43:23.585Z  
+**Runtime:** 0 ms  
+**Memory:** 43 MB  
+**Submitted:** 2026-08-14T11:52:37.645Z  
 
 ```java
 import java.util.HashMap;
