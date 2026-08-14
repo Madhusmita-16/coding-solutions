@@ -81,9 +81,9 @@ Note: 49 is not 1 (I) less of 50 (L) because the conversion is based on decimal 
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.6 MB  
-**Submitted:** 2026-08-14T18:58:27.776Z  
+**Runtime:** 3 ms (beats 99.83%)  
+**Memory:** 46.2 MB (beats 78.77%)  
+**Submitted:** 2026-08-14T18:58:34.147Z  
 
 ```java
 class Solution {
