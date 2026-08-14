@@ -53,9 +53,9 @@ Explanation: ". *" means "zero or more (*) of any character (.)".
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.6 MB  
-**Submitted:** 2026-08-14T18:56:33.887Z  
+**Runtime:** 1 ms (beats 99.99%)  
+**Memory:** 43.2 MB (beats 94.18%)  
+**Submitted:** 2026-08-14T18:56:41.174Z  
 
 ```java
 class Solution {
