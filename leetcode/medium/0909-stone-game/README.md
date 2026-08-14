@@ -48,36 +48,14 @@ Output: true
 ## Solution
 
 **Language:** Java  
-**Runtime:** 5 ms (beats 31.92%)  
+**Runtime:** 0 ms (beats 100.00%)  
 **Memory:** 43 MB (beats 66.80%)  
-**Submitted:** 2026-08-14T18:02:51.887Z  
+**Submitted:** 2026-08-14T18:04:55.603Z  
 
 ```java
 class Solution {
     public boolean stoneGame(int[] piles) {
-        int n = piles.length;
-
-        // dp[i] = maximum score difference (current player - opponent)
-        // for the interval starting at i with the current length.
-        int[] dp = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            dp[i] = piles[i];
-        }
-
-        for (int len = 2; len <= n; len++) {
-            for (int i = 0; i + len <= n; i++) {
-                int j = i + len - 1;
-
-                // Take left or take right
-                dp[i] = Math.max(
-                    piles[i] - dp[i + 1],
-                    piles[j] - dp[i]
-                );
-            }
-        }
-
-        return dp[0] > 0;
+        return true;
     }
 }
 ```
