@@ -1,43 +1,39 @@
 class Solution {
     public String getHappyString(int n, int k) {
 
-        // Number of happy strings of length n:
-        // 3 * 2^(n-1)
         int total = 3 * (1 << (n - 1));
 
+        // Fewer than k happy strings exist
         if (k > total) {
             return "";
         }
 
-        StringBuilder result = new StringBuilder();
+        StringBuilder ans = new StringBuilder();
 
-        // Each starting character ('a', 'b', 'c')
-        // has 2^(n-1) strings.
+        // Number of strings for each starting character
         int groupSize = 1 << (n - 1);
 
-        // Find the first character.
+        // Choose first character
         if (k <= groupSize) {
-            result.append('a');
+            ans.append('a');
         } else if (k <= 2 * groupSize) {
-            result.append('b');
+            ans.append('b');
             k -= groupSize;
         } else {
-            result.append('c');
+            ans.append('c');
             k -= 2 * groupSize;
         }
 
-        // Construct remaining characters.
+        // Choose remaining characters
         for (int i = 1; i < n; i++) {
 
             groupSize /= 2;
 
-            char prev = result.charAt(i - 1);
+            char prev = ans.charAt(i - 1);
 
             char first;
             char second;
 
-            // Determine the two possible characters
-            // in lexicographical order.
             if (prev == 'a') {
                 first = 'b';
                 second = 'c';
@@ -50,13 +46,13 @@ class Solution {
             }
 
             if (k <= groupSize) {
-                result.append(first);
+                ans.append(first);
             } else {
-                result.append(second);
+                ans.append(second);
                 k -= groupSize;
             }
         }
 
-        return result.toString();
+        return ans.toString();
     }
 }
