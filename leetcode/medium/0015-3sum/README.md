@@ -53,8 +53,8 @@ Explanation: The only possible triplet sums up to 0.
 
 **Language:** Java  
 **Runtime:** 2 ms  
-**Memory:** 43 MB  
-**Submitted:** 2026-08-14T19:01:12.209Z  
+**Memory:** 42.7 MB  
+**Submitted:** 2026-08-14T19:01:21.422Z  
 
 ```java
 import java.util.*;
