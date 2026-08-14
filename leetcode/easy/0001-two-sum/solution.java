@@ -9,7 +9,6 @@ class Solution {
 
             int complement = target - nums[i];
 
-            // Check if complement already exists
             if (map.containsKey(complement)) {
                 return new int[] {
                     map.get(complement),
@@ -17,7 +16,6 @@ class Solution {
                 };
             }
 
-            // Store value and its index
             map.put(nums[i], i);
         }
 
