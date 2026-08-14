@@ -42,9 +42,9 @@ Explanation: There are three ways to climb to the top.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.3 MB  
-**Submitted:** 2026-08-14T17:51:33.051Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 42.2 MB (beats 17.78%)  
+**Submitted:** 2026-08-14T17:51:36.969Z  
 
 ```java
 class Solution {
