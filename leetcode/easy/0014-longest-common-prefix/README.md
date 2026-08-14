@@ -1,4 +1,4 @@
-# Q1. Longest Common Prefix
+# Longest Common Prefix
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -39,8 +39,8 @@ Explanation: There is no common prefix among the input strings.
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 43.1 MB (beats 83.34%)  
-**Submitted:** 2026-08-14T17:43:15.784Z  
+**Memory:** 43.3 MB (beats 32.64%)  
+**Submitted:** 2026-08-14T19:00:33.531Z  
 
 ```java
 class Solution {
