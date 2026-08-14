@@ -1,4 +1,4 @@
-# Q2. 3Sum Closest
+# 3Sum Closest
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -41,9 +41,9 @@ Explanation: The sum that is closest to the target is 0. (0 + 0 + 0 = 0).
 ## Solution
 
 **Language:** Java  
-**Runtime:** 17 ms (beats 78.14%)  
-**Memory:** 45 MB (beats 96.86%)  
-**Submitted:** 2026-08-14T15:24:45.408Z  
+**Runtime:** 18 ms (beats 40.73%)  
+**Memory:** 45.5 MB (beats 49.80%)  
+**Submitted:** 2026-08-14T19:02:20.081Z  
 
 ```java
 import java.util.Arrays;
