@@ -57,23 +57,29 @@ For ans[i] == -1, It can be shown that there is no building where Alice and Bob 
 ## Solution
 
 **Language:** Java  
-**Runtime:** 48 ms (beats 61.88%)  
-**Memory:** 187.2 MB (beats 39.53%)  
-**Submitted:** 2026-08-14T17:38:01.450Z  
+**Runtime:** 30 ms (beats 97.41%)  
+**Memory:** 169.4 MB (beats 80.94%)  
+**Submitted:** 2026-08-14T17:40:48.071Z  
 
 ```java
 import java.util.*;
 
 class Solution {
+    private int[] tree;
+    private int[] heights;
+
     public int[] leftmostBuildingQueries(int[] heights, int[][] queries) {
-        int q = queries.length;
-        int[] ans = new int[q];
+        this.heights = heights;
+
+        int n = heights.length;
+        tree = new int[4 * n];
+
+        build(1, 0, n - 1);
+
+        int[] ans = new int[queries.length];
         Arrays.fill(ans, -1);
 
-        // Queries grouped by the larger index
-        List<int[]>[] waiting = new ArrayList[heights.length];
-
-        for (int i = 0; i < q; i++) {
+        for (int i = 0; i < queries.length; i++) {
             int a = queries[i][0];
             int b = queries[i][1];
 
@@ -83,7 +89,7 @@ class Solution {
                 continue;
             }
 
-            // Normalize: a < b
+            // Make a the smaller index
             if (a > b) {
                 int temp = a;
                 a = b;
@@ -93,63 +99,77 @@ class Solution {
             // Alice can directly move to Bob's building
             if (heights[a] < heights[b]) {
                 ans[i] = b;
-            } else {
-                if (waiting[b] == null) {
-                    waiting[b] = new ArrayList<>();
-                }
-
-                // Store: [height needed, query index]
-                waiting[b].add(new int[]{heights[a], i});
-            }
-        }
-
-        /*
-         * Monotonic stack of buildings to the right.
-         * We maintain buildings in decreasing height order.
-         */
-        List<Integer> stack = new ArrayList<>();
-
-        for (int i = heights.length - 1; i >= 0; i--) {
-
-            // Process queries whose right endpoint is i
-            if (waiting[i] != null) {
-                for (int[] query : waiting[i]) {
-                    int requiredHeight = query[0];
-                    int queryIndex = query[1];
-
-                    // Find leftmost building with height > requiredHeight
-                    int left = 0;
-                    int right = stack.size() - 1;
-                    int result = -1;
-
-                    while (left <= right) {
-                        int mid = left + (right - left) / 2;
-
-                        if (heights[stack.get(mid)] > requiredHeight) {
-                            result = stack.get(mid);
-                            left = mid + 1;
-                        } else {
-                            right = mid - 1;
-                        }
-                    }
-
-                    ans[queryIndex] = result;
-                }
+                continue;
             }
 
-            /*
-             * Add current building to monotonic stack.
-             * Remove buildings that can never be the leftmost answer.
-             */
-            while (!stack.isEmpty()
-                    && heights[stack.get(stack.size() - 1)] <= heights[i]) {
-                stack.remove(stack.size() - 1);
-            }
-
-            stack.add(i);
+            // Need the first building after b
+            // whose height is greater than heights[a]
+            ans[i] = findFirst(1, 0, n - 1, b + 1, heights[a]);
         }
 
         return ans;
+    }
+
+    // Build segment tree storing maximum height in each range
+    private void build(int node, int left, int right) {
+        if (left == right) {
+            tree[node] = heights[left];
+            return;
+        }
+
+        int mid = left + (right - left) / 2;
+
+        build(node * 2, left, mid);
+        build(node * 2 + 1, mid + 1, right);
+
+        tree[node] = Math.max(tree[node * 2], tree[node * 2 + 1]);
+    }
+
+    /*
+     * Find the leftmost index >= queryLeft
+     * whose height > targetHeight.
+     */
+    private int findFirst(int node, int left, int right,
+                          int queryLeft, int targetHeight) {
+
+        // Range is completely before queryLeft
+        if (right < queryLeft) {
+            return -1;
+        }
+
+        // No value in this range can satisfy the condition
+        if (tree[node] <= targetHeight) {
+            return -1;
+        }
+
+        // Leaf node
+        if (left == right) {
+            return left;
+        }
+
+        int mid = left + (right - left) / 2;
+
+        // Search left side first to get the leftmost index
+        int result = findFirst(
+            node * 2,
+            left,
+            mid,
+            queryLeft,
+            targetHeight
+        );
+
+        if (result != -1) {
+            return result;
+        }
+
+        // Then search right side
+        return findFirst(
+            node * 2 + 1,
+            mid + 1,
+            right,
+            queryLeft,
+            targetHeight
+        );
     }
 }
 ```
