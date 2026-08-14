@@ -58,17 +58,18 @@ Output: 1
 ## Solution
 
 **Language:** Java  
-**Runtime:** 22 ms (beats 81.05%)  
-**Memory:** 47 MB (beats 84.31%)  
-**Submitted:** 2026-08-14T18:06:08.289Z  
+**Runtime:** 21 ms (beats 85.62%)  
+**Memory:** 47.2 MB (beats 76.47%)  
+**Submitted:** 2026-08-14T18:07:15.646Z  
 
 ```java
 import java.util.*;
 
 class Solution {
-    // 0 = DRAW
-    // 1 = MOUSE wins
-    // 2 = CAT wins
+
+    // 0 = Draw
+    // 1 = Mouse wins
+    // 2 = Cat wins
 
     public int catMouseGame(int[][] graph) {
         int n = graph.length;
@@ -81,21 +82,19 @@ class Solution {
 
         Queue<int[]> queue = new ArrayDeque<>();
 
-        // Initialize degrees
+        // Calculate the number of possible moves for every state
         for (int mouse = 0; mouse < n; mouse++) {
             for (int cat = 0; cat < n; cat++) {
 
-                // Mouse's turn
+                // Mouse can move to every neighbor
                 degree[mouse][cat][0] = graph[mouse].length;
 
-                // Cat's turn: cat cannot move to node 0
-                int count = 0;
+                // Cat cannot move to node 0
                 for (int next : graph[cat]) {
                     if (next != 0) {
-                        count++;
+                        degree[mouse][cat][1]++;
                     }
                 }
-                degree[mouse][cat][1] = count;
             }
         }
 
@@ -117,7 +116,9 @@ class Solution {
             queue.offer(new int[]{node, node, 1});
         }
 
+        // Process known states backwards
         while (!queue.isEmpty()) {
+
             int[] state = queue.poll();
 
             int mouse = state[0];
@@ -126,77 +127,106 @@ class Solution {
 
             int winner = result[mouse][cat][turn];
 
-            // Find all previous states that can move to this state
             if (turn == 0) {
-                // Current state is Mouse's turn.
-                // Previous turn was Cat's turn.
-                // Previous cat could move to current cat.
-                for (int prevCat : graph[cat]) {
+                /*
+                 * Current state: Mouse's turn
+                 *
+                 * Previous state must have been:
+                 * (mouse, previousCat, Cat's turn)
+                 */
+                for (int previousCat : graph[cat]) {
 
-                    // Cat cannot move to the hole
-                    if (prevCat == 0) {
+                    // Cat is not allowed to move to node 0
+                    if (previousCat == 0) {
                         continue;
                     }
 
-                    if (result[mouse][prevCat][1] != 0) {
+                    if (result[mouse][previousCat][1] != 0) {
                         continue;
                     }
 
-                    // If Cat can move to a state where Cat wins,
-                    // Cat chooses that move.
                     if (winner == 2) {
-                        result[mouse][prevCat][1] = 2;
-                        queue.offer(new int[]{
-                            mouse, prevCat, 1
-                        });
-                    } else {
-                        // This move is not winning for Cat.
-                        // Remove it from Cat's available moves.
-                        degree[mouse][prevCat][1]--;
+                        /*
+                         * Cat can move to a Cat-winning state.
+                         * Therefore Cat can force a win.
+                         */
+                        result[mouse][previousCat][1] = 2;
 
-                        // No winning move remains -> Mouse wins.
-                        if (degree[mouse][prevCat][1] == 0) {
-                            result[mouse][prevCat][1] = 1;
-                            queue.offer(new int[]{
-                                mouse, prevCat, 1
-                            });
+                        queue.offer(
+                            new int[]{mouse, previousCat, 1}
+                        );
+
+                    } else {
+                        /*
+                         * This move does not help Cat.
+                         * Remove it from Cat's possible winning moves.
+                         */
+                        degree[mouse][previousCat][1]--;
+
+                        /*
+                         * If Cat has no moves left that avoid
+                         * Mouse's win, Mouse wins.
+                         */
+                        if (degree[mouse][previousCat][1] == 0) {
+                            result[mouse][previousCat][1] = 1;
+
+                            queue.offer(
+                                new int[]{mouse, previousCat, 1}
+                            );
                         }
                     }
                 }
 
             } else {
-                // Current state is Cat's turn.
-                // Previous turn was Mouse's turn.
-                // Previous mouse could move to current mouse.
-                for (int prevMouse : graph[mouse]) {
+                /*
+                 * Current state: Cat's turn
+                 *
+                 * Previous state must have been:
+                 * (previousMouse, cat, Mouse's turn)
+                 */
+                for (int previousMouse : graph[mouse]) {
 
-                    if (result[prevMouse][cat][0] != 0) {
+                    if (result[previousMouse][cat][0] != 0) {
                         continue;
                     }
 
-                    // If Mouse can move to a state where Mouse wins,
-                    // Mouse chooses that move.
                     if (winner == 1) {
-                        result[prevMouse][cat][0] = 1;
-                        queue.offer(new int[]{
-                            prevMouse, cat, 0
-                        });
-                    } else {
-                        // This move is not winning for Mouse.
-                        degree[prevMouse][cat][0]--;
+                        /*
+                         * Mouse can move to a Mouse-winning state.
+                         * Therefore Mouse can force a win.
+                         */
+                        result[previousMouse][cat][0] = 1;
 
-                        // No winning move remains -> Cat wins.
-                        if (degree[prevMouse][cat][0] == 0) {
-                            result[prevMouse][cat][0] = 2;
-                            queue.offer(new int[]{
-                                prevMouse, cat, 0
-                            });
+                        queue.offer(
+                            new int[]{previousMouse, cat, 0}
+                        );
+
+                    } else {
+                        /*
+                         * This move does not help Mouse.
+                         */
+                        degree[previousMouse][cat][0]--;
+
+                        /*
+                         * If Mouse has no winning move left,
+                         * Cat wins.
+                         */
+                        if (degree[previousMouse][cat][0] == 0) {
+                            result[previousMouse][cat][0] = 2;
+
+                            queue.offer(
+                                new int[]{previousMouse, cat, 0}
+                            );
                         }
                     }
                 }
             }
         }
 
+        // Initial position:
+        // Mouse = 1
+        // Cat = 2
+        // Mouse moves first
         return result[1][2][0];
     }
 }
