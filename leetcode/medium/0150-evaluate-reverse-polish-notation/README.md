@@ -1,4 +1,4 @@
-# Q2. Evaluate Reverse Polish Notation
+# Evaluate Reverse Polish Notation
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -62,9 +62,9 @@ Explanation: ((10  *(6 / ((9 + 3)*  -11))) + 17) + 5
 ## Solution
 
 **Language:** Java  
-**Runtime:** 7 ms (beats 34.52%)  
-**Memory:** 45.1 MB (beats 90.01%)  
-**Submitted:** 2026-08-14T11:17:05.448Z  
+**Runtime:** 7 ms (beats 34.54%)  
+**Memory:** 45.4 MB (beats 46.30%)  
+**Submitted:** 2026-08-15T14:10:35.272Z  
 
 ```java
 import java.util.*;
