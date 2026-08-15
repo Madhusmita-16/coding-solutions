@@ -3,10 +3,6 @@ class Solution {
         int n = nums.length;
         k %= n;
 
-        if (k == 0) {
-            return;
-        }
-
         int count = 0;
 
         for (int start = 0; count < n; start++) {
