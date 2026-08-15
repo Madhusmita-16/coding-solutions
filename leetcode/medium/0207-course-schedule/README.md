@@ -45,9 +45,9 @@ To take course 1 you should have finished course 0, and to take course 0 you sho
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.9 MB  
-**Submitted:** 2026-08-15T09:01:55.759Z  
+**Runtime:** 7 ms (beats 56.19%)  
+**Memory:** 46.7 MB (beats 94.04%)  
+**Submitted:** 2026-08-15T09:02:04.668Z  
 
 ```java
 import java.util.*;
