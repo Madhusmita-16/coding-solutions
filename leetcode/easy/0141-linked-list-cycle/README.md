@@ -1,4 +1,4 @@
-# Q1. Linked List Cycle
+# Linked List Cycle
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -55,8 +55,8 @@ Explanation: There is no cycle in the linked list.
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 46.8 MB (beats 33.71%)  
-**Submitted:** 2026-08-14T15:23:32.641Z  
+**Memory:** 47 MB (beats 16.34%)  
+**Submitted:** 2026-08-15T14:18:24.508Z  
 
 ```java
 /**
