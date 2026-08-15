@@ -1,4 +1,4 @@
-# Q1. Contains Duplicate II
+# Contains Duplicate II
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -43,9 +43,9 @@ Output: false
 ## Solution
 
 **Language:** Java  
-**Runtime:** 28 ms (beats 41.41%)  
-**Memory:** 111.5 MB (beats 8.90%)  
-**Submitted:** 2026-08-14T15:26:46.965Z  
+**Runtime:** 28 ms (beats 42.32%)  
+**Memory:** 111.4 MB (beats 20.08%)  
+**Submitted:** 2026-08-15T14:05:08.123Z  
 
 ```java
 import java.util.HashMap;
