@@ -38,9 +38,9 @@ Output: 4
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.8 MB  
-**Submitted:** 2026-08-15T07:00:59.679Z  
+**Runtime:** 69 ms (beats 60.48%)  
+**Memory:** 74.4 MB (beats 59.78%)  
+**Submitted:** 2026-08-15T07:01:08.729Z  
 
 ```java
 import java.util.PriorityQueue;
