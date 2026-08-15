@@ -1,4 +1,4 @@
-# Q1. Climbing Stairs
+# Climbing Stairs
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -43,8 +43,8 @@ Explanation: There are three ways to climb to the top.
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 42.2 MB (beats 17.78%)  
-**Submitted:** 2026-08-14T17:51:36.969Z  
+**Memory:** 42.4 MB (beats 17.82%)  
+**Submitted:** 2026-08-15T06:45:11.449Z  
 
 ```java
 class Solution {
@@ -58,7 +58,9 @@ class Solution {
         int second = 2;
 
         for (int i = 3; i <= n; i++) {
+
             int current = first + second;
+
             first = second;
             second = current;
         }
