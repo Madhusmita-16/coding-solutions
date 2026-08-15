@@ -43,9 +43,9 @@ Explanation: The first 2 pairs are returned from the sequence: [1,1],[1,1],[1,2]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 1 ms  
-**Memory:** 43.2 MB  
-**Submitted:** 2026-08-15T06:58:54.852Z  
+**Runtime:** 33 ms (beats 67.88%)  
+**Memory:** 136.8 MB (beats 75.48%)  
+**Submitted:** 2026-08-15T06:59:03.826Z  
 
 ```java
 import java.util.*;
