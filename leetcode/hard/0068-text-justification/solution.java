@@ -8,31 +8,31 @@ class Solution {
 
         while (i < words.length) {
             int j = i;
-            int lineLength = 0;
+            int wordsLength = 0;
 
-            // Find how many words can fit in this line
+            // Find all words that can fit in this line
             while (j < words.length) {
-                int requiredLength = lineLength + words[j].length();
+                int currentLength = wordsLength + words[j].length();
 
-                // Add one space between consecutive words
+                // Add one mandatory space between words
                 if (j > i) {
-                    requiredLength++;
+                    currentLength += (j - i);
                 }
 
-                if (requiredLength > maxWidth) {
+                if (currentLength > maxWidth) {
                     break;
                 }
 
-                lineLength += words[j].length();
+                wordsLength += words[j].length();
                 j++;
             }
 
             int wordCount = j - i;
-            int totalSpaces = maxWidth - lineLength;
+            int totalSpaces = maxWidth - wordsLength;
 
             StringBuilder line = new StringBuilder();
 
-            // Last line OR line contains only one word
+            // Last line or line with only one word
             if (j == words.length || wordCount == 1) {
 
                 for (int k = i; k < j; k++) {
@@ -42,7 +42,7 @@ class Solution {
                     line.append(words[k]);
                 }
 
-                // Add remaining spaces at the end
+                // Left justify: remaining spaces go at the end
                 while (line.length() < maxWidth) {
                     line.append(" ");
                 }
@@ -58,9 +58,9 @@ class Solution {
                     line.append(words[k]);
 
                     if (k < j - 1) {
-                        // Left gaps get one extra space
                         int spaces = spacesPerGap;
 
+                        // Extra spaces go to the left gaps
                         if (k - i < extraSpaces) {
                             spaces++;
                         }
