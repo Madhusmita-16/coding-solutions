@@ -51,7 +51,7 @@ rotate 2 steps to the right: [3,99,-1,-100]
 **Language:** Java  
 **Runtime:** 0 ms  
 **Memory:** 43.1 MB  
-**Submitted:** 2026-08-15T17:32:58.500Z  
+**Submitted:** 2026-08-15T17:36:32.589Z  
 
 ```java
 class Solution {
@@ -59,15 +59,12 @@ class Solution {
         int n = nums.length;
         k %= n;
 
-        if (k == 0) return;
+        if (k == 0) {
+            return;
+        }
 
-        // 1. Reverse the complete array
         reverse(nums, 0, n - 1);
-
-        // 2. Reverse the first k elements
         reverse(nums, 0, k - 1);
-
-        // 3. Reverse the remaining elements
         reverse(nums, k, n - 1);
     }
 
