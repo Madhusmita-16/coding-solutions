@@ -37,9 +37,9 @@ Output: [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.2 MB  
-**Submitted:** 2026-08-15T08:54:47.053Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 43.8 MB (beats 53.70%)  
+**Submitted:** 2026-08-15T08:54:54.190Z  
 
 ```java
 class Solution {
