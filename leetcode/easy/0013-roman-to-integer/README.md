@@ -67,9 +67,9 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 3 ms (beats 77.75%)  
-**Memory:** 46.3 MB (beats 75.57%)  
-**Submitted:** 2026-08-14T18:59:16.573Z  
+**Runtime:** 3 ms (beats 77.73%)  
+**Memory:** 46.2 MB (beats 86.15%)  
+**Submitted:** 2026-08-15T10:24:32.782Z  
 
 ```java
 class Solution {
