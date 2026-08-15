@@ -49,9 +49,9 @@ rotate 2 steps to the right: [3,99,-1,-100]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.6 MB  
-**Submitted:** 2026-08-15T10:36:24.312Z  
+**Runtime:** 1 ms  
+**Memory:** 49.3 MB  
+**Submitted:** 2026-08-15T10:40:49.752Z  
 
 ```java
 class Solution {
@@ -63,23 +63,18 @@ class Solution {
             return;
         }
 
-        int count = 0;
+        reverse(nums, 0, n - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, n - 1);
+    }
 
-        for (int start = 0; count < n; start++) {
-            int current = start;
-            int prev = nums[current];
-
-            do {
-                int next = (current + k) % n;
-
-                int temp = nums[next];
-                nums[next] = prev;
-                prev = temp;
-
-                current = next;
-                count++;
-
-            } while (current != start);
+    private void reverse(int[] nums, int left, int right) {
+        while (left < right) {
+            int temp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = temp;
+            left++;
+            right--;
         }
     }
 }
