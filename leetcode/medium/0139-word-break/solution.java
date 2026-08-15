@@ -1,7 +1,11 @@
+import java.util.*;
+
 class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
 
         int n = s.length();
+
+        Set<String> dict = new HashSet<>(wordDict);
 
         // dp[i] = true if s[0...i-1] can be segmented
         boolean[] dp = new boolean[n + 1];
@@ -10,12 +14,10 @@ class Solution {
 
         for (int i = 1; i <= n; i++) {
 
-            for (String word : wordDict) {
+            for (int len = 1; len <= 20 && len <= i; len++) {
 
-                int len = word.length();
-
-                if (len <= i && dp[i - len]
-                        && s.substring(i - len, i).equals(word)) {
+                if (dp[i - len] &&
+                    dict.contains(s.substring(i - len, i))) {
 
                     dp[i] = true;
                     break;
