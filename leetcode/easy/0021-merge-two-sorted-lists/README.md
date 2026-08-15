@@ -1,4 +1,4 @@
-# Q1. Merge Two Sorted Lists
+# Merge Two Sorted Lists
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -48,8 +48,8 @@ Output: [0]
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 44.1 MB (beats 88.90%)  
-**Submitted:** 2026-08-14T15:49:59.925Z  
+**Memory:** 44.2 MB (beats 57.85%)  
+**Submitted:** 2026-08-15T14:19:07.019Z  
 
 ```java
 /**
