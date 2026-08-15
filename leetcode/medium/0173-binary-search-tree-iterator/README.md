@@ -56,9 +56,9 @@ bSTIterator.hasNext(); // return False
 ## Solution
 
 **Language:** Java  
-**Runtime:** 2 ms  
-**Memory:** 42.5 MB  
-**Submitted:** 2026-08-15T15:09:53.583Z  
+**Runtime:** 17 ms (beats 93.33%)  
+**Memory:** 50.4 MB (beats 22.53%)  
+**Submitted:** 2026-08-15T15:09:59.845Z  
 
 ```java
 import java.util.Stack;
