@@ -1,4 +1,4 @@
-# Q2. Construct Binary Tree from Inorder and Postorder Traversal
+# Construct Binary Tree from Inorder and Postorder Traversal
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -39,9 +39,9 @@ Output: [-1]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 1 ms (beats 99.07%)  
-**Memory:** 46.7 MB (beats 9.58%)  
-**Submitted:** 2026-08-14T12:17:08.626Z  
+**Runtime:** 1 ms (beats 99.10%)  
+**Memory:** 46.6 MB (beats 9.52%)  
+**Submitted:** 2026-08-15T14:55:53.182Z  
 
 ```java
 import java.util.HashMap;
