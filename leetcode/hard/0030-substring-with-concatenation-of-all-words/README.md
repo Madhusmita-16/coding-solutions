@@ -59,9 +59,9 @@ The substring starting at 12 is `"thefoobar"`. It is the concatenation of `["the
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.5 MB  
-**Submitted:** 2026-08-15T13:55:48.773Z  
+**Runtime:** 11 ms (beats 96.65%)  
+**Memory:** 47.4 MB (beats 42.43%)  
+**Submitted:** 2026-08-15T13:55:55.403Z  
 
 ```java
 class Solution {
