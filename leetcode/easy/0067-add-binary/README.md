@@ -35,9 +35,9 @@ Output: "10101"
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.5 MB  
-**Submitted:** 2026-08-15T06:57:40.309Z  
+**Runtime:** 1 ms (beats 99.94%)  
+**Memory:** 43.6 MB (beats 53.58%)  
+**Submitted:** 2026-08-15T06:57:46.226Z  
 
 ```java
 class Solution {
