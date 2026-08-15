@@ -42,9 +42,9 @@ In the above diagram, the bottom region is not captured because it is on the edg
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.3 MB  
-**Submitted:** 2026-08-15T09:04:35.172Z  
+**Runtime:** 3 ms (beats 27.27%)  
+**Memory:** 48.1 MB (beats 10.82%)  
+**Submitted:** 2026-08-15T09:04:39.980Z  
 
 ```java
 import java.util.*;
