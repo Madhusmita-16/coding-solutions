@@ -47,9 +47,9 @@ Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 43 MB  
-**Submitted:** 2026-08-15T14:07:27.981Z  
+**Runtime:** 1 ms (beats 98.14%)  
+**Memory:** 46.9 MB (beats 76.08%)  
+**Submitted:** 2026-08-15T14:07:33.958Z  
 
 ```java
 class Solution {
