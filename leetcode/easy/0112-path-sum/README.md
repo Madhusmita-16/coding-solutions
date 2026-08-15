@@ -51,9 +51,9 @@ Explanation: Since the tree is empty, there are no root-to-leaf paths.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.6 MB  
-**Submitted:** 2026-08-15T15:06:30.205Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 45.1 MB (beats 31.72%)  
+**Submitted:** 2026-08-15T15:06:35.922Z  
 
 ```java
 class Solution {
