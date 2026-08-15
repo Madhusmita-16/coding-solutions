@@ -46,9 +46,9 @@ Integer	Binary
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.4 MB  
-**Submitted:** 2026-08-15T06:56:42.339Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 42.7 MB (beats 18.69%)  
+**Submitted:** 2026-08-15T06:56:50.352Z  
 
 ```java
 class Solution {
