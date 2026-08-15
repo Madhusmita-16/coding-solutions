@@ -50,18 +50,14 @@ rotate 2 steps to the right: [3,99,-1,-100]
 
 **Language:** Java  
 **Runtime:** 0 ms  
-**Memory:** 43.2 MB  
-**Submitted:** 2026-08-15T17:01:27.392Z  
+**Memory:** 43 MB  
+**Submitted:** 2026-08-15T17:03:25.932Z  
 
 ```java
 class Solution {
     public void rotate(int[] nums, int k) {
         int n = nums.length;
         k %= n;
-
-        if (k == 0) {
-            return;
-        }
 
         int count = 0;
 
