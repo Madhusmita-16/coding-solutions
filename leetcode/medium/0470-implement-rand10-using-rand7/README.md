@@ -50,9 +50,9 @@ Output: [3,8,10]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.5 MB  
-**Submitted:** 2026-08-15T06:19:18.674Z  
+**Runtime:** 5 ms (beats 97.43%)  
+**Memory:** 51.5 MB (beats 94.07%)  
+**Submitted:** 2026-08-15T06:19:23.914Z  
 
 ```java
 class Solution extends SolBase {
