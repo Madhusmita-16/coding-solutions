@@ -1,4 +1,4 @@
-# Q2. Interleaving String
+# Interleaving String
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -61,9 +61,9 @@ Output: true
 ## Solution
 
 **Language:** Java  
-**Runtime:** 5 ms (beats 38.62%)  
-**Memory:** 43.3 MB (beats 54.04%)  
-**Submitted:** 2026-08-14T17:55:02.693Z  
+**Runtime:** 4 ms (beats 54.66%)  
+**Memory:** 43.1 MB (beats 68.76%)  
+**Submitted:** 2026-08-15T06:35:08.983Z  
 
 ```java
 class Solution {
