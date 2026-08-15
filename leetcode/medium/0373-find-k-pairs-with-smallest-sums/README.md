@@ -1,4 +1,4 @@
-# Q2. Find K Pairs with Smallest Sums
+# Find K Pairs with Smallest Sums
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -43,9 +43,9 @@ Explanation: The first 2 pairs are returned from the sequence: [1,1],[1,1],[1,2]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 32 ms (beats 80.06%)  
-**Memory:** 137.4 MB (beats 54.45%)  
-**Submitted:** 2026-08-14T11:29:20.228Z  
+**Runtime:** 1 ms  
+**Memory:** 43.2 MB  
+**Submitted:** 2026-08-15T06:58:54.852Z  
 
 ```java
 import java.util.*;
