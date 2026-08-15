@@ -1,4 +1,4 @@
-# Q1. Combinations
+# Combinations
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -39,9 +39,9 @@ Explanation: There is 1 choose 1 = 1 total combination.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 14 ms (beats 96.46%)  
-**Memory:** 98.3 MB (beats 12.24%)  
-**Submitted:** 2026-08-14T15:52:41.004Z  
+**Runtime:** 14 ms (beats 96.51%)  
+**Memory:** 98 MB (beats 46.83%)  
+**Submitted:** 2026-08-15T08:45:44.115Z  
 
 ```java
 class Solution {
