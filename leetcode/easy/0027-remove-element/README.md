@@ -69,7 +69,7 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
 **Memory:** 43.3 MB (beats 79.84%)  
-**Submitted:** 2026-08-15T06:26:43.455Z  
+**Submitted:** 2026-08-15T10:17:52.066Z  
 
 ```java
 class Solution {
