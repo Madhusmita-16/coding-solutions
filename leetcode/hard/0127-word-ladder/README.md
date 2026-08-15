@@ -47,9 +47,9 @@ Explanation: The endWord "cog" is not in wordList, therefore there is no valid t
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.8 MB  
-**Submitted:** 2026-08-15T08:57:41.054Z  
+**Runtime:** 78 ms (beats 50.80%)  
+**Memory:** 48 MB (beats 59.15%)  
+**Submitted:** 2026-08-15T08:57:45.950Z  
 
 ```java
 import java.util.*;
