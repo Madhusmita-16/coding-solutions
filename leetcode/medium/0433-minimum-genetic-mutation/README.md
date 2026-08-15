@@ -45,9 +45,9 @@ Output: 2
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.5 MB  
-**Submitted:** 2026-08-15T08:58:27.236Z  
+**Runtime:** 1 ms (beats 91.97%)  
+**Memory:** 43 MB (beats 14.14%)  
+**Submitted:** 2026-08-15T08:58:32.850Z  
 
 ```java
 import java.util.*;
