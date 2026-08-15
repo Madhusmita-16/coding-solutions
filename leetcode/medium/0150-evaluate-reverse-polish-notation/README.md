@@ -63,8 +63,8 @@ Explanation: ((10  *(6 / ((9 + 3)*  -11))) + 17) + 5
 
 **Language:** Java  
 **Runtime:** 7 ms (beats 34.54%)  
-**Memory:** 45.4 MB (beats 46.30%)  
-**Submitted:** 2026-08-15T14:10:35.272Z  
+**Memory:** 45.2 MB (beats 78.85%)  
+**Submitted:** 2026-08-15T14:10:44.048Z  
 
 ```java
 import java.util.*;
