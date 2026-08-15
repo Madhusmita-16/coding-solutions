@@ -1,4 +1,4 @@
-# Q2. Copy List with Random Pointer
+# Copy List with Random Pointer
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -57,8 +57,8 @@ Output: [[3,null],[3,0],[3,null]]
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 46.4 MB (beats 73.04%)  
-**Submitted:** 2026-08-14T11:55:37.930Z  
+**Memory:** 46.8 MB (beats 14.81%)  
+**Submitted:** 2026-08-15T14:20:36.290Z  
 
 ```java
 import java.util.HashMap;
