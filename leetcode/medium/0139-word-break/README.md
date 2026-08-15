@@ -1,4 +1,4 @@
-# Q3. Word Break
+# Word Break
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -50,15 +50,19 @@ Output: false
 ## Solution
 
 **Language:** Java  
-**Runtime:** 4 ms (beats 73.85%)  
-**Memory:** 43.6 MB (beats 76.81%)  
-**Submitted:** 2026-08-14T17:56:07.808Z  
+**Runtime:** 0 ms  
+**Memory:** 42.8 MB  
+**Submitted:** 2026-08-15T06:41:12.004Z  
 
 ```java
+import java.util.*;
+
 class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
 
         int n = s.length();
+
+        Set<String> dict = new HashSet<>(wordDict);
 
         // dp[i] = true if s[0...i-1] can be segmented
         boolean[] dp = new boolean[n + 1];
@@ -67,12 +71,10 @@ class Solution {
 
         for (int i = 1; i <= n; i++) {
 
-            for (String word : wordDict) {
+            for (int len = 1; len <= 20 && len <= i; len++) {
 
-                int len = word.length();
-
-                if (len <= i && dp[i - len]
-                        && s.substring(i - len, i).equals(word)) {
+                if (dp[i - len] &&
+                    dict.contains(s.substring(i - len, i))) {
 
                     dp[i] = true;
                     break;
