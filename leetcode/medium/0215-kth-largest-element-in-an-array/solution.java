@@ -8,13 +8,11 @@ class Solution {
         for (int num : nums) {
             minHeap.offer(num);
 
-            // Keep only the k largest elements
             if (minHeap.size() > k) {
                 minHeap.poll();
             }
         }
 
-        // Smallest among the k largest = kth largest
         return minHeap.peek();
     }
 }
