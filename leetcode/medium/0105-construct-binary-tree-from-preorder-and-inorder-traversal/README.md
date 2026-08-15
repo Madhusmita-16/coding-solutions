@@ -39,9 +39,9 @@ Output: [-1]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.7 MB  
-**Submitted:** 2026-08-15T15:03:02.524Z  
+**Runtime:** 1 ms (beats 97.46%)  
+**Memory:** 46.6 MB (beats 24.83%)  
+**Submitted:** 2026-08-15T15:03:07.743Z  
 
 ```java
 import java.util.HashMap;
