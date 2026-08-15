@@ -50,21 +50,37 @@ rotate 2 steps to the right: [3,99,-1,-100]
 
 **Language:** Java  
 **Runtime:** 0 ms  
-**Memory:** 43 MB  
-**Submitted:** 2026-08-15T15:51:31.468Z  
+**Memory:** 43.2 MB  
+**Submitted:** 2026-08-15T17:01:27.392Z  
 
 ```java
 class Solution {
     public void rotate(int[] nums, int k) {
         int n = nums.length;
         k %= n;
-        if (k == 0) return;
 
-        int[] temp = new int[n];
-        for (int i = 0; i < n; i++) {
-            temp[(i + k) % n] = nums[i];
+        if (k == 0) {
+            return;
         }
-        System.arraycopy(temp, 0, nums, 0, n);
+
+        int count = 0;
+
+        for (int start = 0; count < n; start++) {
+            int current = start;
+            int prev = nums[current];
+
+            do {
+                int next = (current + k) % n;
+
+                int temp = nums[next];
+                nums[next] = prev;
+                prev = temp;
+
+                current = next;
+                count++;
+
+            } while (current != start);
+        }
     }
 }
 ```
