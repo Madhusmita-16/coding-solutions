@@ -50,8 +50,8 @@ rotate 2 steps to the right: [3,99,-1,-100]
 
 **Language:** Java  
 **Runtime:** 0 ms  
-**Memory:** 42.8 MB  
-**Submitted:** 2026-08-15T15:32:39.783Z  
+**Memory:** 43 MB  
+**Submitted:** 2026-08-15T15:51:31.468Z  
 
 ```java
 class Solution {
