@@ -1,4 +1,4 @@
-# Q1. Kth Largest Element in an Array
+# Kth Largest Element in an Array
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -38,9 +38,9 @@ Output: 4
 ## Solution
 
 **Language:** Java  
-**Runtime:** 71 ms (beats 35.72%)  
-**Memory:** 74.4 MB (beats 50.60%)  
-**Submitted:** 2026-08-14T12:07:01.396Z  
+**Runtime:** 0 ms  
+**Memory:** 42.8 MB  
+**Submitted:** 2026-08-15T07:00:59.679Z  
 
 ```java
 import java.util.PriorityQueue;
@@ -53,13 +53,11 @@ class Solution {
         for (int num : nums) {
             minHeap.offer(num);
 
-            // Keep only the k largest elements
             if (minHeap.size() > k) {
                 minHeap.poll();
             }
         }
 
-        // Smallest among the k largest = kth largest
         return minHeap.peek();
     }
 }
