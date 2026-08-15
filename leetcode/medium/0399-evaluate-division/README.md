@@ -61,9 +61,9 @@ Output: [0.50000,2.00000,-1.00000,-1.00000]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 45.7 MB  
-**Submitted:** 2026-08-15T09:02:48.816Z  
+**Runtime:** 1 ms (beats 98.87%)  
+**Memory:** 47 MB (beats 49.11%)  
+**Submitted:** 2026-08-15T09:02:53.116Z  
 
 ```java
 import java.util.*;
