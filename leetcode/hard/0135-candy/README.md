@@ -1,4 +1,4 @@
-# Q3. Candy
+# Candy
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Hard-red)
 
@@ -46,9 +46,9 @@ The third child gets 1 candy because it satisfies the above two conditions.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 3 ms (beats 86.31%)  
-**Memory:** 52.4 MB (beats 5.89%)  
-**Submitted:** 2026-08-14T17:50:47.985Z  
+**Runtime:** 3 ms (beats 86.42%)  
+**Memory:** 52.1 MB (beats 7.56%)  
+**Submitted:** 2026-08-15T10:26:32.276Z  
 
 ```java
 class Solution {
