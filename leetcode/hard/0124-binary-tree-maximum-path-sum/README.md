@@ -40,9 +40,9 @@ Explanation: The optimal path is 15 -> 20 -> 7 with a path sum of 15 + 20 + 7 = 
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.8 MB  
-**Submitted:** 2026-08-15T15:08:47.173Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 46.9 MB (beats 6.99%)  
+**Submitted:** 2026-08-15T15:09:00.479Z  
 
 ```java
 class Solution {
