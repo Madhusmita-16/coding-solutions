@@ -54,9 +54,9 @@ medianFinder.findMedian(); // return 2.0
 ## Solution
 
 **Language:** Java  
-**Runtime:** 14 ms  
-**Memory:** 45.2 MB  
-**Submitted:** 2026-08-15T06:58:31.722Z  
+**Runtime:** 145 ms (beats 58.30%)  
+**Memory:** 111.3 MB (beats 70.47%)  
+**Submitted:** 2026-08-15T06:58:38.338Z  
 
 ```java
 import java.util.*;
