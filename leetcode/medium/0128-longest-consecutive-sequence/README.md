@@ -1,4 +1,4 @@
-# Q1. Longest Consecutive Sequence
+# Longest Consecutive Sequence
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -45,9 +45,9 @@ Output: 3
 ## Solution
 
 **Language:** Java  
-**Runtime:** 29 ms (beats 78.99%)  
-**Memory:** 95.6 MB (beats 39.67%)  
-**Submitted:** 2026-08-14T16:38:54.821Z  
+**Runtime:** 36 ms (beats 16.99%)  
+**Memory:** 95.8 MB (beats 16.16%)  
+**Submitted:** 2026-08-15T14:05:20.160Z  
 
 ```java
 import java.util.HashSet;
