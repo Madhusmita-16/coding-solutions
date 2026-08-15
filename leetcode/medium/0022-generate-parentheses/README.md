@@ -34,8 +34,8 @@ Output: ["()"]
 
 **Language:** Java  
 **Runtime:** 2 ms (beats 70.21%)  
-**Memory:** 44.8 MB (beats 33.21%)  
-**Submitted:** 2026-08-15T06:11:14.926Z  
+**Memory:** 45 MB (beats 12.52%)  
+**Submitted:** 2026-08-15T08:45:59.185Z  
 
 ```java
 import java.util.*;
