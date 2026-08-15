@@ -50,9 +50,9 @@ Output: false
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.8 MB  
-**Submitted:** 2026-08-15T06:41:12.004Z  
+**Runtime:** 1 ms (beats 99.35%)  
+**Memory:** 42.9 MB (beats 93.13%)  
+**Submitted:** 2026-08-15T06:41:18.201Z  
 
 ```java
 import java.util.*;
