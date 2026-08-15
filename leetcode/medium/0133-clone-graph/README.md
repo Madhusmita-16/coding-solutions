@@ -74,9 +74,9 @@ Explanation: This an empty graph, it does not have any nodes.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 12 ms  
-**Memory:** 42.5 MB  
-**Submitted:** 2026-08-15T09:03:45.570Z  
+**Runtime:** 27 ms (beats 26.11%)  
+**Memory:** 44.4 MB (beats 22.43%)  
+**Submitted:** 2026-08-15T09:03:50.452Z  
 
 ```java
 import java.util.*;
