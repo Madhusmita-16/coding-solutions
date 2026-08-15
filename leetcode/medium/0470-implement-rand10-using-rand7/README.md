@@ -50,9 +50,9 @@ Output: [3,8,10]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 6 ms (beats 53.95%)  
-**Memory:** 51.5 MB (beats 83.00%)  
-**Submitted:** 2026-08-15T06:17:12.018Z  
+**Runtime:** 0 ms  
+**Memory:** 42.5 MB  
+**Submitted:** 2026-08-15T06:19:18.674Z  
 
 ```java
 class Solution extends SolBase {
@@ -62,9 +62,8 @@ class Solution extends SolBase {
             int row = rand7();
             int col = rand7();
 
-            int num = (row - 1) * 7 + col; // 1 to 49
+            int num = (row - 1) * 7 + col; // Uniformly 1..49
 
-            // Accept only 1 to 40
             if (num <= 40) {
                 return 1 + (num - 1) % 10;
             }
