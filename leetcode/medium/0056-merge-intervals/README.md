@@ -1,4 +1,4 @@
-# Q3. Merge Intervals
+# Merge Intervals
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -46,9 +46,9 @@ Explanation: Intervals [1,4] and [4,7] are considered overlapping.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 8 ms (beats 91.76%)  
-**Memory:** 48.9 MB (beats 85.99%)  
-**Submitted:** 2026-08-14T12:05:40.526Z  
+**Runtime:** 8 ms (beats 91.75%)  
+**Memory:** 49.5 MB (beats 5.90%)  
+**Submitted:** 2026-08-15T14:05:46.586Z  
 
 ```java
 import java.util.*;
