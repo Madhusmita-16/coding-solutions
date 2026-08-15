@@ -47,8 +47,8 @@ Output: [8,9,9,9,0,0,0,1]
 
 **Language:** Java  
 **Runtime:** 1 ms (beats 100.00%)  
-**Memory:** 46.6 MB (beats 19.87%)  
-**Submitted:** 2026-08-14T18:32:43.522Z  
+**Memory:** 46.5 MB (beats 58.24%)  
+**Submitted:** 2026-08-15T14:18:39.029Z  
 
 ```java
 /**
