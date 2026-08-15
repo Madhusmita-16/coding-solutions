@@ -39,9 +39,9 @@ You must implement a solution with a linear runtime complexity and use only co
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.4 MB  
-**Submitted:** 2026-08-15T06:54:35.510Z  
+**Runtime:** 1 ms (beats 99.94%)  
+**Memory:** 46.9 MB (beats 46.67%)  
+**Submitted:** 2026-08-15T06:54:49.279Z  
 
 ```java
 class Solution {
