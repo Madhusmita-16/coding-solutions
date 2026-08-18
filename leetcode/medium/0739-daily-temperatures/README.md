@@ -1,4 +1,4 @@
-# Q2. Daily Temperatures
+# Daily Temperatures
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -42,9 +42,9 @@ Output: [1,1,0]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 22 ms (beats 96.55%)  
-**Memory:** 103.8 MB (beats 84.02%)  
-**Submitted:** 2026-08-14T11:22:24.889Z  
+**Runtime:** 23 ms (beats 93.75%)  
+**Memory:** 103.3 MB (beats 92.57%)  
+**Submitted:** 2026-08-18T16:27:13.477Z  
 
 ```java
 import java.util.*;
