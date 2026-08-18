@@ -4,17 +4,18 @@ class Solution {
         k = k % n;
 
         int count = 0;
+        int start = 0;
 
-        for (int start = 0; count < n; start++) {
+        while (count < n) {
             int current = start;
-            int prev = nums[current];
+            int temp = nums[current];
 
             while (true) {
                 int next = (current + k) % n;
 
-                int temp = nums[next];
-                nums[next] = prev;
-                prev = temp;
+                int swap = nums[next];
+                nums[next] = temp;
+                temp = swap;
 
                 current = next;
                 count++;
@@ -23,6 +24,8 @@ class Solution {
                     break;
                 }
             }
+
+            start++;
         }
     }
 }
