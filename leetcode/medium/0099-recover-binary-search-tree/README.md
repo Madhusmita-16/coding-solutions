@@ -41,8 +41,8 @@ Explanation: 2 cannot be in the right subtree of 3 because 2 < 3. Swapping 2 and
 
 **Language:** Java  
 **Runtime:** 1 ms (beats 100.00%)  
-**Memory:** 46.3 MB (beats 87.70%)  
-**Submitted:** 2026-08-18T15:43:50.722Z  
+**Memory:** 46.8 MB (beats 12.66%)  
+**Submitted:** 2026-08-18T15:44:11.702Z  
 
 ```java
 class Solution {
