@@ -37,9 +37,9 @@ Explanation: The input board is shown above and the only valid solution is show
 ## Solution
 
 **Language:** Java  
-**Runtime:** 230 ms (beats 58.00%)  
-**Memory:** 42.8 MB (beats 74.36%)  
-**Submitted:** 2026-08-18T14:46:58.741Z  
+**Runtime:** 228 ms (beats 59.83%)  
+**Memory:** 42.7 MB (beats 74.36%)  
+**Submitted:** 2026-08-18T14:47:18.974Z  
 
 ```java
 class Solution {
