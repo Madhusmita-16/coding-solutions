@@ -1,43 +1,40 @@
 class Solution {
-    public String multiply(String num1, String num2) {
+    public boolean isMatch(String s, String p) {
 
-        if (num1.equals("0") || num2.equals("0")) {
-            return "0";
-        }
+        int m = s.length();
+        int n = p.length();
 
-        int m = num1.length();
-        int n = num2.length();
+        boolean[][] dp = new boolean[m + 1][n + 1];
 
-        int[] result = new int[m + n];
+        // Empty string matches empty pattern
+        dp[0][0] = true;
 
-        for (int i = m - 1; i >= 0; i--) {
-            for (int j = n - 1; j >= 0; j--) {
-
-                int a = num1.charAt(i) - '0';
-                int b = num2.charAt(j) - '0';
-
-                int product = a * b;
-
-                int pos1 = i + j;
-                int pos2 = i + j + 1;
-
-                int sum = product + result[pos2];
-
-                result[pos2] = sum % 10;
-                result[pos1] += sum / 10;
+        // Empty string can only match a pattern consisting of '*'
+        for (int j = 1; j <= n; j++) {
+            if (p.charAt(j - 1) == '*') {
+                dp[0][j] = dp[0][j - 1];
             }
         }
 
-        StringBuilder ans = new StringBuilder();
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
 
-        for (int digit : result) {
-            if (ans.length() == 0 && digit == 0) {
-                continue;
+                char pc = p.charAt(j - 1);
+                char sc = s.charAt(i - 1);
+
+                if (pc == '?' || pc == sc) {
+                    // Current characters match
+                    dp[i][j] = dp[i - 1][j - 1];
+
+                } else if (pc == '*') {
+                    // '*' matches:
+                    // 1. Empty sequence
+                    // 2. Current character + remaining sequence
+                    dp[i][j] = dp[i][j - 1] || dp[i - 1][j];
+                }
             }
-
-            ans.append(digit);
         }
 
-        return ans.toString();
+        return dp[m][n];
     }
 }
