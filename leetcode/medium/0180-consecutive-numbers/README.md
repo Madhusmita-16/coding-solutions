@@ -57,9 +57,9 @@ Explanation: 1 is the only number that appears consecutively for at least three 
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 96 ms  
-**Memory:** 0B  
-**Submitted:** 2026-08-18T14:08:54.405Z  
+**Runtime:** 669 ms (beats 30.14%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-08-18T14:09:04.144Z  
 
 ```sql
 SELECT DISTINCT l1.num AS ConsecutiveNums
