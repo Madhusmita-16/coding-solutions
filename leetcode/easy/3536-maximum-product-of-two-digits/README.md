@@ -58,8 +58,8 @@ Return the  **maximum**  product of any two digits in `n`.
 
 **Language:** Java  
 **Runtime:** 1 ms (beats 100.00%)  
-**Memory:** 42.8 MB (beats 19.02%)  
-**Submitted:** 2026-08-18T14:35:08.813Z  
+**Memory:** 42.5 MB (beats 71.58%)  
+**Submitted:** 2026-08-18T14:35:20.472Z  
 
 ```java
 class Solution {
