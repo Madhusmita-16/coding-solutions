@@ -50,8 +50,8 @@ rotate 2 steps to the right: [3,99,-1,-100]
 
 **Language:** Java  
 **Runtime:** 4 ms (beats 4.18%)  
-**Memory:** 268.7 MB (beats 8.00%)  
-**Submitted:** 2026-08-18T17:14:26.420Z  
+**Memory:** 268.6 MB (beats 8.00%)  
+**Submitted:** 2026-08-18T17:19:28.933Z  
 
 ```java
 class Solution {
@@ -61,7 +61,7 @@ class Solution {
 
         reverse(nums, 0, n - 1);
         reverse(nums, 0, k - 1);
-        reverse(nums, k, n - 1); 
+        reverse(nums, k, n - 1);
     } 
     private void reverse(int[] nums, int left, int right) { 
         while (left < right) { 
