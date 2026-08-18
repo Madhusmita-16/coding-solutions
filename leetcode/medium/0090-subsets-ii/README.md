@@ -36,9 +36,9 @@ Output: [[],[0]]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 1 ms  
-**Memory:** 43 MB  
-**Submitted:** 2026-08-18T15:41:32.421Z  
+**Runtime:** 3 ms (beats 54.76%)  
+**Memory:** 44.6 MB (beats 97.61%)  
+**Submitted:** 2026-08-18T15:41:38.538Z  
 
 ```java
 class Solution {
