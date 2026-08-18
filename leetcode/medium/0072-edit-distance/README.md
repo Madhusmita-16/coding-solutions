@@ -50,9 +50,9 @@ exection -> execution (insert 'u')
 ## Solution
 
 **Language:** Java  
-**Runtime:** 5 ms (beats 66.11%)  
-**Memory:** 47.3 MB (beats 35.73%)  
-**Submitted:** 2026-08-15T06:34:35.201Z  
+**Runtime:** 5 ms (beats 66.38%)  
+**Memory:** 47.3 MB (beats 18.42%)  
+**Submitted:** 2026-08-18T16:44:54.215Z  
 
 ```java
 class Solution {
