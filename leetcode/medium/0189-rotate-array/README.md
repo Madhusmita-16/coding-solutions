@@ -50,8 +50,8 @@ rotate 2 steps to the right: [3,99,-1,-100]
 
 **Language:** Java  
 **Runtime:** 8 ms (beats 3.38%)  
-**Memory:** 268.5 MB (beats 8.00%)  
-**Submitted:** 2026-08-18T17:21:06.797Z  
+**Memory:** 268.6 MB (beats 8.00%)  
+**Submitted:** 2026-08-18T17:25:38.472Z  
 
 ```java
 class Solution {
@@ -60,17 +60,18 @@ class Solution {
         k = k % n;
 
         int count = 0;
+        int start = 0;
 
-        for (int start = 0; count < n; start++) {
+        while (count < n) {
             int current = start;
-            int prev = nums[current];
+            int temp = nums[current];
 
             while (true) {
                 int next = (current + k) % n;
 
-                int temp = nums[next];
-                nums[next] = prev;
-                prev = temp;
+                int swap = nums[next];
+                nums[next] = temp;
+                temp = swap;
 
                 current = next;
                 count++;
@@ -79,6 +80,8 @@ class Solution {
                     break;
                 }
             }
+
+            start++;
         }
     }
 }
