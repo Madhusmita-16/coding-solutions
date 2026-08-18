@@ -72,9 +72,9 @@ The test cases are generated so that the answer fits in a  **32-bit**  integer.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.5 MB  
-**Submitted:** 2026-08-18T15:42:16.895Z  
+**Runtime:** 1 ms (beats 79.92%)  
+**Memory:** 43.4 MB (beats 13.01%)  
+**Submitted:** 2026-08-18T15:42:23.883Z  
 
 ```java
 class Solution {
