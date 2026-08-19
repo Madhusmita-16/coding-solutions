@@ -37,8 +37,8 @@ Output: ["a","b","c"]
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 43.1 MB (beats 95.01%)  
-**Submitted:** 2026-08-15T08:45:28.153Z  
+**Memory:** 43.6 MB (beats 38.73%)  
+**Submitted:** 2026-08-19T15:00:43.775Z  
 
 ```java
 import java.util.*;
