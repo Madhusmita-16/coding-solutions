@@ -47,9 +47,9 @@ Explanation: The only word "havana" will be always suggested while typing the se
 ## Solution
 
 **Language:** Java  
-**Runtime:** 2 ms  
-**Memory:** 43.1 MB  
-**Submitted:** 2026-08-19T14:42:42.486Z  
+**Runtime:** 24 ms (beats 45.43%)  
+**Memory:** 54.1 MB (beats 21.54%)  
+**Submitted:** 2026-08-19T14:42:48.523Z  
 
 ```java
 class Solution {
