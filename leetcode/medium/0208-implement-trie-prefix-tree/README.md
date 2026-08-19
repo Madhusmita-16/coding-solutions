@@ -46,9 +46,9 @@ trie.search("app");     // return True
 ## Solution
 
 **Language:** Java  
-**Runtime:** 32 ms (beats 73.44%)  
-**Memory:** 62.2 MB (beats 38.93%)  
-**Submitted:** 2026-08-15T08:45:11.908Z  
+**Runtime:** 27 ms (beats 99.49%)  
+**Memory:** 61.9 MB (beats 74.15%)  
+**Submitted:** 2026-08-19T14:41:47.395Z  
 
 ```java
 class Trie {
