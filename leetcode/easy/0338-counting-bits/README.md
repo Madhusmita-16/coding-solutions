@@ -52,9 +52,9 @@ Explanation:
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.4 MB  
-**Submitted:** 2026-08-19T14:47:28.566Z  
+**Runtime:** 2 ms (beats 95.88%)  
+**Memory:** 48.9 MB (beats 14.66%)  
+**Submitted:** 2026-08-19T14:47:40.174Z  
 
 ```java
 class Solution {
