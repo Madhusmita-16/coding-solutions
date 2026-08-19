@@ -1,0 +1,71 @@
+# Domino and Tromino Tiling
+
+![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
+
+## Problem
+
+You have two types of tiles: a `2 x 1` domino shape and a tromino shape. You may rotate these shapes.
+
+Given an integer n, return  *the number of ways to tile an*  `2 x n`  *board*. Since the answer may be very large, return it  **modulo**  `109 + 7`.
+
+In a tiling, every square must be covered by a tile. Two tilings are different if and only if there are two 4-directionally adjacent cells on the board such that exactly one of the tilings has both squares occupied by a tile.
+
+ 
+
+ **Example 1:** 
+
+```
+Input: n = 3
+Output: 5
+Explanation: The five different ways are shown above.
+
+```
+
+ **Example 2:** 
+
+```
+Input: n = 1
+Output: 1
+
+```
+
+ 
+
+ **Constraints:** 
+
+- 1 <= n <= 1000
+
+## Solution
+
+**Language:** Java  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 41.9 MB (beats 87.08%)  
+**Submitted:** 2026-08-19T14:55:56.707Z  
+
+```java
+class Solution {
+    public int numTilings(int n) {
+
+        long MOD = 1_000_000_007;
+
+        if (n == 1) return 1;
+        if (n == 2) return 2;
+
+        long[] dp = new long[n + 1];
+
+        dp[0] = 1;
+        dp[1] = 1;
+        dp[2] = 2;
+
+        for (int i = 3; i <= n; i++) {
+            dp[i] = (2 * dp[i - 1] + dp[i - 3]) % MOD;
+        }
+
+        return (int) dp[n];
+    }
+}
+```
+
+---
+
+[View on LeetCode](https://leetcode.com/problems/domino-and-tromino-tiling/)
