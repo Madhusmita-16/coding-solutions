@@ -3,8 +3,8 @@ import java.util.*;
 class Solution {
     public int[][] merge(int[][] intervals) {
 
-        // Sort intervals by starting time
-        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        // Sort by start time
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
 
         List<int[]> result = new ArrayList<>();
 
@@ -13,12 +13,11 @@ class Solution {
 
         for (int i = 1; i < intervals.length; i++) {
 
-            // Overlapping intervals
             if (intervals[i][0] <= end) {
+                // Overlap
                 end = Math.max(end, intervals[i][1]);
-            } 
-            // Non-overlapping interval
-            else {
+            } else {
+                // No overlap
                 result.add(new int[]{start, end});
 
                 start = intervals[i][0];
@@ -26,7 +25,7 @@ class Solution {
             }
         }
 
-        // Add the last interval
+        // Add last interval
         result.add(new int[]{start, end});
 
         return result.toArray(new int[result.size()][]);
