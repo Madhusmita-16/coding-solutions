@@ -25,15 +25,14 @@ class Solution {
                     Queue<int[]> queue = new LinkedList<>();
                     queue.offer(new int[]{i, j});
 
-                    // Mark as visited
                     grid[i][j] = '0';
 
                     while (!queue.isEmpty()) {
 
-                        int[] current = queue.poll();
+                        int[] cell = queue.poll();
 
-                        int row = current[0];
-                        int col = current[1];
+                        int row = cell[0];
+                        int col = cell[1];
 
                         for (int[] dir : directions) {
 
