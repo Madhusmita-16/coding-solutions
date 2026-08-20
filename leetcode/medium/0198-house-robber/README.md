@@ -1,4 +1,4 @@
-# House Robber
+# Q3. House Robber
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -41,19 +41,18 @@ Total amount you can rob = 2 + 9 + 1 = 12.
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 42.6 MB (beats 75.82%)  
-**Submitted:** 2026-08-19T14:54:15.374Z  
+**Memory:** 42.6 MB (beats 75.83%)  
+**Submitted:** 2026-08-20T07:41:25.512Z  
 
 ```java
 class Solution {
     public int rob(int[] nums) {
 
-        int prev2 = 0; // Maximum money up to i - 2
-        int prev1 = 0; // Maximum money up to i - 1
+        int prev2 = 0;
+        int prev1 = 0;
 
         for (int money : nums) {
 
-            // Either skip this house or rob it
             int current = Math.max(prev1, prev2 + money);
 
             prev2 = prev1;
