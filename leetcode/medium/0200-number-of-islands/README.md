@@ -1,4 +1,4 @@
-# Number of Islands
+# Q1. Number of Islands
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -48,9 +48,9 @@ Output: 3
 ## Solution
 
 **Language:** Java  
-**Runtime:** 7 ms (beats 13.70%)  
-**Memory:** 51.3 MB (beats 89.41%)  
-**Submitted:** 2026-08-15T09:06:20.653Z  
+**Runtime:** 8 ms (beats 10.04%)  
+**Memory:** 51.2 MB (beats 92.51%)  
+**Submitted:** 2026-08-20T07:43:02.309Z  
 
 ```java
 import java.util.*;
@@ -80,15 +80,14 @@ class Solution {
                     Queue<int[]> queue = new LinkedList<>();
                     queue.offer(new int[]{i, j});
 
-                    // Mark as visited
                     grid[i][j] = '0';
 
                     while (!queue.isEmpty()) {
 
-                        int[] current = queue.poll();
+                        int[] cell = queue.poll();
 
-                        int row = current[0];
-                        int col = current[1];
+                        int row = cell[0];
+                        int col = cell[1];
 
                         for (int[] dir : directions) {
 
