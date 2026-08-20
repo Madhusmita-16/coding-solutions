@@ -1,4 +1,4 @@
-# Merge Intervals
+# Q2. Merge Intervals
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -46,9 +46,9 @@ Explanation: Intervals [1,4] and [4,7] are considered overlapping.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 8 ms (beats 91.75%)  
-**Memory:** 49.5 MB (beats 5.90%)  
-**Submitted:** 2026-08-15T14:05:46.586Z  
+**Runtime:** 7 ms (beats 99.09%)  
+**Memory:** 49.5 MB (beats 5.85%)  
+**Submitted:** 2026-08-20T07:39:46.200Z  
 
 ```java
 import java.util.*;
@@ -56,8 +56,8 @@ import java.util.*;
 class Solution {
     public int[][] merge(int[][] intervals) {
 
-        // Sort intervals by starting time
-        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        // Sort by start time
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
 
         List<int[]> result = new ArrayList<>();
 
@@ -66,12 +66,11 @@ class Solution {
 
         for (int i = 1; i < intervals.length; i++) {
 
-            // Overlapping intervals
             if (intervals[i][0] <= end) {
+                // Overlap
                 end = Math.max(end, intervals[i][1]);
-            } 
-            // Non-overlapping interval
-            else {
+            } else {
+                // No overlap
                 result.add(new int[]{start, end});
 
                 start = intervals[i][0];
@@ -79,7 +78,7 @@ class Solution {
             }
         }
 
-        // Add the last interval
+        // Add last interval
         result.add(new int[]{start, end});
 
         return result.toArray(new int[result.size()][]);
