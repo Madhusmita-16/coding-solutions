@@ -57,9 +57,9 @@ The unique XOR values are `{0, 1, 2, 3}`, so the output is 4.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42 MB  
-**Submitted:** 2026-08-20T18:03:22.181Z  
+**Runtime:** 1 ms (beats 47.76%)  
+**Memory:** 125.4 MB (beats 67.31%)  
+**Submitted:** 2026-08-20T18:03:46.610Z  
 
 ```java
 class Solution {
