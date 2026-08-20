@@ -1,4 +1,4 @@
-# LRU Cache
+# Q1. LRU Cache
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -51,9 +51,9 @@ lRUCache.get(4);    // return 4
 ## Solution
 
 **Language:** Java  
-**Runtime:** 43 ms (beats 91.36%)  
-**Memory:** 131.4 MB (beats 53.42%)  
-**Submitted:** 2026-08-15T14:29:14.132Z  
+**Runtime:** 14 ms (beats 99.61%)  
+**Memory:** 59 MB (beats 96.18%)  
+**Submitted:** 2026-08-20T07:36:31.411Z  
 
 ```java
 import java.util.HashMap;
@@ -81,7 +81,6 @@ class LRUCache {
         this.capacity = capacity;
         map = new HashMap<>();
 
-        // Dummy nodes
         head = new Node(0, 0);
         tail = new Node(0, 0);
 
@@ -90,13 +89,13 @@ class LRUCache {
     }
 
     public int get(int key) {
+
         if (!map.containsKey(key)) {
             return -1;
         }
 
         Node node = map.get(key);
 
-        // Recently used -> move to front
         remove(node);
         addToFront(node);
 
@@ -104,10 +103,11 @@ class LRUCache {
     }
 
     public void put(int key, int value) {
-        // Key already exists
-        if (map.containsKey(key)) {
-            Node node = map.get(key);
 
+  
+        if (map.containsKey(key)) {
+
+            Node node = map.get(key);
             node.value = value;
 
             remove(node);
@@ -116,13 +116,15 @@ class LRUCache {
             return;
         }
 
-        // Add new node
+
         Node node = new Node(key, value);
+
         map.put(key, node);
         addToFront(node);
 
-        // Capacity exceeded
+
         if (map.size() > capacity) {
+
             Node lru = tail.prev;
 
             remove(lru);
@@ -130,14 +132,15 @@ class LRUCache {
         }
     }
 
-    // Remove node from linked list
+
     private void remove(Node node) {
         node.prev.next = node.next;
         node.next.prev = node.prev;
     }
 
-    // Add node immediately after head
+
     private void addToFront(Node node) {
+
         node.next = head.next;
         node.prev = head;
 
