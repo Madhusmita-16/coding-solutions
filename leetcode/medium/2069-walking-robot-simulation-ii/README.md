@@ -59,9 +59,9 @@ robot.getDir(); // return "West"
 ## Solution
 
 **Language:** Java  
-**Runtime:** 5 ms  
-**Memory:** 43.1 MB  
-**Submitted:** 2026-08-21T06:38:45.761Z  
+**Runtime:** 59 ms (beats 76.02%)  
+**Memory:** 57.9 MB (beats 70.92%)  
+**Submitted:** 2026-08-21T06:38:54.912Z  
 
 ```java
 class Robot {
