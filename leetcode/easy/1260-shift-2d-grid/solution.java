@@ -1,3 +1,5 @@
+import java.util.*;
+
 class Solution {
     public List<List<Integer>> shiftGrid(int[][] grid, int k) {
         int m = grid.length;
@@ -12,7 +14,11 @@ class Solution {
             List<Integer> row = new ArrayList<>();
 
             for (int j = 0; j < n; j++) {
-                int oldIndex = (i * n + j - k + total) % total;
+                int newIndex = i * n + j;
+
+                // Find which old position supplies this value.
+                int oldIndex = (newIndex - k + total) % total;
+
                 row.add(grid[oldIndex / n][oldIndex % n]);
             }
 
