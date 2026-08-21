@@ -105,9 +105,9 @@ In the Sales department:
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 1323 ms (beats 29.75%)  
+**Runtime:** 1373 ms (beats 25.18%)  
 **Memory:** 0B (beats 100.00%)  
-**Submitted:** 2026-08-21T07:34:19.128Z  
+**Submitted:** 2026-08-21T08:06:21.954Z  
 
 ```sql
 SELECT d.name AS Department, e.name AS Employee, e.salary AS Salary
