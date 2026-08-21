@@ -54,11 +54,13 @@ Output: [[1,2,3],[4,5,6],[7,8,9]]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.7 MB  
-**Submitted:** 2026-08-20T18:04:36.417Z  
+**Runtime:** 6 ms (beats 62.80%)  
+**Memory:** 47.3 MB (beats 39.25%)  
+**Submitted:** 2026-08-21T07:08:23.697Z  
 
 ```java
+import java.util.*;
+
 class Solution {
     public List<List<Integer>> shiftGrid(int[][] grid, int k) {
         int m = grid.length;
@@ -73,7 +75,11 @@ class Solution {
             List<Integer> row = new ArrayList<>();
 
             for (int j = 0; j < n; j++) {
-                int oldIndex = (i * n + j - k + total) % total;
+                int newIndex = i * n + j;
+
+                // Find which old position supplies this value.
+                int oldIndex = (newIndex - k + total) % total;
+
                 row.add(grid[oldIndex / n][oldIndex % n]);
             }
 
