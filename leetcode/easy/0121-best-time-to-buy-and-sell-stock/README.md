@@ -1,4 +1,4 @@
-# Best Time to Buy and Sell Stock
+# Q1. Best Time to Buy and Sell Stock
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -42,23 +42,29 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 
 **Language:** Java  
 **Runtime:** 1 ms (beats 99.96%)  
-**Memory:** 94.7 MB (beats 15.78%)  
-**Submitted:** 2026-08-15T13:19:11.149Z  
+**Memory:** 94.4 MB (beats 71.08%)  
+**Submitted:** 2026-08-27T09:05:05.238Z  
 
 ```java
 class Solution {
     public int maxProfit(int[] prices) {
+
         int minPrice = Integer.MAX_VALUE;
         int maxProfit = 0;
-        
+
         for (int price : prices) {
+
+            // Find the lowest buying price
             if (price < minPrice) {
                 minPrice = price;
-            } else if (price - minPrice > maxProfit) {
+            }
+
+            // Calculate maximum profit
+            else if (price - minPrice > maxProfit) {
                 maxProfit = price - minPrice;
             }
         }
-        
+
         return maxProfit;
     }
 }
