@@ -1,4 +1,4 @@
-# Merge k Sorted Lists
+# Q2. Merge k Sorted Lists
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Hard-red)
 
@@ -56,9 +56,9 @@ Output: []
 ## Solution
 
 **Language:** Java  
-**Runtime:** 4 ms (beats 79.79%)  
-**Memory:** 46.9 MB (beats 29.33%)  
-**Submitted:** 2026-08-15T08:34:39.405Z  
+**Runtime:** 1 ms  
+**Memory:** 42.8 MB  
+**Submitted:** 2026-08-27T09:12:49.281Z  
 
 ```java
 import java.util.PriorityQueue;
@@ -71,9 +71,9 @@ class Solution {
         }
 
         PriorityQueue<ListNode> minHeap =
-            new PriorityQueue<>((a, b) -> a.val - b.val);
+            new PriorityQueue<>((a, b) -> Integer.compare(a.val, b.val));
 
-        // Add the first node of each list
+        // Add the first node of every non-empty list
         for (ListNode node : lists) {
             if (node != null) {
                 minHeap.offer(node);
@@ -85,8 +85,10 @@ class Solution {
 
         while (!minHeap.isEmpty()) {
 
+            // Get the smallest node
             ListNode node = minHeap.poll();
 
+            // Add it to the result
             current.next = node;
             current = current.next;
 
