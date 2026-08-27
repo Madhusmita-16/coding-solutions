@@ -61,9 +61,9 @@ After modifying the input array in-place, the first 4 characters of chars should
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.7 MB  
-**Submitted:** 2026-08-27T07:58:18.254Z  
+**Runtime:** 1 ms (beats 99.94%)  
+**Memory:** 45.5 MB (beats 49.16%)  
+**Submitted:** 2026-08-27T07:58:27.277Z  
 
 ```java
 class Solution {
