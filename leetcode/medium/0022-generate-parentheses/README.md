@@ -1,4 +1,4 @@
-# Generate Parentheses
+# Q3. Generate Parentheses
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -33,9 +33,9 @@ Output: ["()"]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 2 ms (beats 70.21%)  
-**Memory:** 45 MB (beats 12.52%)  
-**Submitted:** 2026-08-15T08:45:59.185Z  
+**Runtime:** 2 ms (beats 69.83%)  
+**Memory:** 44.8 MB (beats 44.21%)  
+**Submitted:** 2026-08-27T09:02:31.618Z  
 
 ```java
 import java.util.*;
