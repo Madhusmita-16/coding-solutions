@@ -1,4 +1,4 @@
-# Product of Array Except Self
+# Q2. Product of Array Except Self
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -43,9 +43,9 @@ Output: [0,0,9,0,0]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 2 ms (beats 93.80%)  
-**Memory:** 72 MB (beats 42.38%)  
-**Submitted:** 2026-08-19T15:02:58.595Z  
+**Runtime:** 0 ms  
+**Memory:** 43.1 MB  
+**Submitted:** 2026-08-27T09:09:45.365Z  
 
 ```java
 class Solution {
@@ -53,14 +53,14 @@ class Solution {
         int n = nums.length;
         int[] answer = new int[n];
 
-        // Prefix products
+        // Store prefix product in answer
         answer[0] = 1;
 
         for (int i = 1; i < n; i++) {
             answer[i] = answer[i - 1] * nums[i - 1];
         }
 
-        // Suffix products
+        // Multiply by suffix product
         int suffix = 1;
 
         for (int i = n - 1; i >= 0; i--) {
