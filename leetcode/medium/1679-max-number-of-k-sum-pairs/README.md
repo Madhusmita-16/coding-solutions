@@ -44,9 +44,9 @@ There are no more pairs that sum up to 6, hence a total of 1 operation.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.4 MB  
-**Submitted:** 2026-08-27T08:01:40.169Z  
+**Runtime:** 37 ms (beats 29.02%)  
+**Memory:** 70.5 MB (beats 11.38%)  
+**Submitted:** 2026-08-27T08:01:48.821Z  
 
 ```java
 class Solution {
