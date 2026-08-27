@@ -52,9 +52,9 @@ Explanation: The entire string is removed, so we return an empty string.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 43.1 MB  
-**Submitted:** 2026-08-27T08:08:58.791Z  
+**Runtime:** 29 ms (beats 84.72%)  
+**Memory:** 47.9 MB (beats 72.78%)  
+**Submitted:** 2026-08-27T08:09:03.691Z  
 
 ```java
 class Solution {
