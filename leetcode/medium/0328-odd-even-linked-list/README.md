@@ -1,4 +1,4 @@
-# Q2. Odd Even Linked List
+# Odd Even Linked List
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -41,8 +41,8 @@ Output: [2,3,6,7,1,5,4]
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 46.6 MB (beats 17.28%)  
-**Submitted:** 2026-08-14T11:50:52.562Z  
+**Memory:** 46.1 MB (beats 89.73%)  
+**Submitted:** 2026-08-27T08:20:10.271Z  
 
 ```java
 class Solution {
