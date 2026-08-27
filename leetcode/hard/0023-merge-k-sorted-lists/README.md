@@ -56,9 +56,9 @@ Output: []
 ## Solution
 
 **Language:** Java  
-**Runtime:** 1 ms  
-**Memory:** 42.8 MB  
-**Submitted:** 2026-08-27T09:12:49.281Z  
+**Runtime:** 5 ms (beats 41.00%)  
+**Memory:** 46.7 MB (beats 79.66%)  
+**Submitted:** 2026-08-27T09:12:53.988Z  
 
 ```java
 import java.util.PriorityQueue;
