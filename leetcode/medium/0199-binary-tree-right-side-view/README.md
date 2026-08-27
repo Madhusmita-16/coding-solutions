@@ -46,9 +46,9 @@ Given the `root` of a binary tree, imagine yourself standing on the  **right sid
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 43.1 MB  
-**Submitted:** 2026-08-27T08:32:24.410Z  
+**Runtime:** 1 ms (beats 70.58%)  
+**Memory:** 43.1 MB (beats 99.09%)  
+**Submitted:** 2026-08-27T08:32:28.968Z  
 
 ```java
 class Solution {
