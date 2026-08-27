@@ -56,9 +56,9 @@ Node 0 with value 2 is the only node remaining after removing node 1.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 3 ms (beats 99.93%)  
-**Memory:** 202.4 MB (beats 80.11%)  
-**Submitted:** 2026-08-27T08:24:12.486Z  
+**Runtime:** 4 ms (beats 20.50%)  
+**Memory:** 202.3 MB (beats 93.54%)  
+**Submitted:** 2026-08-27T08:24:30.015Z  
 
 ```java
 class Solution {
