@@ -56,30 +56,31 @@ Node 0 with value 2 is the only node remaining after removing node 1.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.9 MB  
-**Submitted:** 2026-08-27T08:23:23.986Z  
+**Runtime:** 3 ms (beats 99.93%)  
+**Memory:** 202.4 MB (beats 80.11%)  
+**Submitted:** 2026-08-27T08:24:12.486Z  
 
 ```java
 class Solution {
     public ListNode deleteMiddle(ListNode head) {
 
-        // If there is only one node, delete it
+        // Only one node
         if (head.next == null) {
             return null;
         }
 
         ListNode slow = head;
         ListNode fast = head;
+        ListNode prev = null;
 
-        // slow will reach the node before the middle
-        while (fast.next != null && fast.next.next != null) {
+        while (fast != null && fast.next != null) {
+            prev = slow;
             slow = slow.next;
             fast = fast.next.next;
         }
 
-        // Delete the middle node
-        slow.next = slow.next.next;
+        // slow is the middle node
+        prev.next = slow.next;
 
         return head;
     }
