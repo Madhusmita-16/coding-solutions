@@ -1,4 +1,4 @@
-# Maximal Rectangle
+# Q3. Maximal Rectangle
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Hard-red)
 
@@ -45,9 +45,9 @@ Output: 1
 ## Solution
 
 **Language:** Java  
-**Runtime:** 18 ms (beats 78.54%)  
-**Memory:** 50.8 MB (beats 43.91%)  
-**Submitted:** 2026-08-18T15:29:35.160Z  
+**Runtime:** 19 ms (beats 51.05%)  
+**Memory:** 50.7 MB (beats 52.23%)  
+**Submitted:** 2026-08-27T10:38:35.178Z  
 
 ```java
 class Solution {
