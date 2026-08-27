@@ -38,27 +38,42 @@ Output: 4
 ## Solution
 
 **Language:** Java  
-**Runtime:** 69 ms (beats 59.95%)  
-**Memory:** 74.5 MB (beats 51.01%)  
-**Submitted:** 2026-08-27T10:46:59.668Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 41.8 MB (beats 94.27%)  
+**Submitted:** 2026-08-27T10:46:46.783Z  
 
 ```java
-import java.util.PriorityQueue;
+/**
+ * Forward declaration of guess API.
+ * int guess(int num);
+ */
 
-class Solution {
-    public int findKthLargest(int[] nums, int k) {
+public class Solution extends GuessGame {
+    public int guessNumber(int n) {
 
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        int left = 1;
+        int right = n;
 
-        for (int num : nums) {
-            minHeap.offer(num);
+        while (left <= right) {
 
-            if (minHeap.size() > k) {
-                minHeap.poll();
+            int mid = left + (right - left) / 2;
+
+            int result = guess(mid);
+
+            if (result == 0) {
+                return mid;
+            } 
+            else if (result == -1) {
+                // mid is higher than pick
+                right = mid - 1;
+            } 
+            else {
+                // mid is lower than pick
+                left = mid + 1;
             }
         }
 
-        return minHeap.peek();
+        return -1;
     }
 }
 ```
