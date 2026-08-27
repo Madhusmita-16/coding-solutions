@@ -1,4 +1,4 @@
-# Median of Two Sorted Arrays
+# Q2. Median of Two Sorted Arrays
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Hard-red)
 
@@ -43,14 +43,14 @@ Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
 
 **Language:** Java  
 **Runtime:** 1 ms (beats 100.00%)  
-**Memory:** 48.4 MB (beats 98.32%)  
-**Submitted:** 2026-08-15T07:01:45.151Z  
+**Memory:** 48.4 MB (beats 98.19%)  
+**Submitted:** 2026-08-27T09:21:09.141Z  
 
 ```java
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
-        // Binary search on the smaller array
+        // Always binary search on the smaller array
         if (nums1.length > nums2.length) {
             return findMedianSortedArrays(nums2, nums1);
         }
@@ -58,51 +58,47 @@ class Solution {
         int m = nums1.length;
         int n = nums2.length;
 
-        int low = 0;
-        int high = m;
+        int left = 0;
+        int right = m;
 
-        while (low <= high) {
+        while (left <= right) {
 
-            int cut1 = (low + high) / 2;
+            // Number of elements taken from nums1
+            int cut1 = (left + right) / 2;
+
+            // Number of elements taken from nums2
             int cut2 = (m + n + 1) / 2 - cut1;
 
-            int left1 = (cut1 == 0)
-                    ? Integer.MIN_VALUE
-                    : nums1[cut1 - 1];
+            // Left and right values around the partition
+            int left1 = (cut1 == 0) ? Integer.MIN_VALUE : nums1[cut1 - 1];
+            int right1 = (cut1 == m) ? Integer.MAX_VALUE : nums1[cut1];
 
-            int right1 = (cut1 == m)
-                    ? Integer.MAX_VALUE
-                    : nums1[cut1];
+            int left2 = (cut2 == 0) ? Integer.MIN_VALUE : nums2[cut2 - 1];
+            int right2 = (cut2 == n) ? Integer.MAX_VALUE : nums2[cut2];
 
-            int left2 = (cut2 == 0)
-                    ? Integer.MIN_VALUE
-                    : nums2[cut2 - 1];
-
-            int right2 = (cut2 == n)
-                    ? Integer.MAX_VALUE
-                    : nums2[cut2];
-
-            // Correct partition
+            // Correct partition found
             if (left1 <= right2 && left2 <= right1) {
 
-                // Total length is odd
+                // Odd total length
                 if ((m + n) % 2 == 1) {
                     return Math.max(left1, left2);
                 }
 
-                // Total length is even
-                double leftMax = Math.max(left1, left2);
-                double rightMin = Math.min(right1, right2);
+                // Even total length
+                int maxLeft = Math.max(left1, left2);
+                int minRight = Math.min(right1, right2);
 
-                return (leftMax + rightMin) / 2.0;
+                return (maxLeft + minRight) / 2.0;
             }
 
             // nums1 partition is too far right
             if (left1 > right2) {
-                high = cut1 - 1;
-            } else {
-                // nums1 partition is too far left
-                low = cut1 + 1;
+                right = cut1 - 1;
+            }
+
+            // nums1 partition is too far left
+            else {
+                left = cut1 + 1;
             }
         }
 
