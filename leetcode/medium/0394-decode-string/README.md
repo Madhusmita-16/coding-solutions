@@ -1,4 +1,4 @@
-# Q3. Decode String
+# Decode String
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -50,9 +50,9 @@ Output: "abcabccdcdcdef"
 ## Solution
 
 **Language:** Java  
-**Runtime:** 1 ms (beats 85.14%)  
-**Memory:** 42.9 MB (beats 40.35%)  
-**Submitted:** 2026-08-14T15:51:38.167Z  
+**Runtime:** 1 ms (beats 85.15%)  
+**Memory:** 43.1 MB (beats 25.22%)  
+**Submitted:** 2026-08-27T08:08:11.838Z  
 
 ```java
 import java.util.Stack;
