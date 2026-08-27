@@ -1,4 +1,4 @@
-# Max Consecutive Ones III
+# Q1. Max Consecutive Ones III
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -38,9 +38,9 @@ Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 3 ms (beats 95.99%)  
-**Memory:** 52.2 MB (beats 35.82%)  
-**Submitted:** 2026-08-27T08:06:59.587Z  
+**Runtime:** 0 ms  
+**Memory:** 42.3 MB  
+**Submitted:** 2026-08-27T09:23:26.677Z  
 
 ```java
 class Solution {
@@ -52,12 +52,10 @@ class Solution {
 
         for (int right = 0; right < nums.length; right++) {
 
-            // Add the new element
             if (nums[right] == 0) {
                 zeros++;
             }
 
-            // Too many zeros, shrink from the left
             while (zeros > k) {
                 if (nums[left] == 0) {
                     zeros--;
@@ -65,7 +63,6 @@ class Solution {
                 left++;
             }
 
-            // Current window contains at most k zeros
             maxLength = Math.max(maxLength, right - left + 1);
         }
 
