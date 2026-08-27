@@ -1,4 +1,4 @@
-# Group Anagrams
+# Q3. Group Anagrams
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -43,16 +43,18 @@ Given an array of strings `strs`, group the anagrams together. You can return th
 ## Solution
 
 **Language:** Java  
-**Runtime:** 18 ms (beats 19.89%)  
-**Memory:** 51.3 MB (beats 5.88%)  
-**Submitted:** 2026-08-15T14:03:37.602Z  
+**Runtime:** 19 ms (beats 16.30%)  
+**Memory:** 50.5 MB (beats 12.48%)  
+**Submitted:** 2026-08-27T09:22:33.041Z  
 
 ```java
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
+
         HashMap<String, List<String>> map = new HashMap<>();
 
         for (String str : strs) {
+
             int[] count = new int[26];
 
             for (char c : str.toCharArray()) {
@@ -61,11 +63,7 @@ class Solution {
 
             String key = Arrays.toString(count);
 
-            if (!map.containsKey(key)) {
-                map.put(key, new ArrayList<>());
-            }
-
-            map.get(key).add(str);
+            map.computeIfAbsent(key, k -> new ArrayList<>()).add(str);
         }
 
         return new ArrayList<>(map.values());
