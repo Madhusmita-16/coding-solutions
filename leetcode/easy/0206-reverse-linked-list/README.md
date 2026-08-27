@@ -1,4 +1,4 @@
-# Q3. Reverse Linked List
+# Reverse Linked List
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -47,8 +47,8 @@ Output: []
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 44.3 MB (beats 31.10%)  
-**Submitted:** 2026-08-14T11:51:52.295Z  
+**Memory:** 43.8 MB (beats 98.22%)  
+**Submitted:** 2026-08-27T08:20:28.817Z  
 
 ```java
 class Solution {
