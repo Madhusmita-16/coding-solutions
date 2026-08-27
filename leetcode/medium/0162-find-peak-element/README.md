@@ -42,8 +42,8 @@ Explanation: Your function can return either index number 1 where the peak eleme
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 44.3 MB (beats 19.49%)  
-**Submitted:** 2026-08-15T07:05:44.354Z  
+**Memory:** 44.2 MB (beats 57.21%)  
+**Submitted:** 2026-08-27T10:43:23.067Z  
 
 ```java
 class Solution {
