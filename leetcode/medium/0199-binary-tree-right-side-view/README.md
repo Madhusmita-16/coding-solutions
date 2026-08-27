@@ -47,8 +47,8 @@ Given the `root` of a binary tree, imagine yourself standing on the  **right sid
 
 **Language:** Java  
 **Runtime:** 0 ms  
-**Memory:** 42.6 MB  
-**Submitted:** 2026-08-27T08:32:03.994Z  
+**Memory:** 43.1 MB  
+**Submitted:** 2026-08-27T08:32:24.410Z  
 
 ```java
 class Solution {
