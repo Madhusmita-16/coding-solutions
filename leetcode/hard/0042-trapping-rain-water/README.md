@@ -1,4 +1,4 @@
-# Trapping Rain Water
+# Q2. Trapping Rain Water
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Hard-red)
 
@@ -37,8 +37,8 @@ Output: 9
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 47.4 MB (beats 91.86%)  
-**Submitted:** 2026-08-15T10:25:44.086Z  
+**Memory:** 47.5 MB (beats 91.21%)  
+**Submitted:** 2026-08-27T10:37:24.780Z  
 
 ```java
 class Solution {
