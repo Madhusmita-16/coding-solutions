@@ -8,9 +8,9 @@ class Solution {
         }
 
         PriorityQueue<ListNode> minHeap =
-            new PriorityQueue<>((a, b) -> a.val - b.val);
+            new PriorityQueue<>((a, b) -> Integer.compare(a.val, b.val));
 
-        // Add the first node of each list
+        // Add the first node of every non-empty list
         for (ListNode node : lists) {
             if (node != null) {
                 minHeap.offer(node);
@@ -22,8 +22,10 @@ class Solution {
 
         while (!minHeap.isEmpty()) {
 
+            // Get the smallest node
             ListNode node = minHeap.poll();
 
+            // Add it to the result
             current.next = node;
             current = current.next;
 
