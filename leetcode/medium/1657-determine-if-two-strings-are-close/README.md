@@ -57,9 +57,9 @@ Apply Operation 2: "baaccc" -> "abbccc"
 ## Solution
 
 **Language:** Java  
-**Runtime:** 1 ms  
-**Memory:** 42.9 MB  
-**Submitted:** 2026-08-27T08:29:57.954Z  
+**Runtime:** 11 ms (beats 83.37%)  
+**Memory:** 48.1 MB (beats 35.53%)  
+**Submitted:** 2026-08-27T08:30:03.349Z  
 
 ```java
 class Solution {
