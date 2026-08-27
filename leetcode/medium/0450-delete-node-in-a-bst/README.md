@@ -1,4 +1,4 @@
-# Q3. Delete Node in a BST
+# Delete Node in a BST
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -59,8 +59,8 @@ Output: []
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 47.3 MB (beats 77.92%)  
-**Submitted:** 2026-08-14T17:33:39.280Z  
+**Memory:** 47.3 MB (beats 77.24%)  
+**Submitted:** 2026-08-27T08:35:16.966Z  
 
 ```java
 class Solution {
