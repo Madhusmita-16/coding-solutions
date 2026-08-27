@@ -1,4 +1,4 @@
-# Course Schedule
+# Q2. Course Schedule
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -45,9 +45,9 @@ To take course 1 you should have finished course 0, and to take course 0 you sho
 ## Solution
 
 **Language:** Java  
-**Runtime:** 7 ms (beats 56.19%)  
-**Memory:** 46.7 MB (beats 94.04%)  
-**Submitted:** 2026-08-15T09:02:04.668Z  
+**Runtime:** 0 ms  
+**Memory:** 42.5 MB  
+**Submitted:** 2026-08-27T09:05:51.327Z  
 
 ```java
 import java.util.*;
