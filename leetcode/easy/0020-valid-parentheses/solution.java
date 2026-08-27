@@ -3,16 +3,16 @@ import java.util.*;
 class Solution {
     public boolean isValid(String s) {
 
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> stack = new ArrayDeque<>();
 
         for (char c : s.toCharArray()) {
 
-            // Opening brackets
+            // Opening bracket
             if (c == '(' || c == '[' || c == '{') {
                 stack.push(c);
             }
 
-            // Closing brackets
+            // Closing bracket
             else {
                 if (stack.isEmpty()) {
                     return false;
@@ -28,7 +28,6 @@ class Solution {
             }
         }
 
-        // All opening brackets must be closed
         return stack.isEmpty();
     }
 }
