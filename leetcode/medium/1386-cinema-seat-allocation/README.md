@@ -1,4 +1,4 @@
-# Cinema Seat Allocation
+# Q3. Cinema Seat Allocation
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -59,11 +59,13 @@ Output: 4
 ## Solution
 
 **Language:** Java  
-**Runtime:** 28 ms (beats 41.58%)  
-**Memory:** 52.7 MB (beats 48.16%)  
-**Submitted:** 2026-08-19T15:12:17.266Z  
+**Runtime:** 0 ms  
+**Memory:** 42.7 MB  
+**Submitted:** 2026-08-27T09:10:46.151Z  
 
 ```java
+import java.util.*;
+
 class Solution {
     public int maxNumberOfFamilies(int n, int[][] reservedSeats) {
 
@@ -75,16 +77,14 @@ class Solution {
                .add(seat[1]);
         }
 
-        // Initially, every row can have 2 families
+        // Rows with no reservations can fit 2 families
         int result = (n - map.size()) * 2;
 
+        // Check rows having reservations
         for (Set<Integer> seats : map.values()) {
 
+            // Seats 2,3,4,5
             boolean left = true;
-            boolean middle = true;
-            boolean right = true;
-
-            // Left block: 2,3,4,5
             for (int i = 2; i <= 5; i++) {
                 if (seats.contains(i)) {
                     left = false;
@@ -92,7 +92,8 @@ class Solution {
                 }
             }
 
-            // Middle block: 4,5,6,7
+            // Seats 4,5,6,7
+            boolean middle = true;
             for (int i = 4; i <= 7; i++) {
                 if (seats.contains(i)) {
                     middle = false;
@@ -100,7 +101,8 @@ class Solution {
                 }
             }
 
-            // Right block: 6,7,8,9
+            // Seats 6,7,8,9
+            boolean right = true;
             for (int i = 6; i <= 9; i++) {
                 if (seats.contains(i)) {
                     right = false;
@@ -109,10 +111,8 @@ class Solution {
             }
 
             if (left && right) {
-                // Two families can fit
                 result += 2;
             } else if (left || middle || right) {
-                // Only one family can fit
                 result += 1;
             }
         }
