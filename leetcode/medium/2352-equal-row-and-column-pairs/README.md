@@ -43,9 +43,9 @@ Explanation: There are 3 equal row and column pairs:
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.6 MB  
-**Submitted:** 2026-08-27T08:30:57.588Z  
+**Runtime:** 39 ms (beats 33.64%)  
+**Memory:** 55.7 MB (beats 14.14%)  
+**Submitted:** 2026-08-27T08:31:09.040Z  
 
 ```java
 import java.util.*;
