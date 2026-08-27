@@ -47,9 +47,9 @@ Explanation: You must delete one element.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.4 MB  
-**Submitted:** 2026-08-27T08:07:49.254Z  
+**Runtime:** 3 ms (beats 87.34%)  
+**Memory:** 65.5 MB (beats 46.99%)  
+**Submitted:** 2026-08-27T08:07:54.594Z  
 
 ```java
 class Solution {
