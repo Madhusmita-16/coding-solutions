@@ -69,9 +69,9 @@ The difference between their scores is (-22) - 0 = -22.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.5 MB  
-**Submitted:** 2026-08-27T07:43:21.979Z  
+**Runtime:** 3 ms (beats 99.93%)  
+**Memory:** 83.5 MB (beats 63.19%)  
+**Submitted:** 2026-08-27T07:43:27.299Z  
 
 ```java
 class Solution {
