@@ -42,9 +42,9 @@ Output: true
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.5 MB  
-**Submitted:** 2026-08-27T08:28:28.447Z  
+**Runtime:** 2 ms (beats 97.98%)  
+**Memory:** 43.7 MB (beats 52.23%)  
+**Submitted:** 2026-08-27T08:28:43.354Z  
 
 ```java
 import java.util.*;
