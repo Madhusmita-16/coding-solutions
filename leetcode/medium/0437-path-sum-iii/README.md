@@ -38,9 +38,9 @@ Output: 3
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.6 MB  
-**Submitted:** 2026-08-27T08:44:42.575Z  
+**Runtime:** 3 ms (beats 97.84%)  
+**Memory:** 46.4 MB (beats 26.09%)  
+**Submitted:** 2026-08-27T08:44:49.148Z  
 
 ```java
 import java.util.*;
