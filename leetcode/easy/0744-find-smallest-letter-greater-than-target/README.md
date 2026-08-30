@@ -50,9 +50,9 @@ Explanation: There are no characters in letters that is lexicographically greate
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 46.7 MB (beats 14.98%)  
-**Submitted:** 2026-08-30T09:45:23.237Z  
+**Runtime:** 0 ms  
+**Memory:** 42.4 MB  
+**Submitted:** 2026-08-30T09:45:31.894Z  
 
 ```java
 class Solution {
