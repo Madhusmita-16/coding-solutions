@@ -52,7 +52,7 @@ Explanation: There are no characters in letters that is lexicographically greate
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
 **Memory:** 46.7 MB (beats 14.98%)  
-**Submitted:** 2026-08-30T09:44:31.962Z  
+**Submitted:** 2026-08-30T09:45:23.237Z  
 
 ```java
 class Solution {
