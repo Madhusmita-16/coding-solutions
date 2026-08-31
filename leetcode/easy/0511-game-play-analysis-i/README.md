@@ -59,9 +59,9 @@ Output:
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 81 ms  
-**Memory:** 0B  
-**Submitted:** 2026-08-31T16:03:56.643Z  
+**Runtime:** 535 ms (beats 52.63%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-08-31T16:04:02.735Z  
 
 ```sql
 SELECT player_id, MIN(event_date) AS first_login
