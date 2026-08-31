@@ -86,9 +86,9 @@ There are no valid split positions. Thus, the answer is 0.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 259 ms (beats 100.00%)  
-**Memory:** 46.8 MB (beats 100.00%)  
-**Submitted:** 2026-08-31T07:08:54.606Z  
+**Runtime:** 253 ms (beats 100.00%)  
+**Memory:** 46.6 MB (beats 100.00%)  
+**Submitted:** 2026-08-31T07:13:59.545Z  
 
 ```java
 class Solution {
@@ -97,13 +97,10 @@ class Solution {
         int n = nums.length;
         int answer = 0;
 
-        // k = index to remove
-        // k = n means remove nothing
         for (int k = 0; k <= n; k++) {
 
             int m = (k == n) ? n : n - 1;
 
-            // Prefix GCD
             int[] prefix = new int[m];
             int g = 0;
 
@@ -114,11 +111,9 @@ class Solution {
                 prefix[j++] = g;
             }
 
-            // Count valid splits
             int count = 0;
             int suffixGcd = 0;
 
-            // Build suffix GCD while moving from right to left
             int[] arr = new int[m];
             int idx = 0;
 
@@ -127,7 +122,6 @@ class Solution {
                     arr[idx++] = nums[i];
                 }
             }
-
             for (int i = m - 1; i > 0; i--) {
 
                 suffixGcd = gcd(suffixGcd, arr[i]);
@@ -139,7 +133,6 @@ class Solution {
 
             answer = Math.max(answer, count);
         }
-
         return answer;
     }
 
