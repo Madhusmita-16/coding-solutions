@@ -26,8 +26,6 @@ class Solution {
             st[j][r - (1 << j) + 1]
         );
     }
-
-    // GCD of first len elements after deleting index k
     private int prefixGcd(int k, int len) {
 
         if (k == 0) {
@@ -43,8 +41,6 @@ class Solution {
             rangeGcd(k + 1, len)
         );
     }
-
-    // GCD of last len elements after deleting index k
     private int suffixGcd(int k, int len) {
 
         if (k == n - 1) {
@@ -62,11 +58,8 @@ class Solution {
             rangeGcd(k + 1, n - 1)
         );
     }
-
     private int firstPrefix(int k, int target) {
-
         int m = n - 1;
-
         int lo = 1;
         int hi = m;
 
@@ -79,14 +72,12 @@ class Solution {
                 lo = mid + 1;
             }
         }
-
         return lo;
     }
 
     private int firstSuffix(int k, int target) {
 
         int m = n - 1;
-
         int lo = 1;
         int hi = m;
 
@@ -102,8 +93,6 @@ class Solution {
 
         return lo;
     }
-
-    // Check the case where we remove NOTHING
     private int scoreWithoutDeletion(int[] nums) {
 
         int answer = 0;
@@ -119,35 +108,26 @@ class Solution {
                 answer++;
             }
         }
-
         return answer;
     }
-
     public int maxValidSplits(int[] nums) {
 
         n = nums.length;
-
-        // Build logarithm table
         log = new int[n + 1];
 
         for (int i = 2; i <= n; i++) {
             log[i] = log[i / 2] + 1;
         }
-
-        // Build Sparse Table
         int K = log[n] + 1;
         st = new int[K][n];
 
         for (int i = 0; i < n; i++) {
             st[0][i] = nums[i];
         }
-
-        for (int j = 1; j < K; j++) {
-
+       for (int j = 1; j < K; j++) {
             int half = 1 << (j - 1);
             int len = 1 << j;
-
-            for (int i = 0; i + len <= n; i++) {
+        for (int i = 0; i + len <= n; i++) {
                 st[j][i] = gcd(
                     st[j - 1][i],
                     st[j - 1][i + half]
@@ -155,14 +135,13 @@ class Solution {
             }
         }
 
-        // IMPORTANT:
-        // "At most one" means we can remove nothing.
+
         int answer = scoreWithoutDeletion(nums);
 
-        // Try deleting every element
+  
         for (int k = 0; k < n; k++) {
 
-            // GCD of the entire remaining array
+
             int leftGcd = rangeGcd(0, k - 1);
             int rightGcd = rangeGcd(k + 1, n - 1);
 
@@ -170,21 +149,13 @@ class Solution {
 
             int m = n - 1;
 
-            // Minimum prefix length with gcd = target
+   
             int L = firstPrefix(k, target);
 
-            // Minimum suffix length with gcd = target
+      
             int R = firstSuffix(k, target);
 
-            /*
-             * Valid prefix lengths:
-             *
-             * L <= q <= m - R
-             *
-             * Number of valid splits:
-             *
-             * m - R - L + 1
-             */
+         
             int score = m - R - L + 1;
 
             answer = Math.max(answer, Math.max(0, score));
