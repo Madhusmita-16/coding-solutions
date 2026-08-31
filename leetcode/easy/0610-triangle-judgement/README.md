@@ -53,9 +53,9 @@ Output:
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 84 ms  
-**Memory:** 0B  
-**Submitted:** 2026-08-31T16:19:37.721Z  
+**Runtime:** 279 ms (beats 91.70%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-08-31T16:19:45.160Z  
 
 ```sql
 SELECT
