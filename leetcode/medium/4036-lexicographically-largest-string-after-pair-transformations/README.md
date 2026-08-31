@@ -58,9 +58,9 @@ A string `a` is  **lexicographically larger**  than a string `b` if, at the firs
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.6 MB  
-**Submitted:** 2026-08-31T07:10:13.242Z  
+**Runtime:** 75 ms (beats 66.67%)  
+**Memory:** 133.8 MB (beats 33.33%)  
+**Submitted:** 2026-08-31T07:10:25.081Z  
 
 ```java
 class Solution {
