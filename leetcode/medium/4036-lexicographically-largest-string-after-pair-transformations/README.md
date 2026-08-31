@@ -58,9 +58,9 @@ A string `a` is  **lexicographically larger**  than a string `b` if, at the firs
 ## Solution
 
 **Language:** Java  
-**Runtime:** 75 ms (beats 66.67%)  
-**Memory:** 133.8 MB (beats 33.33%)  
-**Submitted:** 2026-08-31T07:10:25.081Z  
+**Runtime:** 76 ms (beats 66.67%)  
+**Memory:** 133.7 MB (beats 33.33%)  
+**Submitted:** 2026-08-31T07:15:22.284Z  
 
 ```java
 class Solution {
@@ -73,16 +73,11 @@ class Solution {
             long x = nums[i];
             StringBuilder sb = new StringBuilder();
 
-            // z represents 2^25 'a's
             long zValue = 1L << 25;
-
-            // Take as many z's as possible
             while (x >= zValue) {
                 sb.append('z');
                 x -= zValue;
             }
-
-            // Represent the remaining value using y -> a
             for (int bit = 24; bit >= 0; bit--) {
 
                 long value = 1L << bit;
@@ -92,10 +87,8 @@ class Solution {
                     x -= value;
                 }
             }
-
             ans[i] = sb.toString();
         }
-
         return ans;
     }
 }
