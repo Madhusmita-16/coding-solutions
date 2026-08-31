@@ -58,8 +58,8 @@ No matter how many diagonal moves it makes, the bishop starting at `(1, 1)` can 
 
 **Language:** Java  
 **Runtime:** 1 ms (beats 100.00%)  
-**Memory:** 44.3 MB  
-**Submitted:** 2026-08-31T07:07:58.970Z  
+**Memory:** 43.8 MB (beats 100.00%)  
+**Submitted:** 2026-08-31T07:12:33.437Z  
 
 ```java
 class Solution {
@@ -71,17 +71,13 @@ class Solution {
         int tr = target[0];
         int tc = target[1];
 
-        // Bishop can only stay on the same color
         if ((sr + sc) % 2 != (tr + tc) % 2) {
             return -1;
         }
 
-        // Same diagonal
         if (Math.abs(sr - tr) == Math.abs(sc - tc)) {
             return 1;
         }
-
-        // Same color but different diagonal -> always reachable in 2 moves
         return 2;
     }
 }
