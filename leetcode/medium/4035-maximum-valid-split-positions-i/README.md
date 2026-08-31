@@ -86,9 +86,9 @@ There are no valid split positions. Thus, the answer is 0.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.1 MB  
-**Submitted:** 2026-08-31T07:08:44.715Z  
+**Runtime:** 259 ms (beats 100.00%)  
+**Memory:** 46.8 MB (beats 100.00%)  
+**Submitted:** 2026-08-31T07:08:54.606Z  
 
 ```java
 class Solution {
