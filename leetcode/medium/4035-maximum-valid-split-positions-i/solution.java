@@ -4,13 +4,10 @@ class Solution {
         int n = nums.length;
         int answer = 0;
 
-        // k = index to remove
-        // k = n means remove nothing
         for (int k = 0; k <= n; k++) {
 
             int m = (k == n) ? n : n - 1;
 
-            // Prefix GCD
             int[] prefix = new int[m];
             int g = 0;
 
@@ -21,11 +18,9 @@ class Solution {
                 prefix[j++] = g;
             }
 
-            // Count valid splits
             int count = 0;
             int suffixGcd = 0;
 
-            // Build suffix GCD while moving from right to left
             int[] arr = new int[m];
             int idx = 0;
 
@@ -34,7 +29,6 @@ class Solution {
                     arr[idx++] = nums[i];
                 }
             }
-
             for (int i = m - 1; i > 0; i--) {
 
                 suffixGcd = gcd(suffixGcd, arr[i]);
@@ -46,7 +40,6 @@ class Solution {
 
             answer = Math.max(answer, count);
         }
-
         return answer;
     }
 
