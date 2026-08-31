@@ -55,9 +55,9 @@ Only the player with id 1 logged back in after the first day he had logged in so
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 80 ms  
-**Memory:** 0B  
-**Submitted:** 2026-08-31T16:05:47.698Z  
+**Runtime:** 2113 ms (beats 6.21%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-08-31T16:06:00.163Z  
 
 ```sql
 SELECT ROUND(
