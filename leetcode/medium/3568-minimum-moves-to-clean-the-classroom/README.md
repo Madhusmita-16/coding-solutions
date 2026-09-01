@@ -69,9 +69,9 @@ No valid path collects all `'L'`.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 557 ms (beats 47.62%)  
-**Memory:** 285.7 MB (beats 9.52%)  
-**Submitted:** 2026-09-01T15:33:38.422Z  
+**Runtime:** 511 ms (beats 64.29%)  
+**Memory:** 285.4 MB (beats 9.52%)  
+**Submitted:** 2026-09-01T17:11:10.055Z  
 
 ```java
 class Solution {
