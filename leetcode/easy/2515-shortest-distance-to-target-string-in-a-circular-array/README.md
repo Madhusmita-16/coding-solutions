@@ -60,9 +60,9 @@ Explanation: Since "ate" does not exist in words, we return -1.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.2 MB  
-**Submitted:** 2026-09-08T04:57:21.805Z  
+**Runtime:** 1 ms (beats 97.06%)  
+**Memory:** 46.8 MB (beats 84.73%)  
+**Submitted:** 2026-09-08T04:58:49.496Z  
 
 ```java
 class Solution {
