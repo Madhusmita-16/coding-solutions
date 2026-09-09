@@ -69,9 +69,9 @@ Output:
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 297 ms (beats 54.19%)  
-**Memory:** 0B (beats 100.00%)  
-**Submitted:** 2026-08-21T07:22:50.061Z  
+**Runtime:** 106 ms  
+**Memory:** 0B  
+**Submitted:** 2026-09-09T14:34:41.295Z  
 
 ```sql
 SELECT MAX(salary) AS SecondHighestSalary
