@@ -73,9 +73,9 @@ Explanation: The folowing table is ordered by the turn for simplicity.
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 100 ms  
-**Memory:** 0B  
-**Submitted:** 2026-09-09T15:02:10.247Z  
+**Runtime:** 862 ms (beats 68.65%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T15:02:19.547Z  
 
 ```sql
 SELECT person_name
