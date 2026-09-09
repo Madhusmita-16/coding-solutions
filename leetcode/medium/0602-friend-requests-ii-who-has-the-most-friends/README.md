@@ -60,9 +60,9 @@ The person with id 3 is a friend of people 1, 2, and 4, so he has three friends 
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 369 ms (beats 32.05%)  
-**Memory:** 0B (beats 100.00%)  
-**Submitted:** 2026-08-31T16:11:44.868Z  
+**Runtime:** 66 ms  
+**Memory:** 0B  
+**Submitted:** 2026-09-09T14:21:11.925Z  
 
 ```sql
 SELECT id, COUNT(*) AS num
