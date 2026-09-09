@@ -1,4 +1,4 @@
-# Q3. Consecutive Numbers
+# Consecutive Numbers
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -57,9 +57,9 @@ Explanation: 1 is the only number that appears consecutively for at least three 
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 669 ms (beats 30.14%)  
-**Memory:** 0B (beats 100.00%)  
-**Submitted:** 2026-08-18T14:09:04.144Z  
+**Runtime:** 246 ms  
+**Memory:** 0B  
+**Submitted:** 2026-09-09T14:39:26.012Z  
 
 ```sql
 SELECT DISTINCT l1.num AS ConsecutiveNums
