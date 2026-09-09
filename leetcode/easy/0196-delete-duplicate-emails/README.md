@@ -58,9 +58,9 @@ Explanation: john@example.com is repeated two times. We keep the row with the sm
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 786 ms (beats 86.33%)  
+**Runtime:** 915 ms (beats 53.35%)  
 **Memory:** 0B (beats 100.00%)  
-**Submitted:** 2026-08-31T16:03:06.955Z  
+**Submitted:** 2026-09-09T14:35:41.564Z  
 
 ```sql
 DELETE p1
