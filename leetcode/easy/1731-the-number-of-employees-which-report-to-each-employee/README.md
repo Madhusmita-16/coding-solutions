@@ -86,9 +86,9 @@ Output:
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 88 ms  
-**Memory:** 0B  
-**Submitted:** 2026-09-09T15:03:47.785Z  
+**Runtime:** 1190 ms (beats 5.01%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T15:03:58.006Z  
 
 ```sql
 SELECT
