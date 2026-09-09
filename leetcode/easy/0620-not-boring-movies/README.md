@@ -1,4 +1,4 @@
-# Q3. Not Boring Movies
+# Not Boring Movies
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -60,9 +60,9 @@ We have three movies with odd-numbered IDs: 1, 3, and 5. The movie with ID = 3 i
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 318 ms (beats 23.63%)  
+**Runtime:** 307 ms (beats 35.29%)  
 **Memory:** 0B (beats 100.00%)  
-**Submitted:** 2026-08-18T13:52:33.030Z  
+**Submitted:** 2026-09-09T14:18:41.541Z  
 
 ```sql
 SELECT id, movie, description, rating
