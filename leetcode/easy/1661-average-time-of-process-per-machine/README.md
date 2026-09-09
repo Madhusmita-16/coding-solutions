@@ -81,23 +81,23 @@ Machine 2's average time is ((4.512 - 4.100) + (5.000 - 2.500)) / 2 = 1.456
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 69 ms  
-**Memory:** 0B  
-**Submitted:** 2026-09-09T14:11:12.636Z  
+**Runtime:** 270 ms (beats 56.94%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T14:11:57.643Z  
 
 ```sql
 SELECT
     machine_id,
-    ROUND(
-        AVG(
-            CASE
-                WHEN activity_type = 'end' THEN timestamp
-                ELSE -timestamp
-            END
-        ),
-        3
-    ) AS processing_time
-FROM Activity
+    ROUND(AVG(end_time - start_time), 3) AS processing_time
+FROM (
+    SELECT
+        machine_id,
+        process_id,
+        MAX(CASE WHEN activity_type = 'start' THEN timestamp END) AS start_time,
+        MAX(CASE WHEN activity_type = 'end' THEN timestamp END) AS end_time
+    FROM Activity
+    GROUP BY machine_id, process_id
+) AS process_times
 GROUP BY machine_id;
 ```
 
