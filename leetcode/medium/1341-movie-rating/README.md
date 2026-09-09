@@ -111,9 +111,9 @@ Frozen 2 and Joker have a rating average of 3.5 in February but Frozen 2 is smal
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 173 ms  
-**Memory:** 0B  
-**Submitted:** 2026-09-09T14:20:10.035Z  
+**Runtime:** 2322 ms (beats 5.00%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T14:20:45.555Z  
 
 ```sql
 (
