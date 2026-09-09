@@ -65,9 +65,9 @@ High Salary: Accounts 3, 6, and 8.
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 125 ms  
-**Memory:** 0B  
-**Submitted:** 2026-09-09T14:40:26.526Z  
+**Runtime:** 1907 ms (beats 12.86%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T14:42:05.534Z  
 
 ```sql
 SELECT 'Low Salary' AS category,
