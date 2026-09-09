@@ -58,9 +58,9 @@ Explanation: Bob and George both have a condition that starts with DIAB1.
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 70 ms  
-**Memory:** 0B  
-**Submitted:** 2026-09-09T15:00:38.308Z  
+**Runtime:** 428 ms (beats 67.93%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T15:00:45.579Z  
 
 ```sql
 SELECT
