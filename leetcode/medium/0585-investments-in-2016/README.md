@@ -1,4 +1,4 @@
-# Q1. Investments in 2016
+# Investments in 2016
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -69,9 +69,9 @@ So, the result is the sum of tiv_2016 of the first and last record, which is 45.
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 626 ms (beats 51.67%)  
+**Runtime:** 601 ms (beats 70.04%)  
 **Memory:** 0B (beats 100.00%)  
-**Submitted:** 2026-08-18T14:10:37.249Z  
+**Submitted:** 2026-09-09T14:22:16.999Z  
 
 ```sql
 SELECT ROUND(SUM(tiv_2016), 2) AS tiv_2016
