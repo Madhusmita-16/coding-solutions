@@ -87,9 +87,9 @@ The unique ID of Jonathan is 1.
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 99 ms  
-**Memory:** 0B  
-**Submitted:** 2026-09-09T14:12:52.011Z  
+**Runtime:** 1439 ms (beats 37.10%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T14:13:07.731Z  
 
 ```sql
 SELECT 
