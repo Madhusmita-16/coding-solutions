@@ -1,4 +1,4 @@
-# Q4. Find Customer Referee
+# Find Customer Referee
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -62,9 +62,9 @@ Output:
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 917 ms (beats 5.01%)  
+**Runtime:** 616 ms (beats 22.36%)  
 **Memory:** 0B (beats 100.00%)  
-**Submitted:** 2026-08-18T13:53:40.466Z  
+**Submitted:** 2026-09-09T14:05:33.922Z  
 
 ```sql
 SELECT name
