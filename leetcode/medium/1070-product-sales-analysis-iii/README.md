@@ -1,4 +1,4 @@
-# Q3. Product Sales Analysis III
+# Product Sales Analysis III
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -59,9 +59,9 @@ Output:
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 71 ms  
-**Memory:** 0B  
-**Submitted:** 2026-08-18T14:12:29.967Z  
+**Runtime:** 1177 ms (beats 5.57%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T14:25:44.463Z  
 
 ```sql
 SELECT
