@@ -93,9 +93,9 @@ Bob registered in contest 207 and the percentage is ((1/3) * 100) = 33.33%
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 124 ms  
-**Memory:** 0B  
-**Submitted:** 2026-09-09T14:49:49.839Z  
+**Runtime:** 1070 ms (beats 53.95%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T14:49:56.615Z  
 
 ```sql
 SELECT
