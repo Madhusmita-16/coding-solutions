@@ -1,4 +1,4 @@
-# Q4. User Activity for the Past 30 Days I
+# User Activity for the Past 30 Days I
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -68,9 +68,9 @@ Explanation: Note that we do not care about days with zero active users.
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 71 ms  
-**Memory:** 0B  
-**Submitted:** 2026-08-18T13:59:10.713Z  
+**Runtime:** 691 ms (beats 12.65%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T14:27:15.337Z  
 
 ```sql
 SELECT
