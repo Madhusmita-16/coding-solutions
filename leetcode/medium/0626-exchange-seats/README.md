@@ -61,9 +61,9 @@ Note that if the number of students is odd, there is no need to change the last 
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 71 ms  
-**Memory:** 0B  
-**Submitted:** 2026-09-09T14:17:52.666Z  
+**Runtime:** 396 ms (beats 43.69%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T14:18:02.507Z  
 
 ```sql
 SELECT
