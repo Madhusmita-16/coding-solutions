@@ -84,9 +84,9 @@ Explanation: There are no single numbers in the input table so we return null.
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 95 ms  
-**Memory:** 0B  
-**Submitted:** 2026-09-09T14:28:31.282Z  
+**Runtime:** 503 ms (beats 37.34%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T14:29:42.662Z  
 
 ```sql
 SELECT MAX(num) AS num
