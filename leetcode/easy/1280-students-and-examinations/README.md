@@ -1,4 +1,4 @@
-# Q1. Students and Examinations
+# Students and Examinations
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -126,9 +126,9 @@ John attended the Math exam 1 time, the Physics exam 1 time, and the Programming
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 130 ms  
-**Memory:** 0B  
-**Submitted:** 2026-08-18T14:00:11.130Z  
+**Runtime:** 1080 ms (beats 62.16%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T14:10:09.966Z  
 
 ```sql
 SELECT
