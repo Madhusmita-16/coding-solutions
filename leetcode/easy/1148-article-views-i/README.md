@@ -60,9 +60,9 @@ Output:
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 91 ms  
-**Memory:** 0B  
-**Submitted:** 2026-09-09T14:07:09.628Z  
+**Runtime:** 1276 ms (beats 5.00%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T14:07:18.328Z  
 
 ```sql
 SELECT DISTINCT author_id AS id
