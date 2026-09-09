@@ -66,9 +66,9 @@ Hence, half the customers have immediate first orders.
 ## Solution
 
 **Language:** SQL  
-**Runtime:** 85 ms  
-**Memory:** 0B  
-**Submitted:** 2026-09-09T14:48:08.631Z  
+**Runtime:** 727 ms (beats 44.22%)  
+**Memory:** 0B (beats 100.00%)  
+**Submitted:** 2026-09-09T14:48:16.100Z  
 
 ```sql
 SELECT
