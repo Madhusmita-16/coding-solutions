@@ -51,12 +51,13 @@ lRUCache.get(4);    // return 4
 ## Solution
 
 **Language:** Java  
-**Runtime:** 14 ms (beats 99.61%)  
-**Memory:** 59 MB (beats 96.18%)  
-**Submitted:** 2026-08-20T07:36:31.411Z  
+**Runtime:** 14 ms (beats 94.41%)  
+**Memory:** 58.5 MB (beats 86.61%)  
+**Submitted:** 2026-09-16T02:38:24.501Z  
 
 ```java
 import java.util.HashMap;
+import java.util.Map;
 
 class LRUCache {
 
@@ -72,14 +73,16 @@ class LRUCache {
         }
     }
 
-    private int capacity;
-    private HashMap<Integer, Node> map;
-    private Node head;
-    private Node tail;
+    private final int capacity;
+    private final Map<Integer, Node> map;
+
+    // Dummy nodes
+    private final Node head;
+    private final Node tail;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        map = new HashMap<>();
+        this.map = new HashMap<>();
 
         head = new Node(0, 0);
         tail = new Node(0, 0);
@@ -89,42 +92,41 @@ class LRUCache {
     }
 
     public int get(int key) {
-
         if (!map.containsKey(key)) {
             return -1;
         }
 
         Node node = map.get(key);
 
+        // Mark as most recently used
         remove(node);
-        addToFront(node);
+        addFirst(node);
 
         return node.value;
     }
 
     public void put(int key, int value) {
 
-  
+        // Key already exists
         if (map.containsKey(key)) {
-
             Node node = map.get(key);
+
             node.value = value;
 
+            // Updated key becomes most recently used
             remove(node);
-            addToFront(node);
+            addFirst(node);
 
             return;
         }
 
-
+        // New key
         Node node = new Node(key, value);
-
         map.put(key, node);
-        addToFront(node);
+        addFirst(node);
 
-
+        // Capacity exceeded
         if (map.size() > capacity) {
-
             Node lru = tail.prev;
 
             remove(lru);
@@ -132,15 +134,14 @@ class LRUCache {
         }
     }
 
-
+    // Remove a node from the linked list
     private void remove(Node node) {
         node.prev.next = node.next;
         node.next.prev = node.prev;
     }
 
-
-    private void addToFront(Node node) {
-
+    // Add node immediately after head
+    private void addFirst(Node node) {
         node.next = head.next;
         node.prev = head;
 
