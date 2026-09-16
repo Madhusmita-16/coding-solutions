@@ -50,9 +50,9 @@ twitter.getNewsFeed(1);  // User 1's news feed should return a list with 1 tweet
 ## Solution
 
 **Language:** Java  
-**Runtime:** 6 ms  
-**Memory:** 43 MB  
-**Submitted:** 2026-09-16T02:51:53.173Z  
+**Runtime:** 29 ms (beats 91.83%)  
+**Memory:** 56.3 MB (beats 72.89%)  
+**Submitted:** 2026-09-16T02:52:04.403Z  
 
 ```java
 import java.util.*;
