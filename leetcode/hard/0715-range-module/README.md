@@ -46,9 +46,9 @@ rangeModule.queryRange(16, 17); // return True, (The number 16 in [16, 17) is st
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.5 MB  
-**Submitted:** 2026-09-16T02:52:54.721Z  
+**Runtime:** 38 ms (beats 97.23%)  
+**Memory:** 61.3 MB (beats 35.99%)  
+**Submitted:** 2026-09-16T02:52:59.085Z  
 
 ```java
 import java.util.*;
