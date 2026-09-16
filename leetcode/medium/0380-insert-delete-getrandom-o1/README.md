@@ -1,4 +1,4 @@
-# Insert Delete GetRandom O(1)
+# Q1. Insert Delete GetRandom O(1)
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -47,18 +47,21 @@ randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom()
 ## Solution
 
 **Language:** Java  
-**Runtime:** 28 ms (beats 41.05%)  
-**Memory:** 101 MB (beats 7.38%)  
-**Submitted:** 2026-08-15T10:30:23.739Z  
+**Runtime:** 26 ms (beats 74.75%)  
+**Memory:** 100.5 MB (beats 63.93%)  
+**Submitted:** 2026-09-16T02:47:43.970Z  
 
 ```java
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 class RandomizedSet {
 
-    private ArrayList<Integer> list;
-    private HashMap<Integer, Integer> map;
-    private Random random;
+    private final ArrayList<Integer> list;
+    private final Map<Integer, Integer> map;
+    private final Random random;
 
     public RandomizedSet() {
         list = new ArrayList<>();
@@ -67,10 +70,12 @@ class RandomizedSet {
     }
 
     public boolean insert(int val) {
+
         if (map.containsKey(val)) {
             return false;
         }
 
+        // Store value and its index
         map.put(val, list.size());
         list.add(val);
 
@@ -78,18 +83,21 @@ class RandomizedSet {
     }
 
     public boolean remove(int val) {
+
         if (!map.containsKey(val)) {
             return false;
         }
 
         int index = map.get(val);
+
+        // Get the last element
         int lastValue = list.get(list.size() - 1);
 
-        // Move last element to the removed element's position
+        // Move last element into the removed element's position
         list.set(index, lastValue);
         map.put(lastValue, index);
 
-        // Remove last element
+        // Remove last position
         list.remove(list.size() - 1);
         map.remove(val);
 
@@ -97,7 +105,9 @@ class RandomizedSet {
     }
 
     public int getRandom() {
+
         int index = random.nextInt(list.size());
+
         return list.get(index);
     }
 }
