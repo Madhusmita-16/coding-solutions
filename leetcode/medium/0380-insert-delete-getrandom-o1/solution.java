@@ -1,10 +1,13 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 class RandomizedSet {
 
-    private ArrayList<Integer> list;
-    private HashMap<Integer, Integer> map;
-    private Random random;
+    private final ArrayList<Integer> list;
+    private final Map<Integer, Integer> map;
+    private final Random random;
 
     public RandomizedSet() {
         list = new ArrayList<>();
@@ -13,10 +16,12 @@ class RandomizedSet {
     }
 
     public boolean insert(int val) {
+
         if (map.containsKey(val)) {
             return false;
         }
 
+        // Store value and its index
         map.put(val, list.size());
         list.add(val);
 
@@ -24,18 +29,21 @@ class RandomizedSet {
     }
 
     public boolean remove(int val) {
+
         if (!map.containsKey(val)) {
             return false;
         }
 
         int index = map.get(val);
+
+        // Get the last element
         int lastValue = list.get(list.size() - 1);
 
-        // Move last element to the removed element's position
+        // Move last element into the removed element's position
         list.set(index, lastValue);
         map.put(lastValue, index);
 
-        // Remove last element
+        // Remove last position
         list.remove(list.size() - 1);
         map.remove(val);
 
@@ -43,7 +51,9 @@ class RandomizedSet {
     }
 
     public int getRandom() {
+
         int index = random.nextInt(list.size());
+
         return list.get(index);
     }
 }
