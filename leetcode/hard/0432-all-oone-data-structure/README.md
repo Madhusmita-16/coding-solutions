@@ -51,9 +51,9 @@ allOne.getMinKey(); // return "leet"
 ## Solution
 
 **Language:** Java  
-**Runtime:** 3 ms  
-**Memory:** 42.5 MB  
-**Submitted:** 2026-09-16T02:50:03.296Z  
+**Runtime:** 91 ms (beats 19.01%)  
+**Memory:** 78.8 MB (beats 64.30%)  
+**Submitted:** 2026-09-16T02:50:08.201Z  
 
 ```java
 import java.util.HashMap;
