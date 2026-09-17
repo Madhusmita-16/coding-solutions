@@ -52,7 +52,7 @@ Explanation: We have only one sub-array of sum = 6.
 **Language:** Java  
 **Runtime:** 7 ms (beats 84.30%)  
 **Memory:** 91.1 MB (beats 60.54%)  
-**Submitted:** 2026-09-17T04:48:02.957Z  
+**Submitted:** 2026-09-17T14:01:21.481Z  
 
 ```java
 class Solution {
