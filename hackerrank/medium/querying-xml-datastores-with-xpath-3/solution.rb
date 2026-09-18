@@ -9,7 +9,7 @@ end
 
 doc = Document.new xmlText
 
-doc.elements.each("collection/movie/popularity") do |movie|
-    puts movie.text
+XPath.match(doc, "collection/movie[popularity < 8]/format").each do |format|
+    puts format.text
 end
 
