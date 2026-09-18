@@ -9,4 +9,7 @@ end
 
 doc = Document.new xmlText
 
-puts doc.elements.each("collection/movie/@title")
+doc.elements.each("collection/movie/popularity") do |movie|
+    puts movie.text
+end
+
