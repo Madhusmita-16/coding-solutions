@@ -1,4 +1,4 @@
-# Querying XML Datastores with XPath - 7
+# Querying XML Datastores with XPath - 8
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -68,13 +68,13 @@ Your code will also be run against a hidden test case, which is similar in schem
 **Language:** Ruby  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-18T16:25:53.095Z  
+**Submitted:** 2026-09-18T16:27:58.815Z  
 
 ```rb
 require 'rexml/document'
 include REXML
 
-xmlText = "" 
+xmlText = ""
 
 while line = gets()
     xmlText += line
@@ -82,12 +82,7 @@ end
 
 doc = Document.new xmlText
 
-values = XPath.match(doc, "collection/movie/popularity").map { |x| x.text.to_f }
-
-average = values.sum / values.length
-
-puts "%.2f" % average
-
+puts XPath.match(doc, "string-length(collection/movie[2]/description)")
 
 ```
 
