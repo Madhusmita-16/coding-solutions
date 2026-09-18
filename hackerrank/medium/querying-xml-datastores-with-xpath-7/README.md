@@ -68,7 +68,7 @@ Your code will also be run against a hidden test case, which is similar in schem
 **Language:** Ruby  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-18T16:25:37.936Z  
+**Submitted:** 2026-09-18T16:25:46.259Z  
 
 ```rb
 require 'rexml/document'
