@@ -1,4 +1,4 @@
-# Map Reduce Advanced - Relational Join
+# Map Reduce Advanced - Matrix Multiplication
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -54,11 +54,12 @@ Again, the output handling part has already been provided in the template code. 
 **Language:** Python  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-18T16:14:02.896Z  
+**Submitted:** 2026-09-18T16:15:11.584Z  
 
 ```py
 import sys
 from collections import OrderedDict
+
 
 class MapReduce:
     def __init__(self):
@@ -70,70 +71,91 @@ class MapReduce:
         self.intermediate[key].append(value)
 
     def emit(self, value):
-        self.result.append(value)
+        self.result[value[0]][value[1]] = value[2]
 
-    def execute(self, data, mapper, reducer):
-        for record in data:
-            mapper(record)
+    def execute(self, matrix1, matrix2, mapper, reducer):
+        n = len(matrix1)
+        m = len(matrix2[0])
+
+        for i in xrange(0, n):
+            self.result.append([0] * m)
+
+        mapper(matrix1, matrix2)
 
         for key in self.intermediate:
             reducer(key, self.intermediate[key])
 
-        self.result.sort()
-
-        for item in self.result:
-            print item
-
-
-mapReducer = MapReduce()
+        for i in xrange(0, n):
+            row = ""
+            for j in xrange(0, m):
+                row += str(self.result[i][j]) + " "
+            print(row)
 
 
-def mapper(record):
-    record = record.strip()
+mapReducer = None
 
-    if not record:
-        return
 
-    fields = record.split(',')
+def mapper(matrix1, matrix2):
+    # matrix1: n x k
+    # matrix2: k x m
+    #
+    # For every output cell (i, j), emit:
+    # (i, j) -> matrix1[i][k] * matrix2[k][j]
 
-    if fields[0] == 'Employee':
-        # Employee,Name,SSN
-        name = fields[1]
-        ssn = fields[2]
+    n = len(matrix1)
+    k = len(matrix2)
+    m = len(matrix2[0])
 
-        mapReducer.emitIntermediate(ssn, ('Employee', name))
-
-    elif fields[0] == 'Department':
-        # Department,SSN,Department_Name
-        ssn = fields[1]
-        department = fields[2]
-
-        mapReducer.emitIntermediate(ssn, ('Department', department))
+    for i in xrange(n):
+        for j in xrange(m):
+            for x in xrange(k):
+                value = matrix1[i][x] * matrix2[x][j]
+                mapReducer.emitIntermediate((i, j), value)
 
 
 def reducer(key, list_of_values):
-    employees = []
-    departments = []
+    # Sum all partial products for this cell
 
-    for value in list_of_values:
-        if value[0] == 'Employee':
-            employees.append(value[1])
-        else:
-            departments.append(value[1])
+    total = sum(list_of_values)
 
-    # Join Employee and Department records having the same SSN
-    for employee in employees:
-        for department in departments:
-            mapReducer.emit((key, employee, department))
+    mapReducer.emit((key[0], key[1], total))
 
 
 if __name__ == '__main__':
-    inputData = []
+    testcases = int(raw_input())
 
-    for line in sys.stdin:
-        inputData.append(line)
+    for _ in xrange(testcases):
+        mapReducer = MapReduce()
 
-    mapReducer.execute(inputData, mapper, reducer)
+        dimensions = sys.stdin.readline().strip().split(" ")
+        row = int(dimensions[0])
+        column = int(dimensions[1])
+
+        matrix1 = []
+
+        for i in range(row):
+            read_row = sys.stdin.readline().strip()
+            matrix1.append([])
+            row_elems = read_row.split()
+
+            for j in range(len(row_elems)):
+                matrix1[i].append(int(row_elems[j]))
+
+        dimensions = sys.stdin.readline().strip().split(" ")
+        row = int(dimensions[0])
+        column = int(dimensions[1])
+
+        matrix2 = []
+
+        for i in range(row):
+            read_row = sys.stdin.readline().strip()
+            matrix2.append([])
+            row_elems = read_row.split()
+
+            for j in range(len(row_elems)):
+                matrix2[i].append(int(row_elems[j]))
+
+        mapReducer.execute(matrix1, matrix2, mapper, reducer)
 
 ```
 
