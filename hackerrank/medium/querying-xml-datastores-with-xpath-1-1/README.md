@@ -1,4 +1,4 @@
-# Querying XML Datastores with XPath - 1
+# Querying XML Datastores with XPath - 2
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -71,7 +71,7 @@ Your code will also be run against a hidden test case, which is similar in schem
 **Language:** Ruby  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-18T16:16:44.127Z  
+**Submitted:** 2026-09-18T16:18:33.265Z  
 
 ```rb
 require 'rexml/document'
@@ -85,7 +85,10 @@ end
 
 doc = Document.new xmlText
 
-puts doc.elements.each("collection/movie/@title")
+doc.elements.each("collection/movie/popularity") do |movie|
+    puts movie.text
+end
+
 
 ```
 
