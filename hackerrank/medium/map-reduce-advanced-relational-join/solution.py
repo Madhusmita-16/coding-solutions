@@ -23,49 +23,31 @@ class MapReduce:
         self.result.sort()
 
         for item in self.result:
-            print item
+            print("{\"key\":\"" + item[0] + "\",\"value\":\"" + str(item[1]) + "\"}")
 
 
 mapReducer = MapReduce()
 
 
 def mapper(record):
+    # Remove newline and split the two names
     record = record.strip()
-
     if not record:
         return
 
-    fields = record.split(',')
+    friend1, friend2 = record.split()
 
-    if fields[0] == 'Employee':
-        # Employee,Name,SSN
-        name = fields[1]
-        ssn = fields[2]
-
-        mapReducer.emitIntermediate(ssn, ('Employee', name))
-
-    elif fields[0] == 'Department':
-        # Department,SSN,Department_Name
-        ssn = fields[1]
-        department = fields[2]
-
-        mapReducer.emitIntermediate(ssn, ('Department', department))
+    # Each person gets one friend
+    mapReducer.emitIntermediate(friend1, 1)
+    mapReducer.emitIntermediate(friend2, 1)
 
 
 def reducer(key, list_of_values):
-    employees = []
-    departments = []
+    # Count the number of friends
+    count = sum(list_of_values)
 
-    for value in list_of_values:
-        if value[0] == 'Employee':
-            employees.append(value[1])
-        else:
-            departments.append(value[1])
-
-    # Join Employee and Department records having the same SSN
-    for employee in employees:
-        for department in departments:
-            mapReducer.emit((key, employee, department))
+    # Emit (person, number of friends)
+    mapReducer.emit((key, count))
 
 
 if __name__ == '__main__':
