@@ -1,4 +1,4 @@
-# Q1. Valid Parentheses
+# Valid Parentheses
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
@@ -54,36 +54,28 @@ An input string is valid if:
 ## Solution
 
 **Language:** Java  
-**Runtime:** 3 ms (beats 86.07%)  
-**Memory:** 43.2 MB (beats 73.09%)  
-**Submitted:** 2026-08-27T09:15:03.332Z  
+**Runtime:** 3 ms (beats 85.88%)  
+**Memory:** 43.3 MB (beats 40.74%)  
+**Submitted:** 2026-10-01T04:00:40.298Z  
 
 ```java
-import java.util.*;
-
 class Solution {
     public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
 
-        Deque<Character> stack = new ArrayDeque<>();
-
-        for (char c : s.toCharArray()) {
-
-            // Opening bracket
-            if (c == '(' || c == '[' || c == '{') {
-                stack.push(c);
-            }
-
-            // Closing bracket
-            else {
+        for (char ch : s.toCharArray()) {
+            if (ch == '(' || ch == '[' || ch == '{') {
+                stack.push(ch);
+            } else {
                 if (stack.isEmpty()) {
                     return false;
                 }
 
                 char top = stack.pop();
 
-                if ((c == ')' && top != '(') ||
-                    (c == ']' && top != '[') ||
-                    (c == '}' && top != '{')) {
+                if ((ch == ')' && top != '(') ||
+                    (ch == ']' && top != '[') ||
+                    (ch == '}' && top != '{')) {
                     return false;
                 }
             }
