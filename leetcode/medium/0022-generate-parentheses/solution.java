@@ -1,37 +1,27 @@
-import java.util.*;
-
 class Solution {
     public List<String> generateParenthesis(int n) {
-
         List<String> result = new ArrayList<>();
-
-        backtrack("", 0, 0, n, result);
-
+        backtrack(result, "", 0, 0, n);
         return result;
     }
 
-    private void backtrack(
-            String current,
-            int open,
-            int close,
-            int n,
-            List<String> result) {
+    private void backtrack(List<String> result, String current,
+                            int open, int close, int n) {
 
-        // A complete valid combination
+        // A valid combination is complete
         if (current.length() == 2 * n) {
             result.add(current);
             return;
         }
 
-        // We can add an opening bracket if we haven't used all n
+        // Add opening parenthesis
         if (open < n) {
-            backtrack(current + "(", open + 1, close, n, result);
+            backtrack(result, current + "(", open + 1, close, n);
         }
 
-        // We can add a closing bracket only when
-        // there are unmatched opening brackets
+        // Add closing parenthesis only if valid
         if (close < open) {
-            backtrack(current + ")", open, close + 1, n, result);
+            backtrack(result, current + ")", open, close + 1, n);
         }
     }
 }
