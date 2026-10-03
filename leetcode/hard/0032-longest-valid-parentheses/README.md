@@ -44,18 +44,14 @@ Output: 0
 ## Solution
 
 **Language:** Java  
-**Runtime:** 5 ms (beats 80.88%)  
-**Memory:** 46.4 MB (beats 73.83%)  
-**Submitted:** 2026-08-18T14:46:00.573Z  
+**Runtime:** 5 ms (beats 75.27%)  
+**Memory:** 46.8 MB (beats 13.01%)  
+**Submitted:** 2026-10-03T09:18:03.144Z  
 
 ```java
-import java.util.*;
-
 class Solution {
     public int longestValidParentheses(String s) {
         Stack<Integer> stack = new Stack<>();
-
-        // Base index before the start of a valid substring
         stack.push(-1);
 
         int maxLength = 0;
@@ -65,18 +61,12 @@ class Solution {
             if (s.charAt(i) == '(') {
                 stack.push(i);
             } else {
-                // Remove the matching '('
                 stack.pop();
 
                 if (stack.isEmpty()) {
-                    // Current ')' cannot be matched
                     stack.push(i);
                 } else {
-                    // Length of current valid substring
-                    maxLength = Math.max(
-                        maxLength,
-                        i - stack.peek()
-                    );
+                    maxLength = Math.max(maxLength, i - stack.peek());
                 }
             }
         }
